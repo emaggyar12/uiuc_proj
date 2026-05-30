@@ -1,0 +1,10 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Data
+db_files/
+scrapers_web/outputs/actual_db_files/
+
+# macOS system files
+.DS_Store
