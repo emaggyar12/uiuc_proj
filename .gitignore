@@ -6,5 +6,8 @@ __pycache__/
 db_files/
 scrapers_web/outputs/actual_db_files/
 
+# Cached recruit profiles
+scrapers_web/cache/
+
 # macOS system files
 .DS_Store
