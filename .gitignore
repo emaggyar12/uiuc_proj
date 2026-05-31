@@ -11,3 +11,6 @@ scrapers_web/cache/
 
 # macOS system files
 .DS_Store
+
+# Database files
+*.db
