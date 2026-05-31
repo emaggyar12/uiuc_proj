@@ -1,0 +1,11 @@
+barttorvik_year,row_number,player_name,raw_team_1,raw_team_2,raw_flag,page_title,source_url,scraped_at_utc
+2018,16,Teddy Allen,West Virginia,Wichita St.,,2018 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2018&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2019,666,Justin Pierce,William & Mary,North Carolina,Yes,2019 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2019&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2020,827,Seth Towns,Harvard,Ohio St.,Yes,2020 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2020&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2021,991,Adam Miller,Illinois,LSU,Yes,2021 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2021&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2022,358,Kendric Davis,SMU,Memphis,Yes,2022 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2022&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2023,423,Hunter Dickinson,Michigan,Kansas,1,2023 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2023&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2024,662,Johnell Davis,Florida Atlantic,Arkansas,1,2024 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2024&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2025,9,Denzel Aberdeen,Florida,Kentucky,1,2025 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2025&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+2026,9,Denzel Aberdeen,Kentucky,Florida,1,2026 Transfer Portal Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&minmin=0&erk=500&year=2026&xvalue=trans,2026-05-31T04:55:54.797554+00:00
+trans_current_2026_27,9,Denzel Aberdeen,Kentucky,Florida,1,2026-27 Incoming Transfer Player Finder,https://barttorvik.com/playerstat.php?link=y&minGP=1&ocvalue=d1&year=trans&minmin=0&start=20241101&end=20250501,2026-05-31T04:55:54.797554+00:00
