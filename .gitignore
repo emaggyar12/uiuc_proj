@@ -5,6 +5,7 @@ __pycache__/
 # Data
 db_files/
 scrapers_web/outputs/actual_db_files/
+data_dir/
 
 # Cached recruit profiles
 scrapers_web/cache/

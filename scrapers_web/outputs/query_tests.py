@@ -23,14 +23,6 @@ else:
     # table_name = 'hs_recruit_skill_ratings'
     # skill_type = 'skill_footwork'
 
-    df = con.execute(f"""
-    SELECT year, full_name
-    FROM {table_name}
-    WHERE scouting_report IS NOT NULL
-        AND scouting_report_evaluator_name IS NULL
-    """).fetchdf()
-    print(df)
-
     columns = con.execute(f"""
         DESCRIBE {table_name}
     """).fetchdf()
@@ -40,8 +32,16 @@ else:
     row_count = con.execute(f"""
         SELECT COUNT(*)
         FROM {table_name}
-        WHERE scouting_report IS NOT NULL
     """).fetchone()[0]
+
+    df = con.execute(f"""
+    SELECT year, full_Name, committed_school, signed_school
+    FROM {table_name}
+    WHERE full_name LIKE '%Dajuan Harris%'
+    """).fetchdf()
+    print(df)
+
+    # df.to_csv('penis_balls.csv', index = False)
 
     print(row_count)
 

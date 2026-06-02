@@ -12,7 +12,7 @@ The input data consists of two datasets:
    - `previous_college`
    - `next_college`
 
-   transfer data path: /Users/anirudhhaharsha/Desktop/sports_analytics_projects/Basketball/College Basketball Project/uiuc_proj/scrapers_web/get_bartovik_data/db_files/barttorvik_transfers_2018_2026_plus_current.db
+   transfer data path: /Users/anirudhhaharsha/Desktop/sports_analytics_projects/Basketball/College Basketball Project/uiuc_proj/scrapers_web/get_bartovik_data/db_files/bv_final_transfers.db
 
    transfer output path with unique identifiers for each player (no matter how many times they transferred): /Users/anirudhhaharsha/Desktop/sports_analytics_projects/Basketball/College Basketball Project/uiuc_proj/scrapers_web/get_bartovik_data/db_files/barttorvik_transfers_2018_2026_uniqueid.db
 

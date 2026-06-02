@@ -77,7 +77,7 @@ def quantitative_value(value):
     return value
 
 
-def extract_profile_jsonld_measurables(html):
+def extract_profile_jsonld_person_fields(html):
     scripts = re.findall(
         r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>(.*?)</script>",
         html,
@@ -96,10 +96,20 @@ def extract_profile_jsonld_measurables(html):
                 continue
             height = quantitative_value(obj.get("height"))
             weight = quantitative_value(obj.get("weight"))
-            if height or weight:
-                return height, weight
+            birth_date = obj.get("birthDate")
+            if height or weight or birth_date:
+                return {
+                    "height": height,
+                    "weight": weight,
+                    "birth_date": str(birth_date).strip() if birth_date else None,
+                }
 
-    return None, None
+    return {"height": None, "weight": None, "birth_date": None}
+
+
+def extract_profile_jsonld_measurables(html):
+    fields = extract_profile_jsonld_person_fields(html)
+    return fields["height"], fields["weight"]
 
 
 class _TextExtractor(HTMLParser):

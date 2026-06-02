@@ -9,8 +9,9 @@ try:
     from common_247 import (
         SPORT_KEY_MBB,
         TFS_BASE_URL,
+        PROJECT_ROOT,
         discover_247_profile_url,
-        extract_profile_jsonld_measurables,
+        extract_profile_jsonld_person_fields,
         extract_scouting_report,
         fetch_text_cached,
         get_247_headers,
@@ -21,8 +22,9 @@ except ModuleNotFoundError:
     from .common_247 import (
         SPORT_KEY_MBB,
         TFS_BASE_URL,
+        PROJECT_ROOT,
         discover_247_profile_url,
-        extract_profile_jsonld_measurables,
+        extract_profile_jsonld_person_fields,
         extract_scouting_report,
         fetch_text_cached,
         get_247_headers,
@@ -35,9 +37,9 @@ START_YEAR = 2010
 END_YEAR = 2026
 PAGE_SIZE = 250
 MAX_WORKERS = 8
-OUT_DIR = Path(__file__).resolve().parent / "outputs"
-CACHE_ROOT = Path(__file__).resolve().parent / "cache" / "hs"
-MISSING_DIR = Path(__file__).resolve().parent / "missing_data"
+OUT_DIR = PROJECT_ROOT / "scrapers_web" / "outputs"
+CACHE_ROOT = PROJECT_ROOT / "scrapers_web" / "cache" / "hs"
+MISSING_DIR = PROJECT_ROOT / "scrapers_web" / "247_scrapers" / "missing_data"
 
 
 def pull_all_recruits(session, year):
@@ -133,6 +135,7 @@ def profile_lookup(row_dict, year):
             "profile_lookup_status": None,
             "height": None,
             "weight": None,
+            "dob_247_raw": None,
             "scouting_report": None,
             "has_scouting_report": False,
             "profile_resolution_method": "missing_api_url",
@@ -143,7 +146,14 @@ def profile_lookup(row_dict, year):
         url=url,
         cache_path=CACHE_ROOT / str(year) / "profiles" / f"{player_key}.html",
     )
-    height, weight = extract_profile_jsonld_measurables(html) if status == 200 else (None, None)
+    jsonld_fields = (
+        extract_profile_jsonld_person_fields(html)
+        if status == 200
+        else {"height": None, "weight": None, "birth_date": None}
+    )
+    height = jsonld_fields["height"]
+    weight = jsonld_fields["weight"]
+    birth_date = jsonld_fields["birth_date"]
     scouting_report = extract_scouting_report(html) if status == 200 else None
     resolution_method = "api_profile_url"
 
@@ -161,11 +171,13 @@ def profile_lookup(row_dict, year):
                 url=fallback_url,
                 cache_path=CACHE_ROOT / str(year) / "profiles" / f"{player_key}_fallback.html",
             )
-            fallback_height, fallback_weight = (
-                extract_profile_jsonld_measurables(fallback_html)
+            fallback_fields = (
+                extract_profile_jsonld_person_fields(fallback_html)
                 if fallback_status == 200
-                else (None, None)
+                else {"height": None, "weight": None, "birth_date": None}
             )
+            fallback_height = fallback_fields["height"]
+            fallback_weight = fallback_fields["weight"]
             fallback_scouting_report = (
                 extract_scouting_report(fallback_html) if fallback_status == 200 else None
             )
@@ -175,6 +187,7 @@ def profile_lookup(row_dict, year):
                 html = fallback_html
                 height = fallback_height
                 weight = fallback_weight
+                birth_date = fallback_fields["birth_date"]
                 scouting_report = fallback_scouting_report
                 resolution_method = "search_fallback_college_profile"
 
@@ -184,6 +197,7 @@ def profile_lookup(row_dict, year):
         "profile_lookup_status": status,
         "height": height,
         "weight": weight,
+        "dob_247_raw": birth_date,
         "scouting_report": scouting_report,
         "has_scouting_report": bool(scouting_report),
         "profile_resolution_method": resolution_method,
@@ -203,6 +217,7 @@ def add_profile_enrichment(recruits_df, year):
 
 
 def normalize_final(enriched, year):
+    dob_247 = pd.to_datetime(enriched["dob_247_raw"], errors="coerce").dt.strftime("%Y-%m-%d")
     return pd.DataFrame(
         {
             "year": year,
@@ -217,6 +232,8 @@ def normalize_final(enriched, year):
             "position": enriched["primaryPosition"],
             "height": enriched["height"],
             "weight": enriched["weight"],
+            "dob_247": dob_247,
+            "dob_247_raw": enriched["dob_247_raw"],
             "stars": enriched["compositeStarRating"],
             "rating": enriched["compositeRating"],
             "national_rank": enriched["compositeNationalRank"],
@@ -340,6 +357,7 @@ def validate_raw_vs_enriched(raw, enriched_final, year):
                 "duplicate_enriched_keys": int(enriched_final["player_key"].duplicated().sum()),
                 "height_non_null": int(enriched_final["height"].notna().sum()),
                 "weight_non_null": int(enriched_final["weight"].notna().sum()),
+                "dob_247_non_null": int(enriched_final["dob_247"].notna().sum()),
                 "height_missing": missing_height,
                 "weight_missing": missing_weight,
                 "scouting_report_true": int(enriched_final["has_scouting_report"].sum()),
@@ -437,6 +455,7 @@ def write_combined_duckdb(years):
                 "duplicate_year_player_keys": duplicate_year_key_count,
                 "height_non_null": int(combined["height"].notna().sum()),
                 "weight_non_null": int(combined["weight"].notna().sum()),
+                "dob_247_non_null": int(combined["dob_247"].notna().sum()),
                 "height_missing": int(combined["height"].isna().sum()),
                 "weight_missing": int(combined["weight"].isna().sum()),
                 "scouting_report_true": int(combined["has_scouting_report"].sum()),

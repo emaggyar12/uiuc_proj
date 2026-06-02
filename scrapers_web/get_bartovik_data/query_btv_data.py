@@ -3,7 +3,7 @@ import duckdb
 
 # path = "actual_db_files/hs_recruits_247_2010_2026_combined_complete.db"  # change this
 # path = "actual_db_files/hs_recruit_skill_ratings.db"  # change this
-path = "db_files/barttorvik_transfers_2018_2026_uniqueid.db"  # change this
+path = "db_files/bv_trans_compl_MAX.db"  # change this
 
 
 print("Current folder:", os.getcwd())
@@ -19,15 +19,8 @@ print(tables)
 if tables.empty:
     print("\nNo tables found in this DuckDB file.")
 else:
-    table_name = 'barttorvik_transfers_uniqueid'
+    table_name = 'bv_trans_compl_MAX'
     # table_name = 'hs_recruit_skill_ratings'
-
-    # df = con.execute(f"""
-    # SELECT year, full_name, skill_rating, {skill_type}
-    # FROM {table_name}
-    # WHERE {skill_type} IS NOT NULL
-    # """).fetchdf()
-    # print(df)
 
     columns = con.execute(f"""
         DESCRIBE {table_name}
@@ -42,10 +35,9 @@ else:
 
     print(row_count)
 
-#     df = con.execute(f"""
-#     SELECT player_name, barttorvik_year
-#     FROM {table_name}
-#     WHERE player_name  LIKE '%Mazara%'
-#     """).fetchdf()
-#     print(df)
-
+    df = con.execute(f"""
+    SELECT player_name, barttorvik_year, barttorvik_trid, old_team, new_team, raw_team_1, raw_team_2
+    FROM {table_name}
+    WHERE player_name  LIKE '%Dajuan Harris Jr.%'
+    """).fetchdf()
+    print(df)
