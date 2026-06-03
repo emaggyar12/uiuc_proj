@@ -192,6 +192,36 @@ Result:
 - Added a repeatable manual-review script at `data_dir/data_cleaning/build_name_team_manualreview.py`.
 - Wrote `data_dir/data_cleaning/name_team_manualreview.csv`.
 - No DB files were edited.
+
+### 2026-06-02 21:45:00 CDT
+
+Prompt summary:
+
+- Create `data_dir/hs_bv_matched.db` containing matched recruits only.
+- Each row must include the full source row from `data_dir/hs_complete.db` and the full source row from `data_dir/bvt_allyears_MAX.db`.
+- Use `data_dir/data_cleaning/hs_bv_match.csv` only as the match map, since that CSV is intentionally concise and does not contain the full payload.
+
+Result:
+
+- Added repeatable builder script:
+  - `data_dir/data_cleaning/build_hs_bv_matched_db.py`
+- Created:
+  - `data_dir/hs_bv_matched.db`
+- Tables in the new DB:
+  - `hs_bv_matched`
+  - `hs_bv_matched_validation`
+- Validation:
+  - output rows: 7,900.
+  - non-null `hs_full_name`: 7,900.
+  - non-null `bv_player_name`: 7,900.
+  - distinct `hs_player_key`: 7,900.
+  - distinct `bv_pid`: 7,897.
+  - column count: 136.
+- The three repeated BartTorvik `pid` values came from the current match map, not from row multiplication during DB creation:
+  - `51100`: `Ladarius Brewer` / `Ledarrius Brewer` -> `Ledarrius Brewer`.
+  - `71118`: `Jalen Thomas` / `Josh Townley-Thomas` -> `Jalen Thomas`.
+  - `32107`: `Isaac Thornton` / `Isaac Thorton` -> `Isaac Thornton`.
+- Source DB files were read-only and were not edited.
 - `hs_bv_match.csv` was not changed by this step; it remains concise with 13,814 rows and 7,060 non-null BartTorvik matches.
 - Validation:
   - Candidate rows: 672.
@@ -352,3 +382,229 @@ Result:
   - 5,089 rows are `stats_merge_status = left_only` and `has_stats_enrichment = False`.
   - 125 rows are `stats_merge_status = both` but still have null `barttorvik_trid`; these are all 2026/current-2027 rows with limited future-season stats identity.
 - Old unique-ID experiment DBs under `scrapers_web/get_bartovik_data/db_files/old_db/` contain `manual_review_cases`, but those are obsolete for current canonical work because they came from the abandoned unique-ID run and/or the older transfer orientation/2026 setup.
+
+### 2026-06-02 21:13:45 CDT
+
+Prompt summary:
+
+- Move only true-flagged rows from `data_dir/data_cleaning/name_team_manualreview.csv` into `data_dir/data_cleaning/hs_bv_match.csv`.
+- Remove those true rows from manual review.
+- Do not touch DB files.
+
+Result:
+
+- Backups created:
+  - `data_dir/data_cleaning/name_team_manualreview.backup_before_true_move_20260602_211345.csv`
+  - `data_dir/data_cleaning/hs_bv_match.backup_before_true_move_20260602_211345.csv`
+- Moved 2,300 true-ish `match_flag` rows from manual review to `hs_bv_match.csv`.
+- `name_team_manualreview.csv` went from 2,431 to 131 rows.
+- True-ish `match_flag` rows remaining in manual review: 0.
+- `hs_bv_match.csv` went from 13,814 to 16,114 rows.
+- Rows in `hs_bv_match.csv` with non-null `bv_player_name`/`bv_team`: 10,614.
+- No DB files were edited.
+
+### 2026-06-02 21:19:00 CDT
+
+Prompt summary:
+
+- Correct the prior manual-review move.
+- Only rows where `match_flag` is the literal word `TRUE` should move to `hs_bv_match.csv`.
+- Numeric `1` / `1.0` rows should stay in `name_team_manualreview.csv`.
+- Do not edit DB files.
+
+Result:
+
+- First restored the previous mistaken move from backups:
+  - `name_team_manualreview.csv` returned to 2,431 rows.
+  - `hs_bv_match.csv` returned to 13,814 rows.
+- Backups created before the corrected TRUE-only move:
+  - `data_dir/data_cleaning/name_team_manualreview.backup_before_TRUE_only_move_20260602_211900.csv`
+  - `data_dir/data_cleaning/hs_bv_match.backup_before_TRUE_only_move_20260602_211900.csv`
+- Moved only literal `TRUE` rows:
+  - TRUE rows moved: 110.
+  - `name_team_manualreview.csv` went from 2,431 to 2,321 rows.
+  - literal `TRUE` rows remaining in manual review: 0.
+  - numeric `1` / `1.0` rows remaining in manual review: 2,190.
+  - `hs_bv_match.csv` went from 13,814 to 13,924 rows.
+  - rows with non-null `bv_player_name`: 8,424.
+- No DB files were edited.
+
+### 2026-06-02 21:26:06 CDT
+
+Prompt summary:
+
+- Correct the HS match CSV shape after the TRUE-only move.
+- `hs_bv_match.csv` should not grow beyond the recruit universe.
+- Remove JUCO rows from `hs_bv_match.csv` so it reflects the current `data_dir/hs_complete.db` size of 12,894 rows.
+- Mark TRUE manual rows as matches by filling existing recruit rows, not appending new rows.
+- Do not edit DB files.
+
+Result:
+
+- Backups created before rebuilding:
+  - `data_dir/data_cleaning/hs_bv_match.backup_before_rebuild_12894_retry_20260602_212606.csv`
+  - `data_dir/data_cleaning/name_team_manualreview.backup_before_rebuild_12894_retry_20260602_212606.csv`
+- Rebuilt `hs_bv_match.csv` from the current `data_dir/hs_complete.db` HS universe.
+- Final validation:
+  - `hs_bv_match.csv` rows: 12,894.
+  - `name_team_manualreview.csv` rows: 2,321.
+  - literal `TRUE` rows remaining in manual review: 0.
+  - numeric `1` / `1.0` rows remaining in manual review: 2,190.
+  - literal TRUE manual rows available from the pre-move backup: 110.
+  - literal TRUE rows applied as updates to existing HS rows: 110.
+  - literal TRUE rows missing a current HS row: 0.
+  - rows with non-null `bv_player_name`: 7,900.
+  - matched rows missing `bv_year`: 0.
+- No DB files were edited.
+
+### 2026-06-02 21:55:49 CDT
+
+Prompt summary:
+
+- Add `hs_height_in` to `data_dir/hs_bv_matched.db`, derived from existing `hs_height`.
+- Add `height_in` to `data_dir/hs_complete.db`, derived from existing `height`.
+- Store backups in `data_dir/backups`.
+- Do not touch any other columns or data rows.
+- Continue documenting every prompt in this file using the existing summary structure.
+
+Result:
+
+- The `.db` files were confirmed to be DuckDB databases, not SQLite databases.
+- Backups created before editing:
+  - `data_dir/backups/hs_bv_matched.backup_before_height_inches_20260602.db`
+  - `data_dir/backups/hs_complete.backup_before_height_inches_20260602.db`
+- Added and populated:
+  - `data_dir/hs_bv_matched.db`, table `hs_bv_matched`, new integer column `hs_height_in`.
+  - `data_dir/hs_complete.db`, table `hs_complete`, new integer column `height_in`.
+- Height parsing converts feet-inches strings such as `6-10` and `'6-5` into total inches. Non-height placeholders such as `-` remain null in the new columns.
+- Validation:
+  - `hs_bv_matched` row count stayed 7,900.
+  - `hs_bv_matched` column count increased from 136 to 137.
+  - `hs_height_in` non-null rows: 7,797.
+  - `hs_bv_matched_validation` row count stayed 6 and its data matched the backup exactly.
+  - `hs_complete` row count stayed 12,894.
+  - `hs_complete` column count increased from 59 to 60.
+  - `height_in` non-null rows: 12,743.
+  - `scouting_report_evaluator_parse` row count stayed 1,077 and its data matched the backup exactly.
+  - Comparing current DBs to their backups while excluding only the newly added columns showed zero differences in all pre-existing columns.
+
+### 2026-06-02 22:11:25 CDT
+
+Prompt summary:
+
+- Review `models_dir/catboost_trials.py`, a basic CatBoost/Optuna model intended to predict college `bv_role` playtype probabilities from high-school recruit numerical and categorical features.
+- Identify drastic modeling or implementation mistakes.
+- Explain how the 2024/2025 test dataframe should be used and whether Optuna requires a test dataframe.
+- Do not directly edit model logic; only insert comments if useful.
+- Continue documenting each prompt in this file.
+
+Result:
+
+- Reviewed `models_dir/catboost_trials.py` and inspected `data_dir/hs_bv_matched.db`.
+- Added review-only comments to `models_dir/catboost_trials.py`; no executable model logic was changed.
+- Key finding: the script currently splits on `df["year"]`, but `hs_bv_matched` has `hs_year` and `bv_year`, not `year`, so the script should fail before training until that is corrected.
+- Data inspection:
+  - `hs_bv_matched` rows: 7,900.
+  - Target column `bv_role` exists.
+  - `bv_role` has 8 non-null classes plus 5 null rows.
+  - `hs_height_in` non-null rows: 7,797.
+  - `hs_stars`, `hs_rating`, `hs_national_rank`, and `hs_position_rank` are each non-null for 5,396 rows.
+  - Found 8 rows where `bv_year < hs_year` and 28 rows where `bv_year > hs_year + 3`, suggesting some match-timing outliers should be filtered or reviewed before modeling.
+- Guidance recorded in code comments and discussed:
+  - Filter out null `bv_role` rows before training.
+  - Split by `hs_year` for recruit forecasting, not by a nonexistent `year` column.
+  - Optuna does not require a test dataframe; it should tune on train/validation only.
+  - Keep 2024/2025 as untouched holdout data and evaluate the final selected model once, with caution that 2025/2026 labels may be current/incomplete.
+  - The current script prints best parameters but does not yet refit/save a final model or evaluate the test dataframe.
+
+### 2026-06-02 22:16:04 CDT
+
+Prompt summary:
+
+- Implement the final review comment in the CatBoost/Optuna playtype model.
+- Specifically, after Optuna tuning, refit a final model, evaluate the held-out test dataframe once, and save the model plus class-probability column order.
+- The user had renamed/fixed the model file, and requested that the code not be run.
+
+Result:
+
+- Found the current model script at `models_dir/catboost_baseline_trials.py`; `models_dir/catboost_trials.py` no longer existed.
+- Did not run or compile the training script, per user request.
+- Updated `models_dir/catboost_baseline_trials.py` to:
+  - create `test_df` from `hs_year` 2024-2025.
+  - use `hs_year` 2022-2023 as validation.
+  - keep `hs_year` 2010-2021 as training.
+  - refit a final CatBoost model on train + validation rows using `study.best_params`.
+  - evaluate final model log loss once on `test_df` when non-empty.
+  - save the final model to `models_dir/artifacts/catboost_baseline_playtype_model.cbm`.
+  - save metadata to `models_dir/artifacts/catboost_baseline_playtype_metadata.json`, including target column, feature columns, categorical features, class order for probability outputs, best validation log loss, test log loss, best parameters, final parameters, split year ranges, and split row counts.
+- Added safe JSON casting for class labels and log-loss values.
+
+### 2026-06-02 22:29:59 CDT
+
+Prompt summary:
+
+- Interpret the completed CatBoost/Optuna run results:
+  - best validation log loss: 1.3579014922404222.
+  - test log loss: 1.3266202224846795.
+  - saved model and metadata artifact paths.
+- Explain what the scores mean for high-school recruit to college playtype probability prediction.
+
+Result:
+
+- Read `models_dir/artifacts/catboost_baseline_playtype_metadata.json`.
+- Confirmed model setup:
+  - target: `bv_role`.
+  - features: `hs_year`, `hs_position`, `hs_height_in`, `hs_weight`, `hs_stars`, `hs_rating`, `hs_national_rank`, `hs_position_rank`.
+  - class order: `C`, `Combo G`, `PF/C`, `Pure PG`, `Scoring PG`, `Stretch 4`, `Wing F`, `Wing G`.
+  - train rows: 5,713 from HS years 2010-2021.
+  - validation rows: 1,195 from HS years 2022-2023.
+  - test rows: 987 from HS years 2024-2025.
+- Interpretation:
+  - Both validation and test log loss are far better than an uninformed uniform 8-class log loss of about 2.079.
+  - Test log loss being slightly better than validation log loss suggests no obvious validation overfit in this run.
+  - The best model is a conservative low-learning-rate, shallow-tree model: 2,256 iterations, learning rate about 0.0114, depth 4.
+- Additional saved-model diagnostics on the 2024-2025 test split:
+  - test accuracy: 47.0%.
+  - top-2 accuracy: 72.0%.
+  - average max predicted probability: 48.4%.
+  - strongest recall: `C` at 86.5% and `Wing G` at 77.6%.
+  - weakest recall: `Pure PG` at 0.0%, `Stretch 4` at 3.5%, and `PF/C` at 11.6%.
+  - common confusions included `Scoring PG -> Combo G`, `Combo G -> Wing G`, `PF/C -> C`, and `Stretch 4` split across `Wing G`, `Wing F`, and `C`.
+- Recommendation:
+  - Treat the current model as a useful baseline probability model, not a final classifier.
+  - Next improvements should focus on class imbalance, playtype granularity, calibration, confusion analysis, and stronger recruit/team-context features.
+
+### 2026-06-02 22:36:40 CDT
+
+Prompt summary:
+
+- Explain whether CatBoost automatically ignores non-meaningful features and whether rerunning without `hs_year` is worth trying.
+- Use the saved baseline CatBoost model to run inference from `models_dir/catboost_baseline_inference.py`.
+- Write top-3 predicted college playtype roles for each player in the inference dataframe to `models_dir/outputs/baseline`.
+
+Result:
+
+- Explained that CatBoost can learn to mostly ignore weak features, but features are not literally thrown out automatically; noisy, leaky, or time-shift features can still affect splits and probability calibration.
+- Recommended trying a no-year rerun as a valid ablation because `hs_year` may capture era/data-coverage effects rather than player talent.
+- Replaced the inference stub at `models_dir/catboost_baseline_inference.py` with a complete reproducible inference script.
+- The script now:
+  - reads `data_dir/hs_complete.db` in read-only mode.
+  - aliases HS columns to the exact feature names expected by the trained model.
+  - loads `models_dir/artifacts/catboost_baseline_playtype_model.cbm`.
+  - validates saved metadata class order against the model class order.
+  - writes top-3 predicted roles/probabilities plus all class probabilities.
+- Created inference output:
+  - `models_dir/outputs/baseline/catboost_baseline_top3_predictions.csv`.
+- Validation:
+  - rows scored: 12,894.
+  - output shape: 12,894 rows by 27 columns.
+  - probability row sums ranged from approximately 1.0 to 1.0.
+  - top predicted role counts:
+    - `Wing G`: 4,413.
+    - `C`: 2,858.
+    - `Combo G`: 2,356.
+    - `Wing F`: 1,211.
+    - `Scoring PG`: 1,079.
+    - `PF/C`: 877.
+    - `Stretch 4`: 87.
+    - `Pure PG`: 13.
