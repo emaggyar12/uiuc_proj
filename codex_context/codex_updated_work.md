@@ -7,7 +7,7 @@ This file records the data-building decisions and validation results that matter
 - `data_dir/hs_complete.db`
   - Canonical cleaned 247 HS recruit file.
   - Main table: `hs_complete`.
-  - Current row count after JUCO/duplicate cleanup: 13,814.
+  - Current row count after JUCO/duplicate cleanup and 2009 append: 13,740.
   - Contains one row per retained HS recruit after removing confirmed JUCO rows and moving old duplicate HS rows out of the active table.
 - `data_dir/bvt_allyears_MAX.db`
   - Canonical BartTorvik all-years player stats file.
@@ -608,3 +608,717 @@ Result:
     - `PF/C`: 877.
     - `Stretch 4`: 87.
     - `Pure PG`: 13.
+
+### 2026-06-03 20:18:53 CDT
+
+Prompt summary:
+
+- Scrape and append the missing 2009 247 HS recruit class only.
+- Do not scrape or modify 2010+ HS rows.
+- Cache 2009 main profile HTML under `scrapers_web/cache/hs` and recruiting-profile HTML separately under `scrapers_web/cache/hs_recruiting_profiles`.
+- Deposit confirmed 2009 JUCO rows into `scrapers_web/outputs/actual_db_files/juco_rec.db`.
+- Append only non-JUCO 2009 HS recruits to `data_dir/hs_complete.db`.
+- Store `hs_complete.db` backups in `data_dir/backups`.
+- Try to capture scouting reports and skill ratings using the same style as previous 247 scrapers.
+- Document the work in this file.
+
+Result:
+
+- Added a dedicated 2009-only append script:
+  - `scrapers_web/247_scrapers/scrape_247_hs_2009_append.py`
+- The script reuses the existing 247 API/profile parsing helpers and intentionally refuses to run if 2009 rows already exist in either live destination DB.
+- Ran the script with network access after the first sandboxed attempt failed before any DB backup or append due to blocked DNS/network access while generating 247 request headers.
+- 247 API scrape:
+  - pages cached: 5.
+  - raw 2009 recruit rows: 1,011.
+  - duplicate `year/player_key` rows: 0.
+- Main profile cache:
+  - `scrapers_web/cache/hs/2009/profiles`: 1,011 cached HTML files.
+  - `scrapers_web/cache/hs/2009/api`: 5 cached JSON files.
+  - `scrapers_web/cache/hs/2009/resolved_urls`: not created because fallback search was not needed.
+- Recruiting profile cache:
+  - `scrapers_web/cache/hs_recruiting_profiles/2009`: 1,003 cached HTML files.
+- 2009-only output files created:
+  - `scrapers_web/outputs/hs_recruits_247_2009.db`
+  - `scrapers_web/outputs/hs_recruit_dummy_2009.csv`
+  - `scrapers_web/247_scrapers/missing_data/2009_missing_hw.csv`
+- Backups created before live DB appends:
+  - `data_dir/backups/hs_complete.backup_before_2009_append_20260603_201716.db`
+  - `scrapers_web/outputs/actual_db_files/backups/juco_rec.backup_before_2009_append_20260603_201716.db`
+- Appended rows:
+  - 846 non-JUCO 2009 HS recruits appended to `data_dir/hs_complete.db`.
+  - 165 confirmed 2009 JUCO rows appended to `scrapers_web/outputs/actual_db_files/juco_rec.db`.
+  - 165 corresponding 2009 rows appended to `juco_detection_audit`.
+- `data_dir/hs_complete.db` validation:
+  - row count went from 12,894 to 13,740.
+  - 2009 HS rows now in `hs_complete`: 846.
+  - non-2009 row count stayed 12,894.
+  - comparing current non-2009 rows to the pre-append backup showed zero differences in both directions.
+  - duplicate `year/player_key` groups after append: 0.
+  - 2009 HS height non-null rows: 846.
+  - 2009 HS `height_in` non-null rows: 836.
+  - 2009 HS DOB non-null rows: 70.
+  - 2009 HS recruiting-profile URLs: 839.
+  - 2009 HS enrolled institutions: 826.
+- `juco_rec.db` validation:
+  - row count went from 2,082 to 2,247.
+  - 2009 JUCO rows now in `juco_recruits`: 165.
+  - 2009 JUCO audit rows: 165.
+  - comparing current non-2009 JUCO rows to the pre-append backup showed zero differences in both directions.
+  - 2009 JUCO evidence counts:
+    - 162 rows: `prospect_title_247sports_juco;ranking_link_juniorcollege;junior_college_profile_link;recruiting_profile_url_247_junior_college`.
+    - 2 rows: `details.is-juco;recruiting_profile_url_247_junior_college`.
+    - 1 row: `details.is-juco`.
+- Scouting report and skill-rating outcome:
+  - The 2009 cached profile pages contain `scouting-report` sections, but the content is the older `H.S. Athletic Background` block rather than the richer evaluation narrative used by the existing 2010-2026 extraction logic.
+  - No 2009 pages contained the existing skill-rating list markup such as `section.skills`.
+  - Therefore 2009 rows were appended with `has_scouting_report = False`, `scouting_report = NULL`, and `skill_rating = False`; no new `_appended` skill columns were needed.
+
+### 2026-06-03 20:37:50 CDT
+
+Prompt summary:
+
+- Rerun HS-to-BartTorvik matching after the 2009 HS append.
+- Only consider BartTorvik players not previously matched in `data_dir/hs_bv_matched.db`.
+- For BartTorvik duplicate player-id rows, only use each player id's oldest row because the target is performance right out of high school.
+- Match primarily by HS full name and signed-or-enrolled institution, using DOB as fallback/supporting evidence.
+- Put potential matches in `data_dir/data_cleaning/name_team_manualreview.csv`.
+- Put still-unmatched recruits in `data_dir/data_cleaning/hs_bv_unmatched.csv`.
+- Append complete high-confidence rows to `data_dir/hs_bv_matched.db`; do not touch existing matched rows.
+
+Result:
+
+- Added repeatable second-round matcher:
+  - `data_dir/data_cleaning/second_round_unused_bv_matching.py`
+- The matcher reads:
+  - `data_dir/hs_complete.db`
+  - `data_dir/hs_bv_matched.db`
+  - `data_dir/bvt_allyears_MAX.db`
+- BartTorvik candidate restriction:
+  - Built earliest BartTorvik row per non-null `pid`.
+  - Excluded every `bv_pid` already present in `hs_bv_matched`.
+  - Available unused earliest BartTorvik rows considered: 24,106.
+- HS candidate universe:
+  - Current HS rows: 13,740.
+  - Existing matched rows before this pass: 7,900.
+  - Current unmatched HS universe before this pass: 5,840.
+  - 2026 recruits were retained in unmatched output but excluded from active matching.
+- Backups created before writes:
+  - `data_dir/backups/hs_bv_matched.backup_before_second_round_append_20260603_203551.db`
+  - `data_dir/data_cleaning/name_team_manualreview.backup_before_second_round_20260603_203551.csv`
+  - `data_dir/data_cleaning/hs_bv_unmatched.backup_before_second_round_20260603_203551.csv`
+- Matching results:
+  - Resolved one-to-one candidates: 858.
+  - High-confidence auto matches appended to `hs_bv_matched`: 686.
+  - Manual-review candidates added: 172.
+  - Manual-review rows now: 2,493.
+  - Keyed/manual rows from this second round: 172.
+  - Still-unmatched rows now: 5,154.
+  - Still-unmatched 2009 HS rows: 176.
+  - 2026 ineligible future recruits in unmatched output: 631.
+- `data_dir/hs_bv_matched.db` validation:
+  - row count increased from 7,900 to 8,586.
+  - exactly 686 rows were appended.
+  - pre-existing 7,900 rows compared against the backup showed zero changed or removed rows.
+  - overlap between newly appended `bv_pid` values and pre-existing matched `bv_pid` values: 0.
+  - duplicate `hs_year/hs_player_key` groups in matched table: 0.
+  - 2009 rows now in matched table: 670.
+  - `hs_bv_matched_validation` was intentionally left unchanged because the user requested append-only behavior for the match DB.
+- CSV output validation:
+  - `name_team_manualreview.csv`: 2,493 rows by 18 columns.
+  - `hs_bv_unmatched.csv`: 5,154 rows by 147 columns, preserving the previous full unmatched output shape.
+- Correction during this run:
+  - The first manual-review merge collapsed old unkeyed manual-review rows because older rows did not have `hs_year/hs_player_key/bv_pid/bv_year`.
+  - Restored the old manual-review CSV from backup and re-appended the 172 new keyed candidate rows.
+  - Patched the script so future manual-review deduplication only deduplicates rows where all key columns are present.
+
+### 2026-06-03 20:41:08 CDT
+
+Prompt summary:
+
+- Clarify how the 686 second-round high-confidence matches were defined before treating them as final.
+- Investigate why 16 appended matches were not 2009 recruits.
+
+Result:
+
+- Confirmed that the second-round script did not restrict auto-appends to 2009 recruits.
+- The script considered all currently unmatched HS recruits, excluding 2026, against unused earliest BartTorvik player ids.
+- High confidence was a heuristic score, not a calibrated probability:
+  - `confidence = 0.58 * name_score + 0.37 * team_score + DOB/year bonuses`.
+  - `+7` for exact DOB match.
+  - `+3` for `bv_year - hs_year` of 0 or 1.
+  - `+1` for year gap of 2 or 3.
+  - Auto append required `confidence >= 95` and an auto tier such as very strong name/team or DOB-supported matching.
+- The 16 non-2009 appended rows were pulled because they were unmatched HS rows from prior passes and had unused BartTorvik pids with strong name/team evidence and plausible year gaps.
+- Important interpretation:
+  - The 16 non-2009 rows should be treated cautiously because the fact that prior passes did not match them is negative evidence.
+  - A stricter follow-up policy would be to keep automatic appends limited to 2009, and send non-2009 second-round candidates to manual review unless they have exact DOB support and unambiguous name/team evidence.
+
+### 2026-06-03 21:06:57 CDT
+
+Prompt summary:
+
+- Review the two non-baseline model implementations in `models_dir`:
+  - scouting-report transformer model.
+  - structured + scouting-report + skill-rating model.
+- Create `artifacts`, `outputs`, and `scripts` directories for model folders that do not already have them.
+- If no significant issues are found, run both models one after another and run 2026 inference into the proper output directories.
+- If significant issues are found, report them immediately and do not run model training/inference.
+
+Result:
+
+- Created directories:
+  - `models_dir/scouting_report_xfmr/artifacts`
+  - `models_dir/scouting_report_xfmr/outputs`
+  - `models_dir/scouting_report_xfmr/scripts`
+  - `models_dir/skill_rating_xfmr/artifacts`
+  - `models_dir/skill_rating_xfmr/outputs`
+  - `models_dir/skill_rating_xfmr/scripts`
+- Did not run model training or inference because significant code issues were found.
+- Main blocker:
+  - Both non-baseline scripts query `data_dir/hs_bv_matched.db`, whose columns are prefixed, e.g. `hs_scouting_report` and `hs_skill_athleticism`.
+  - The scripts currently reference unprefixed names such as `scouting_report`, `skill_athleticism`, `skill_defender`, etc., so they would fail before training.
+- Additional issues:
+  - Neither non-baseline folder currently has a 2026 inference script.
+  - If scripts are moved into the new `scripts` directories, their artifact path logic must change from `Path(__file__).resolve().parent / "artifacts"` to the model-folder artifact directory.
+  - The 2026 inference source would be `data_dir/hs_complete.db`, where columns are unprefixed (`scouting_report`, `skill_athleticism`, etc.), while the training source `hs_bv_matched.db` is prefixed (`hs_scouting_report`, `hs_skill_athleticism`, etc.), so training and inference need explicit column aliasing to the same feature names.
+  - Current 2026 HS rows have 135 non-empty scouting reports but 0 rows with `skill_rating = TRUE`; the combined skill/scouting model can still run, but the skill component will add no 2026-specific signal unless 2026 skill ratings are populated later.
+
+### 2026-06-03 21:19:49 CDT
+
+Prompt summary:
+
+- Update the scouting-report model and skill+scouting model feature names so they match `data_dir/hs_bv_matched.db`.
+- Include flags for scouting report availability, evaluator availability, and skill-rating availability.
+- Add the scouting evaluator itself as a feature to the scouting-report model and include evaluator features in the combined skill+scouting model.
+- Create 2026 inference scripts using the same style of identity/input columns as the baseline inference script.
+- Explain that prior suggestions after item 4 were cut off.
+
+Result:
+
+- Replaced/corrected training scripts:
+  - `models_dir/scouting_report_xfmr/scripts/catboost_scouting_rep.py`
+  - `models_dir/skill_rating_xfmr/scripts/catboost_skill_scouting.py`
+- Added inference scripts:
+  - `models_dir/scouting_report_xfmr/scripts/catboost_scouting_inference.py`
+  - `models_dir/skill_rating_xfmr/scripts/catboost_skill_scouting_inference.py`
+- Training scripts now query `hs_bv_matched.db` with explicit aliases from prefixed source columns to normalized feature names:
+  - `hs_scouting_report AS scouting_report`
+  - `hs_scouting_report_evaluator_name AS scouting_report_evaluator_name`
+  - `hs_skill_athleticism AS skill_athleticism`, etc.
+- Added feature flags:
+  - `has_scouting_report_text`
+  - `has_scouting_report_evaluator`
+  - `has_skill_ratings_available` for the skill+scouting model.
+- Added `scouting_report_evaluator_name` as a categorical feature in both transformer-based models.
+- Fixed artifact paths so scripts under `scripts/` write to the model folder's sibling `artifacts/` directory.
+- Inference scripts read 2026 rows from `data_dir/hs_complete.db`, where HS columns are unprefixed, and build the same normalized feature columns expected by training.
+- Syntax checks passed for all four scripts.
+- Data availability check:
+  - labeled rows in `hs_bv_matched.db` with non-null `bv_role`: 8,577.
+  - labeled rows with non-empty scouting reports: 818.
+  - labeled rows with evaluator names: 812.
+  - labeled rows with skill ratings: 86.
+  - 2026 inference rows in `hs_complete.db`: 631.
+  - 2026 rows with non-empty scouting reports: 135.
+  - 2026 rows with evaluator names: 134.
+  - 2026 rows with skill ratings: 0.
+- Did not run model training or inference because `sentence_transformers` is not installed locally:
+  - import check failed with `ModuleNotFoundError: No module named 'sentence_transformers'`.
+
+### 2026-06-03 22:42:50 CDT
+
+Prompt summary:
+
+- Downgrade `transformers` and run the scouting-report CatBoost model after the prior Torch/Transformers incompatibility.
+- Keep the scouting evaluator logic present but commented out as a model feature because evaluator overlap may not hold for 2026.
+- Train the scouting-report model, run 2026 inference, and report normal held-out test metrics.
+
+Result:
+
+- Downgraded `transformers` to `4.57.6`; `torch` remained at `2.2.2`.
+- Added/kept environment guards in transformer model scripts to avoid TensorFlow/Keras import conflicts:
+  - `USE_TF=0`
+  - `TRANSFORMERS_NO_TF=1`
+- Confirmed `SentenceTransformer` imports successfully after the downgrade.
+- In `models_dir/scouting_report_xfmr/scripts/catboost_scouting_rep.py`, left evaluator parsing/metadata in place but commented evaluator feature usage out:
+  - `EVALUATOR_COL` is commented out of `CAT_FEATURES`.
+  - `EVALUATOR_COL` and `EVALUATOR_FLAG_COL` are commented out of `feature_cols`.
+- Training completed for `models_dir/scouting_report_xfmr/scripts/catboost_scouting_rep.py`.
+- Best validation log loss: `1.3570080461531382`.
+- Best params:
+  - `iterations`: `1187`
+  - `learning_rate`: `0.03174556449427722`
+  - `depth`: `4`
+  - `l2_leaf_reg`: `2.4202281174435583`
+  - `bagging_temperature`: `0.4734355286065646`
+- Held-out 2024-2025 test metrics:
+  - rows: `988`
+  - log loss: `1.322872`
+  - top-1 accuracy: `0.469636`
+  - top-3 accuracy: `0.857287`
+  - balanced accuracy: `0.360986`
+  - average top-1 probability: `0.481419`
+  - median top-1 probability: `0.435931`
+- Saved artifacts:
+  - `models_dir/scouting_report_xfmr/artifacts/catboost_playtype_with_scouting_embeddings.cbm`
+  - `models_dir/scouting_report_xfmr/artifacts/catboost_playtype_with_scouting_embeddings_metadata.json`
+  - `models_dir/scouting_report_xfmr/artifacts/scouting_embeddings_sentence-transformers__all-MiniLM-L6-v2.parquet`
+- Ran 2026 inference successfully.
+- Saved 631 scored 2026 rows to:
+  - `models_dir/scouting_report_xfmr/outputs/catboost_scouting_2026_top3_predictions.csv`
+- Notes:
+  - The first training run needed network approval to download/cache `sentence-transformers/all-MiniLM-L6-v2`.
+  - The first inference attempt stalled under sandboxed DNS because `sentence-transformers` performed Hugging Face metadata checks even after caching; it was terminated and rerun with network approval.
+  - Non-fatal warnings seen: mixed Intel/LLVM OpenMP warning, Arrow CPU `sysctlbyname` permission warnings, and pandas fragmentation warnings during inference embedding-column insertion.
+
+### 2026-06-04 19:16:27 CDT
+
+Prompt summary:
+
+- Clean `data_dir/data_cleaning/name_team_manualreview.csv` so manual review does not include players or BartTorvik rows already present in `data_dir/hs_bv_matched.db`.
+- Do not edit any DB files.
+- Validate that already-matched examples such as Anthony Davis, GG Jackson, and Zakai Zeigler are removed from manual review.
+
+Result:
+
+- Edited only `data_dir/data_cleaning/name_team_manualreview.csv`.
+- Did not edit `data_dir/hs_bv_matched.db` or any other database.
+- Removed manual-review rows when either side was already matched using strict validation checks:
+  - exact `hs_player_key` / `hs_year` presence in the matched DB when keys were available.
+  - exact `bv_pid` presence in the matched DB when keys were available.
+  - normalized exact HS name plus normalized enrolled/signed institution match against matched DB identities.
+  - normalized exact HS name plus exact DOB match when DOB was available.
+  - normalized exact BV name plus normalized BV team match against matched DB identities.
+  - normalized exact BV name plus exact BV DOB match when DOB was available.
+- `name_team_manualreview.csv` row count changed from `2,493` to `1,456`.
+- Preserved the original 18 CSV columns.
+- Post-clean validation results:
+  - `remaining_already_matched_violations`: `0`.
+  - Anthony Davis remaining manual-review rows: `0`.
+  - GG Jackson remaining manual-review rows: `0`.
+  - Zakai Zeigler remaining manual-review rows: `0`.
+  - `hs_bv_matched.db` remained at `8,586` rows.
+
+### 2026-06-04 19:32:05 CDT
+
+Prompt summary:
+
+- Reformat/rebuild `data_dir/data_cleaning/name_team_manualreview.csv` so it is useful for reviewing unmatched recruits.
+- The manual review CSV does not need to retain every old sparse row, but every remaining row must be actionable: when the user later says to move a recruit, the row should identify exact source rows from both `hs_complete.db` and `bvt_allyears_MAX.db` so all HS and BartTorvik columns can be expanded into `hs_bv_matched.db`.
+- Do not edit DB files.
+
+Result:
+
+- Rebuilt `data_dir/data_cleaning/name_team_manualreview.csv` from the current unmatched HS pool and unused earliest BartTorvik pid pool using the second-round matching candidate logic.
+- Replaced the mixed sparse/full manual-review file with keyed candidate rows only.
+- Row count is now `172`.
+- Preserved the existing 18-column CSV schema.
+- All remaining rows now have:
+  - `hs_year`
+  - `hs_player_key`
+  - `hs_signed_or_enrolled`
+  - `bv_year`
+  - `bv_pid`
+  - `name_score`
+  - `team_score`
+  - `confidence`
+  - `year_gap`
+  - `match_tier`
+- `match_flag` is blank for the rebuilt candidates; the user can mark rows for later movement.
+- Validation results:
+  - each manual row maps to exactly one source row in `hs_complete.db` by `(hs_year, hs_player_key)`: `0` failures.
+  - each manual row maps to exactly one earliest BartTorvik pid source row in `bvt_allyears_MAX.db` by `(bv_year, bv_pid)`: `0` failures.
+  - already-matched HS key violations against `hs_bv_matched.db`: `0`.
+  - already-used BV pid violations against `hs_bv_matched.db`: `0`.
+  - duplicate manual key rows by `(hs_year, hs_player_key, bv_year, bv_pid)`: `0`.
+  - `hs_bv_matched.db` remained at `8,586` rows.
+
+### 2026-06-04 19:44:03 CDT
+
+Prompt summary:
+
+- Correct the manual-review rebuild after the user clarified that the CSV should contain broad possible matches, not only one-to-one resolved candidates.
+- Use the entire currently unmatched HS pool that can reasonably be matched to college data, explicitly including the newly scraped 2009 recruits.
+- Match against only unmatched BartTorvik players, using each BartTorvik pid's oldest season row.
+- Keep the CSV concise for human review, but retain source keys so a selected row can later be expanded into the full HS and full BartTorvik records for `hs_bv_matched.db`.
+
+Result:
+
+- Rebuilt `data_dir/data_cleaning/name_team_manualreview.csv` again as a broad manual-review candidate pool.
+- Backed up the prior 172-row keyed file to:
+  - `data_dir/data_cleaning/name_team_manualreview.backup_before_broad_rebuild_20260604_194109.csv`
+- The previous 172-row result was too narrow because it used one-to-one candidate resolution; that was inappropriate for manual review.
+- New candidate logic:
+  - HS side: currently unmatched HS recruits from `hs_complete.db`, excluding 2026 because no completed college season should be expected yet.
+  - Included 2009 HS recruits.
+  - BV side: unused BartTorvik pids only, using the oldest season row per pid.
+  - Primary evidence: fuzzy full-name match plus fuzzy signed/enrolled institution vs BV team match.
+  - Allowed multiple possible BV candidates per HS recruit, up to 10 per recruit.
+  - Candidate year gaps considered: `0` through `4`.
+  - DOB is displayed and affects match tier/confidence, but DOB conflicts are not automatically discarded because some source DOBs appear defaulted or imperfect.
+- Rebuilt CSV result:
+  - candidate rows: `368`
+  - unique HS recruits with candidates: `347`
+  - eligible unmatched HS pool searched: `1,452`
+  - 2009 candidate rows: `57`
+- Validation results:
+  - every row has non-null `(hs_year, hs_player_key, bv_year, bv_pid)`: `368`.
+  - each row maps to exactly one source row in `hs_complete.db`: `0` failures.
+  - each row maps to exactly one oldest-pid source row in `bvt_allyears_MAX.db`: `0` failures.
+  - already-matched HS key violations: `0`.
+  - already-used BV pid violations: `0`.
+  - duplicate exact candidate rows: `0`.
+  - `hs_bv_matched.db` remained at `8,586` rows.
+
+### 2026-06-04 19:54:54 CDT
+
+Prompt summary:
+
+- Validate the usable unmatched HS pool using the user's equation:
+  - matched HS rows + usable unmatched pool = `hs_complete` non-2026 rows.
+- Rebuild `name_team_manualreview.csv` using institution matching when possible, then strict name-only fallback only when no institution signal is available.
+- Keep 2009 recruits included.
+
+Result:
+
+- Pool validation:
+  - `hs_complete` rows: `13,740`.
+  - 2026 HS rows excluded from matching: `631`.
+  - non-2026 HS rows: `13,109`.
+  - `hs_bv_matched.db` rows / unique matched HS keys: `8,586`.
+  - unmatched non-2026 HS pool: `4,523`.
+  - validation equation passed: `8,586 + 4,523 = 13,109`.
+- Root cause of the prior low `1,452` usable-pool number:
+  - `1,452` only counted unmatched non-2026 recruits with signed/enrolled school fields.
+  - It incorrectly excluded unmatched recruits that lacked signed/enrolled fields but had committed-school institution evidence or no institution evidence.
+- Rebuilt `data_dir/data_cleaning/name_team_manualreview.csv` again with corrected candidate logic.
+- Backed up prior broad file to:
+  - `data_dir/data_cleaning/name_team_manualreview.backup_before_institution_plus_name_fallback_20260604_195000.csv`
+- Candidate logic:
+  - HS pool: all `4,523` unmatched non-2026 HS recruits.
+  - institution-backed pass: used signed/enrolled institution first, then committed-school fields as fallback institution evidence.
+  - name-only fallback: used only for HS rows with no signed/enrolled/committed institution signal.
+  - did not use `current_school` as institution evidence because it can contain high schools, NBA teams, or other non-college values.
+  - BV pool: unused BartTorvik pids only, using oldest season row per pid.
+  - 2009 recruits included.
+- Final manual-review CSV:
+  - candidate rows: `2,337`.
+  - unique HS recruits with candidates: `2,228`.
+  - 2009 candidate rows: `68`.
+  - all rows have non-null source keys `(hs_year, hs_player_key, bv_year, bv_pid)`.
+- Validation results:
+  - HS source lookup failures by `(hs_year, hs_player_key)`: `0`.
+  - BV oldest-pid source lookup failures by `(bv_year, bv_pid)`: `0`.
+  - already-matched HS violations: `0`.
+  - already-used BV pid violations: `0`.
+  - duplicate exact candidate rows: `0`.
+  - `hs_bv_matched.db` remained at `8,586` rows.
+
+### 2026-06-04 19:57:09 CDT
+
+Prompt summary:
+
+- Add a `dupe_flag` column to `data_dir/data_cleaning/name_team_manualreview.csv`.
+- Mark duplicate HS recruit candidate groups so the user can see which recruits have multiple possible BV matches.
+- Leave `match_flag` available and blank for user review decisions.
+
+Result:
+
+- Added `dupe_flag` to `name_team_manualreview.csv`.
+- `dupe_flag = True` for every row where the same `(hs_year, hs_player_key)` appears more than once in the manual-review CSV.
+- Row count remained `2,337`.
+- `dupe_flag` true rows: `203`.
+- Unique HS recruits with duplicate candidate rows: `94`.
+- `match_flag` remained present and blank for all rows.
+
+### 2026-06-04 20:28:11 CDT
+
+Prompt summary:
+
+- Investigate the confusing Anyeuri Castillo manual-review row without editing CSV files.
+- Specifically explain why the row shows Kent State on one side but Appalachian State in `hs_signed_or_enrolled`.
+
+Result:
+
+- Did not edit CSV or DB files.
+- `hs_complete.db` contains one HS row for `player_key = 46059298`.
+- That row has:
+  - `signed_school = Appalachian State`
+  - `committed_school = Appalachian State`
+  - `current_school = Kent State`
+  - `enrolled_institution_247 = Kent State`
+- Cached 247 profile/timeline confirms both facts:
+  - signed/committed Appalachian State on `2018-11-15`.
+  - enrolled Kent State on `2019-10-15`.
+- BartTorvik has Anyeuri Castillo at Kent State in 2020 with pid `70250`.
+- Interpretation:
+  - This is not a simple scrape corruption; 247 itself records a signed/committed school and a later enrolled/current school.
+  - For matching actual college appearance, Kent State is the stronger institution signal.
+  - The manual-review row is confusing because `hs_signed_or_enrolled` currently prioritizes `signed_school` over `enrolled_institution_247`, so it displays Appalachian State even when enrolled/current is Kent State.
+
+### 2026-06-04 20:33:23 CDT
+
+Prompt summary:
+
+- Investigate six name-only manual-review candidates without editing data files.
+- Look only in BartTorvik data to determine whether an earlier BV year exists for the same player/name/pid.
+
+Result:
+
+- Did not edit CSV or DB files.
+- Checked listed BV pids and exact normalized BV player names in `data_dir/bvt_allyears_MAX.db`.
+- Findings:
+  - Mark McLaughlin, pid `17294`: earliest BV row is Seattle `2011`; no earlier exact-name or same-pid BV row.
+  - Shane Phillips, pid `21259`: earliest BV row is South Carolina `2012`; no earlier exact-name or same-pid BV row.
+  - Tyler Summitt, pid `16661`: earliest BV row is Tennessee `2011`; no earlier exact-name or same-pid BV row.
+  - C.J. Reese, pid `31567`: earliest BV row is Southeast Missouri St. `2014`; no earlier exact-name or same-pid BV row.
+  - Cameron Neysmith, pid `38201`: earliest BV row is Kennesaw St. `2015`; no earlier exact-name or same-pid BV row.
+  - Deontae Hawkins, pid `36639`: earliest BV row is Illinois St. `2015`; no earlier exact-name or same-pid BV row.
+- Interpretation:
+  - For these six cases, the delayed BV year is real in the current BV data rather than caused by selecting a later row for an existing pid.
+  - Some of the BV rows list non-freshman classes in the first available BV season, e.g. Shane Phillips as `Jr` in 2012, which suggests prior non-D1/JUCO/redshirt/late-entry context may exist outside the current BV table.
+
+### 2026-06-04 20:46:43 CDT
+
+Prompt summary:
+
+- Move only manual-review rows with `match_flag = True` from `data_dir/data_cleaning/name_team_manualreview.csv` into `data_dir/hs_bv_matched.db`.
+- Expand each selected manual-review row back to the complete HS row plus complete BartTorvik row using the stored source keys.
+- Remove successfully moved rows from the manual-review CSV.
+- Keep ambiguous rows in the manual-review CSV.
+- Put CSV backups under `data_dir/data_cleaning/backups`.
+
+Result:
+
+- Created backups before editing:
+  - `data_dir/data_cleaning/backups/name_team_manualreview.backup_before_true_append_20260604_204500.csv`
+  - `data_dir/backups/hs_bv_matched.backup_before_manual_true_append_20260604_204500.db`
+- Found `2,109` true-like manual-review rows.
+- Appended `2,071` complete expanded rows into `data_dir/hs_bv_matched.db`.
+- Removed those `2,071` moved rows from `name_team_manualreview.csv`.
+- Left `38` true-flagged rows in the manual-review CSV because they represented `19` duplicate BartTorvik `(year, pid)` conflicts where two HS recruit rows pointed to the same BV player.
+- Final counts:
+  - `hs_bv_matched.db`: `8,586` rows before, `10,657` rows after.
+  - `name_team_manualreview.csv`: `2,337` rows before, `266` rows after.
+  - loose root-level CSV backups in `data_dir/data_cleaning`: `0`.
+
+Validation:
+
+- Each appended HS row resolved one-to-one from `data_dir/hs_complete.db` by `(hs_year, hs_player_key)`.
+- Each appended BV row resolved one-to-one from `data_dir/bvt_allyears_MAX.db` by `(bv_year, bv_pid)`.
+- Manual display fields were checked against source rows before append.
+- No appended row reused an already-matched HS recruit key.
+- No appended row reused an already-matched BV pid.
+- No duplicate HS recruit keys or duplicate BV pids were appended in this batch.
+
+### 2026-06-04 20:54:43 CDT
+
+Prompt summary:
+
+- Put the remaining manual-review rows that map to duplicate BartTorvik pids into a single CSV.
+- Keep rows from the same duplicate BV pid group right next to each other so the user can choose one.
+
+Result:
+
+- Created `data_dir/data_cleaning/duplicate_bv_pid_manualreview.csv`.
+- Included only the remaining true-flagged manual-review rows where the same `(bv_year, bv_pid)` appears more than once.
+- Wrote `38` rows across `19` duplicate BV pid groups.
+- Sorted by `bv_year`, `bv_pid`, BV player name, HS year, and HS player key so each duplicate group is contiguous.
+- Left `data_dir/data_cleaning/name_team_manualreview.csv` unchanged.
+
+Validation:
+
+- Confirmed the output CSV has `38` rows.
+- Confirmed it has `19` groups.
+- Confirmed every group has more than one row.
+- Confirmed all rows for each duplicate BV key are adjacent.
+
+### 2026-06-04 21:01:00 CDT
+
+Prompt summary:
+
+- Resolve the duplicate-BV-pid manual-review groups because the user determined the groups were matches.
+- For each duplicate BV pid group, prefer the candidate where `bv_year = hs_year + 1`.
+- If a duplicate group still has multiple candidates after that filter, select the expanded HS+BV row with the most non-null/non-empty source values.
+- Insert the selected complete expanded rows into `data_dir/hs_bv_matched.db`.
+
+Result:
+
+- Created backups before editing:
+  - `data_dir/backups/hs_bv_matched.backup_before_duplicate_pid_resolution_20260604_210039.db`
+  - `data_dir/data_cleaning/backups/name_team_manualreview.backup_before_duplicate_pid_resolution_20260604_210039.csv`
+  - `data_dir/data_cleaning/backups/duplicate_bv_pid_manualreview.backup_before_resolution_20260604_210039.csv`
+- Resolved `19` duplicate BV pid groups.
+- Inserted `19` complete expanded HS+BV rows into `data_dir/hs_bv_matched.db`.
+- Reduced `data_dir/data_cleaning/duplicate_bv_pid_manualreview.csv` from `38` rows to the `19` selected winner rows and added selection metadata columns.
+- Removed the `38` resolved true-flagged duplicate-conflict rows from `data_dir/data_cleaning/name_team_manualreview.csv`.
+- Final counts:
+  - `hs_bv_matched.db`: `10,657` rows before, `10,676` rows after.
+  - `name_team_manualreview.csv`: `266` rows before, `228` rows after.
+  - `duplicate_bv_pid_manualreview.csv`: `38` rows before, `19` rows after.
+
+Validation:
+
+- Confirmed all `19` selected BV pids appear exactly once in `hs_bv_matched.db`.
+- Confirmed `name_team_manualreview.csv` has `0` remaining true-flagged rows.
+- Confirmed `duplicate_bv_pid_manualreview.csv` now has `19` unique BV keys and no repeated BV key.
+- Selection breakdown:
+  - `17` groups selected by the `bv_year = hs_year + 1` rule.
+  - `2` groups selected by the non-null/non-empty information count tiebreak because no candidate had `bv_year = hs_year + 1`.
+
+### 2026-06-04 21:05:43 CDT
+
+Prompt summary:
+
+- Inspect `data_dir/data_cleaning/duplicate_bv_pid_manualreview.csv` for user-added last-column flags.
+- Reinsert rows marked as "leave separate" back into `data_dir/data_cleaning/name_team_manualreview.csv`.
+
+Result:
+
+- Did not edit CSV or DB data files.
+- Inspected the duplicate-pid CSV and found `19` rows.
+- The physical last column is `selection_next_year_candidates`, which contains the prior metadata values `0`, `1`, or `2`.
+- The prior blank note column `Unnamed: 19` is blank for all `19` rows.
+- No saved value resembling "leave separate" was found in the CSV, so no rows were reinserted into `name_team_manualreview.csv`.
+
+### 2026-06-04 21:09:29 CDT
+
+Prompt summary:
+
+- Use `data_dir/data_cleaning/potential_repeated_bv.csv` instead of `duplicate_bv_pid_manualreview.csv`.
+- For rows marked `leave_both_separate`, reinsert the affected manual-review rows into `data_dir/data_cleaning/name_team_manualreview.csv`.
+
+Result:
+
+- Inspected `potential_repeated_bv.csv`.
+- Found `14` BV-vs-BV pairs marked `leave_both_separate`.
+- Found `1` BV-vs-BV pair marked `older_pid_kept_if_same_player`.
+- Compared the current manual-review CSV against the pre-append backup for all BV pids involved in the `leave_both_separate` pairs.
+- Current `name_team_manualreview.csv` already contained `32` of the `33` relevant prior manual-review rows.
+- Reinserted the one missing row:
+  - HS `2016`, `player_key = 46045420`, `Keaton Van Soelen`
+  - BV `2018`, `pid = 51158`, `Keaton Van Soelen`, Air Force
+- Cleared `match_flag` on the reinserted row to avoid making it look like a ready-to-append duplicate.
+- Added note `reinserted_leave_both_separate_from_potential_repeated_bv` in `Unnamed: 19`.
+- `name_team_manualreview.csv` row count increased from `228` to `229`.
+- Left DB files unchanged.
+
+Backup:
+
+- `data_dir/data_cleaning/backups/name_team_manualreview.backup_before_reinsert_leave_separate_bv_20260604_210910.csv`
+
+Validation:
+
+- Confirmed the current manual-review CSV now has all `33` prior manual-review rows involving the `leave_both_separate` BV pids.
+- Confirmed `0` missing rows versus `name_team_manualreview.backup_before_true_append_20260604_204500.csv` for those BV pids.
+
+### 2026-06-04 21:11:12 CDT
+
+Prompt summary:
+
+- Enforce the year constraint in `data_dir/hs_bv_matched.db`.
+- For every matched row where `bv_year != hs_year + 1`, remove it from `hs_bv_matched`.
+- Insert those removed rows into a new table named `year_constraint_failure` in the same DuckDB file.
+- List the highest-rated recruits that failed the year constraint.
+
+Result:
+
+- Created backup:
+  - `data_dir/backups/hs_bv_matched.backup_before_year_constraint_move_20260604_211101.db`
+- Created table `year_constraint_failure` with the same schema as `hs_bv_matched`.
+- Moved `1,677` rows from `hs_bv_matched` into `year_constraint_failure`.
+- `hs_bv_matched` row count changed from `10,676` to `8,999`.
+- `year_constraint_failure` row count is `1,677`.
+
+Validation:
+
+- Confirmed `hs_bv_matched` has `0` remaining rows where `hs_year IS NULL`, `bv_year IS NULL`, or `bv_year != hs_year + 1`.
+- Failure year-gap distribution:
+  - `-11`: `1`
+  - `-5`: `1`
+  - `-3`: `1`
+  - `-2`: `1`
+  - `-1`: `4`
+  - `0`: `74`
+  - `2`: `1,343`
+  - `3`: `186`
+  - `4`: `63`
+  - `5`: `3`
+
+### 2026-06-04 23:27:47 CDT
+
+Prompt summary:
+
+- Rerun the `baseline_model` and `scouting_report_xfmr` playtype models using the updated `data_dir/hs_bv_matched.db`.
+- Run inference on the 2026 class for both models.
+- Add better logging artifacts: Optuna trial metrics, per-iteration metrics, split metrics, model params, confusion matrices, and practical ML summaries.
+- Back up existing saved model artifacts before overwriting current artifact filenames.
+
+Code changes:
+
+- Updated `models_dir/baseline_model/scripts/catboost_baseline_trials.py`.
+  - Fixed project/model path handling.
+  - Added `optuna_trials.csv`, `optuna_iteration_metrics.csv`, `final_iteration_metrics.csv`, `metrics_by_split.csv`, `metrics_summary.json`.
+  - Added train/valid/test confusion matrices and classification reports.
+  - Added top-1 and top-3 accuracy alongside log loss.
+- Updated `models_dir/baseline_model/scripts/catboost_baseline_inference.py`.
+  - Fixed project/model path handling after folder move.
+- Updated `models_dir/scouting_report_xfmr/scripts/catboost_scouting_rep.py`.
+  - Added the same metrics/logging artifact outputs as baseline.
+  - Kept scouting evaluator value commented out as a feature, but kept evaluator availability flag.
+  - Added local-only SentenceTransformer loading using the cached local snapshot.
+  - Rebuilt scouting embeddings for the updated filtered matched data.
+- Updated `models_dir/scouting_report_xfmr/scripts/catboost_scouting_inference.py`.
+  - Added local-only SentenceTransformer loading using metadata `embedding_model_path`.
+  - Reworked embedding-column assembly to avoid pandas fragmentation warnings.
+
+Backups:
+
+- Baseline previous artifacts:
+  - `models_dir/baseline_model/artifacts/backups/previous_artifacts_20260604_212507/catboost_baseline_playtype_model.cbm`
+  - `models_dir/baseline_model/artifacts/backups/previous_artifacts_20260604_212507/catboost_baseline_playtype_metadata.json`
+  - `models_dir/baseline_model/artifacts/backups/previous_artifacts_20260604_212507/model_params.txt`
+- Scouting previous artifacts:
+  - `models_dir/scouting_report_xfmr/artifacts/backups/previous_artifacts_20260604_212507/catboost_playtype_with_scouting_embeddings.cbm`
+  - `models_dir/scouting_report_xfmr/artifacts/backups/previous_artifacts_20260604_212507/catboost_playtype_with_scouting_embeddings_metadata.json`
+  - `models_dir/scouting_report_xfmr/artifacts/backups/previous_artifacts_20260604_212507/model_params.txt`
+
+Training results:
+
+- Baseline model:
+  - labeled rows: `8,990`
+  - train rows: `6,822`
+  - valid rows: `1,117`
+  - test rows: `1,051`
+  - best validation log loss: `1.350719246824245`
+  - test log loss: `1.3604667574646236`
+  - test top-1 accuracy: `0.4548049476688868`
+  - test top-3 accuracy: `0.8667935299714558`
+  - best params: `iterations=1603`, `learning_rate=0.1208477527445918`, `depth=4`, `l2_leaf_reg=2.1474533743252815`, `bagging_temperature=0.8256178443374325`
+- Scouting report embedding model:
+  - labeled rows: `8,990`
+  - train rows: `6,822`
+  - valid rows: `1,117`
+  - test rows: `1,051`
+  - best validation log loss: `1.3355686527466277`
+  - test log loss: `1.3468232248353262`
+  - test top-1 accuracy: `0.46907706945765937`
+  - test top-3 accuracy: `0.879162702188392`
+  - best params: `iterations=1801`, `learning_rate=0.02817040664839508`, `depth=5`, `l2_leaf_reg=1.137628112577669`, `bagging_temperature=0.9836916216232724`
+
+Inference outputs:
+
+- Baseline 2026 predictions:
+  - `models_dir/baseline_model/outputs/baseline/catboost_baseline_top3_predictions.csv`
+  - rows scored: `631`
+- Scouting 2026 predictions:
+  - `models_dir/scouting_report_xfmr/outputs/catboost_scouting_2026_top3_predictions.csv`
+  - rows scored: `631`
+
+Notes:
+
+- The first scouting training attempt failed because the old embedding cache did not cover the updated dataset and SentenceTransformer tried to check Hugging Face while network access was unavailable.
+- Fixed by using the local cached snapshot path and rebuilding the embedding cache locally.
+- DuckDB/Arrow emitted sandbox-related `sysctlbyname` warnings; these did not block training or inference.
+- SentenceTransformer emitted an OpenMP duplicate-runtime warning; training and inference completed successfully despite it.
