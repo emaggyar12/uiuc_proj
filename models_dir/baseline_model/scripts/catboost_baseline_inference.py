@@ -6,8 +6,8 @@ import pandas as pd
 from catboost import CatBoostClassifier
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-MODEL_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+MODEL_DIR = Path(__file__).resolve().parents[1]
 
 DB_PATH = PROJECT_ROOT / "data_dir" / "hs_complete.db"
 MODEL_PATH = MODEL_DIR / "artifacts" / "catboost_baseline_playtype_model.cbm"
