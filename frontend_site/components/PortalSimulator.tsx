@@ -5,22 +5,34 @@ import { useMemo, useState } from "react";
 import { ChevronDown, Minus, Plus, RotateCcw, UserCheck, Users } from "lucide-react";
 import clsx from "clsx";
 import type { Player } from "@/data/players";
-import { getPortalPlayers, getTeamPlayers, getTeams, getTopPlaytypes } from "@/lib/data";
+import { getHsPlayers, getPortalPlayers, getTeamPlayers, getTeams, getTopPlaytypes } from "@/lib/data";
+import { SourceBadge } from "@/components/StatusBadge";
+
+type TargetPool = "transfer" | "hs" | "all";
 
 export function PortalSimulator() {
   const teams = getTeams();
   const [teamId, setTeamId] = useState(teams[0]?.team_id ?? "uconn");
   const [removedIds, setRemovedIds] = useState<string[]>([]);
   const [addedIds, setAddedIds] = useState<string[]>([]);
+  const [targetPool, setTargetPool] = useState<TargetPool>("transfer");
   const team = teams.find((candidate) => candidate.team_id === teamId) ?? teams[0];
 
   const currentRoster = useMemo(() => getTeamPlayers(team.team_name), [team.team_name]);
-  const portalPlayers = useMemo(
-    () => getPortalPlayers().filter((player) => !currentRoster.some((rosterPlayer) => rosterPlayer.player_id === player.player_id)),
-    [currentRoster],
+  const targetPlayers = useMemo(
+    () => {
+      const pool =
+        targetPool === "transfer"
+          ? getPortalPlayers()
+          : targetPool === "hs"
+            ? getHsPlayers()
+            : [...getPortalPlayers(), ...getHsPlayers()];
+      return pool.filter((player) => !currentRoster.some((rosterPlayer) => rosterPlayer.player_id === player.player_id));
+    },
+    [currentRoster, targetPool],
   );
   const removedPlayers = currentRoster.filter((player) => removedIds.includes(player.player_id));
-  const addedPlayers = portalPlayers.filter((player) => addedIds.includes(player.player_id));
+  const addedPlayers = targetPlayers.filter((player) => addedIds.includes(player.player_id));
   const activeRoster = currentRoster.filter((player) => !removedIds.includes(player.player_id));
   const projectedRoster = [...activeRoster, ...addedPlayers];
   const projectedBpr =
@@ -87,7 +99,32 @@ export function PortalSimulator() {
 
       <div className="grid gap-4 xl:grid-cols-2">
         <RosterList title="Current Roster" icon={<Users className="h-4 w-4" />} players={currentRoster} selectedIds={removedIds} onToggle={toggleRemoved} mode="remove" />
-        <RosterList title="Portal Targets" icon={<UserCheck className="h-4 w-4" />} players={portalPlayers} selectedIds={addedIds} onToggle={toggleAdded} mode="add" />
+        <div className="space-y-3">
+          <div className="grid grid-cols-3 rounded border border-line bg-panel p-1">
+            {[
+              ["transfer", "Transfers"],
+              ["hs", "HS"],
+              ["all", "Both"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => {
+                  setTargetPool(value as TargetPool);
+                  setAddedIds([]);
+                }}
+                className={
+                  targetPool === value
+                    ? "h-9 rounded bg-emerald-600 px-3 text-sm font-semibold text-white dark:bg-emerald-500 dark:text-slate-950"
+                    : "h-9 rounded px-3 text-sm font-semibold text-slate-600 hover:bg-surface dark:text-slate-300"
+                }
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <RosterList title="Add Targets" icon={<UserCheck className="h-4 w-4" />} players={targetPlayers} selectedIds={addedIds} onToggle={toggleAdded} mode="add" />
+        </div>
       </div>
     </section>
   );
@@ -135,7 +172,7 @@ function RosterList({
               onClick={() => onToggle(player.player_id)}
               className={clsx(
                 "grid w-full grid-cols-[1fr_auto] items-center gap-3 px-4 py-3 text-left hover:bg-panel",
-                selected && (mode === "add" ? "bg-emerald-50" : "bg-rose-50"),
+                selected && (mode === "add" ? "bg-emerald-50 dark:bg-emerald-950" : "bg-rose-50 dark:bg-rose-950"),
               )}
             >
               <div>
@@ -143,13 +180,18 @@ function RosterList({
                 <div className="mt-1 text-xs text-slate-500">
                   {player.position} | {player.height} | {player.current_team} | {topPlaytype}
                 </div>
+                <div className="mt-2">
+                  <SourceBadge source={player.player_source} />
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-sm font-semibold tabular-nums text-ink">BPR {player.projected_bpr.toFixed(1)}</span>
                 <span
                   className={clsx(
                     "flex h-8 w-8 items-center justify-center rounded border",
-                    selected ? "border-ink bg-ink text-white" : "border-line bg-panel text-slate-700",
+                    selected
+                      ? "border-emerald-600 bg-emerald-600 text-white dark:border-emerald-400 dark:bg-emerald-500 dark:text-slate-950"
+                      : "border-line bg-panel text-slate-700 dark:text-slate-200",
                   )}
                 >
                   {mode === "add" ? <Plus className="h-4 w-4" /> : <Minus className="h-4 w-4" />}

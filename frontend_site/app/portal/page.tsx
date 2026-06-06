@@ -1,6 +1,6 @@
 import { PlayerTable } from "@/components/PlayerTable";
 import { Shell } from "@/components/Shell";
-import { getPlayers } from "@/lib/data";
+import { getPortalPlayers } from "@/lib/data";
 
 export default function PortalPage() {
   return (
@@ -11,7 +11,7 @@ export default function PortalPage() {
           Portal-first view for entered, committed, and enrolled transfer players with the same sorting and expanded player profiles.
         </p>
       </div>
-      <PlayerTable players={getPlayers()} portalDefault />
+      <PlayerTable players={getPortalPlayers()} portalDefault />
     </Shell>
   );
 }

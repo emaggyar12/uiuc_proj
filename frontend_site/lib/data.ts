@@ -1,4 +1,4 @@
-import { players, type Player, type PortalStatus } from "@/data/players";
+import { players, type Player, type PlayerSource, type PortalStatus } from "@/data/players";
 import { teams, type Team } from "@/data/teams";
 
 export type PlayerFilters = {
@@ -9,6 +9,7 @@ export type PlayerFilters = {
   portalStatus?: string;
   conference?: string;
   playtype?: string;
+  playerSource?: PlayerSource;
   minBpr?: number;
   portalOnly?: boolean;
   availableOnly?: boolean;
@@ -29,6 +30,7 @@ export function getPlayers(filters: PlayerFilters = {}) {
       (!filters.portalStatus || player.portal_status === filters.portalStatus) &&
       (!filters.conference || player.conference === filters.conference) &&
       (!filters.playtype || topPlaytype === filters.playtype) &&
+      (!filters.playerSource || player.player_source === filters.playerSource) &&
       (!filters.minBpr || player.projected_bpr >= filters.minBpr) &&
       (!filters.portalOnly || player.is_in_portal) &&
       (!filters.availableOnly || player.portal_status === "entered")
@@ -37,7 +39,11 @@ export function getPlayers(filters: PlayerFilters = {}) {
 }
 
 export function getPortalPlayers() {
-  return players.filter((player) => player.is_in_portal);
+  return players.filter((player) => player.player_source === "transfer" && player.is_in_portal);
+}
+
+export function getHsPlayers() {
+  return players.filter((player) => player.player_source === "hs");
 }
 
 export function getTeams() {
@@ -57,8 +63,10 @@ export function getTeamPlayers(teamName: string) {
   );
 }
 
-export function getRecommendations(teamName: string) {
-  return getPortalPlayers()
+export function getRecommendations(teamName: string, source: "all" | PlayerSource = "all") {
+  return players
+    .filter((player) => player.player_source !== "roster")
+    .filter((player) => source === "all" || player.player_source === source)
     .map((player) => ({
       ...player,
       fit_score: Math.min(99, player.fit_score + teamAdjustment(teamName, player.position)),
@@ -78,14 +86,6 @@ export function formatStatus(status: PortalStatus) {
     .split("_")
     .map((word) => word[0].toUpperCase() + word.slice(1))
     .join(" ");
-}
-
-export function formatCurrency(value: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(value);
 }
 
 function teamAdjustment(teamName: string, position: Player["position"]) {

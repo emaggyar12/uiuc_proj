@@ -1,7 +1,8 @@
 import type React from "react";
-import { Activity, BadgeDollarSign, ClipboardList, Target } from "lucide-react";
+import { Activity, ClipboardList, Target } from "lucide-react";
 import type { Player } from "@/data/players";
-import { formatCurrency, getTopPlaytypes } from "@/lib/data";
+import { getTopPlaytypes } from "@/lib/data";
+import { SourceBadge } from "@/components/StatusBadge";
 
 export function PlayerDetailPanel({ player }: { player: Player }) {
   const playtypes = getTopPlaytypes(player, 4);
@@ -13,6 +14,7 @@ export function PlayerDetailPanel({ player }: { player: Player }) {
           <ClipboardList className="h-4 w-4" />
           Profile
         </div>
+        <SourceBadge source={player.player_source} />
         <p className="leading-6 text-slate-700">{player.scouting_summary}</p>
         <p className="leading-6 text-slate-700">{player.fit_explanation}</p>
       </section>
@@ -46,7 +48,6 @@ export function PlayerDetailPanel({ player }: { player: Player }) {
         <Metric label="PTS" value={player.projected_points.toFixed(1)} />
         <Metric label="REB" value={player.projected_rebounds.toFixed(1)} />
         <Metric label="AST" value={player.projected_assists.toFixed(1)} />
-        <Metric icon={<BadgeDollarSign className="h-4 w-4" />} label="NIL" value={formatCurrency(player.nil_value_placeholder)} />
       </section>
     </div>
   );

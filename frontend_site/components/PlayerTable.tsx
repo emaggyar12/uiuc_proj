@@ -3,12 +3,13 @@
 import { useMemo, useState } from "react";
 import { ArrowUpDown, ChevronDown, Search, SlidersHorizontal } from "lucide-react";
 import clsx from "clsx";
-import type { Player } from "@/data/players";
+import type { Player, PlayerSource } from "@/data/players";
 import { getTopPlaytypes } from "@/lib/data";
 import { PlayerDetailPanel } from "@/components/PlayerDetailPanel";
-import { StatusBadge } from "@/components/StatusBadge";
+import { SourceBadge, StatusBadge } from "@/components/StatusBadge";
 
-type SortKey = "projected_bpr" | "fit_score" | "nil_value_placeholder" | "player_name";
+type SortKey = "projected_bpr" | "fit_score" | "player_name";
+type SourceFilter = "all" | PlayerSource;
 
 export function PlayerTable({ players, portalDefault = false }: { players: Player[]; portalDefault?: boolean }) {
   const [query, setQuery] = useState("");
@@ -18,6 +19,7 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
   const [classYear, setClassYear] = useState("all");
   const [conference, setConference] = useState("all");
   const [playtype, setPlaytype] = useState("all");
+  const [source, setSource] = useState<SourceFilter>("all");
   const [minBpr, setMinBpr] = useState(0);
   const [portalOnly, setPortalOnly] = useState(portalDefault);
   const [sortKey, setSortKey] = useState<SortKey>("projected_bpr");
@@ -48,6 +50,7 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
           (classYear === "all" || player.class_year === classYear) &&
           (conference === "all" || player.conference === conference) &&
           (playtype === "all" || topPlaytype === playtype) &&
+          (source === "all" || player.player_source === source) &&
           player.projected_bpr >= minBpr &&
           (!portalOnly || player.is_in_portal)
         );
@@ -56,12 +59,12 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
         if (sortKey === "player_name") return a.player_name.localeCompare(b.player_name);
         return b[sortKey] - a[sortKey];
       });
-  }, [classYear, conference, minBpr, players, playtype, portalOnly, position, query, sortKey, status, team]);
+  }, [classYear, conference, minBpr, players, playtype, portalOnly, position, query, sortKey, source, status, team]);
 
   return (
     <section className="space-y-4">
       <div className="rounded border border-line bg-white p-4 shadow-soft">
-        <div className="grid gap-3 xl:grid-cols-[1.3fr_repeat(7,minmax(112px,1fr))]">
+        <div className="grid gap-3 xl:grid-cols-[1.3fr_repeat(8,minmax(112px,1fr))]">
           <label className="relative block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
@@ -77,6 +80,7 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
           <FilterSelect label="Team" value={team} onChange={setTeam} options={["all", ...options.teams]} />
           <FilterSelect label="Conference" value={conference} onChange={setConference} options={["all", ...options.conferences]} />
           <FilterSelect label="Playtype" value={playtype} onChange={setPlaytype} options={["all", ...options.playtypes]} />
+          <FilterSelect label="Player Type" value={source} onChange={(value) => setSource(value as SourceFilter)} options={["all", "hs", "transfer", "roster"]} />
           <label className="grid h-10 grid-cols-[1fr_56px] items-center rounded border border-line bg-panel px-2 text-xs font-semibold text-slate-500">
             BPR
             <input
@@ -97,7 +101,9 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
             onClick={() => setPortalOnly((value) => !value)}
             className={clsx(
               "inline-flex h-9 items-center gap-2 rounded border px-3 text-sm font-semibold",
-              portalOnly ? "border-ink bg-ink text-white" : "border-line bg-panel text-slate-700",
+              portalOnly
+                ? "border-emerald-600 bg-emerald-600 text-white dark:border-emerald-400 dark:bg-emerald-500 dark:text-slate-950"
+                : "border-line bg-panel text-slate-700 dark:text-slate-200",
             )}
           >
             <SlidersHorizontal className="h-4 w-4" />
@@ -110,14 +116,14 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
       </div>
 
       <div className="overflow-hidden rounded border border-line bg-white shadow-soft">
-        <div className="hidden grid-cols-[2fr_.8fr_1fr_.8fr_.8fr_.8fr_.8fr_44px] border-b border-line bg-panel px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 md:grid">
+        <div className="hidden grid-cols-[2fr_.8fr_1fr_.8fr_.9fr_.8fr_.8fr_44px] border-b border-line bg-panel px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 md:grid">
           <SortButton label="Player" active={sortKey === "player_name"} onClick={() => setSortKey("player_name")} />
           <div>Pos</div>
           <div>Team</div>
           <div>Status</div>
+          <div>Type</div>
           <SortButton label="BPR" active={sortKey === "projected_bpr"} onClick={() => setSortKey("projected_bpr")} />
           <SortButton label="Fit" active={sortKey === "fit_score"} onClick={() => setSortKey("fit_score")} />
-          <SortButton label="NIL" active={sortKey === "nil_value_placeholder"} onClick={() => setSortKey("nil_value_placeholder")} />
           <div />
         </div>
 
@@ -129,7 +135,7 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
               <button
                 type="button"
                 onClick={() => setExpandedId(expanded ? null : player.player_id)}
-                className="grid w-full gap-3 px-4 py-4 text-left hover:bg-panel md:grid-cols-[2fr_.8fr_1fr_.8fr_.8fr_.8fr_.8fr_44px] md:items-center"
+                className="grid w-full gap-3 px-4 py-4 text-left hover:bg-panel md:grid-cols-[2fr_.8fr_1fr_.8fr_.9fr_.8fr_.8fr_44px] md:items-center"
               >
                 <div>
                   <div className="font-semibold text-ink">{player.player_name}</div>
@@ -145,9 +151,11 @@ export function PlayerTable({ players, portalDefault = false }: { players: Playe
                 <div>
                   <StatusBadge status={player.portal_status} />
                 </div>
+                <div>
+                  <SourceBadge source={player.player_source} />
+                </div>
                 <TableNumber value={player.projected_bpr.toFixed(1)} label="BPR" />
                 <TableNumber value={`${player.fit_score}`} label="Fit" />
-                <TableNumber value={`$${Math.round(player.nil_value_placeholder / 1000)}k`} label="NIL" />
                 <ChevronDown className={clsx("h-5 w-5 justify-self-end text-slate-500 transition", expanded && "rotate-180")} />
               </button>
               {expanded ? <PlayerDetailPanel player={player} /> : null}

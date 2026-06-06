@@ -3,18 +3,21 @@
 import { useMemo, useState } from "react";
 import { ChevronDown, Target } from "lucide-react";
 import { getRecommendations, getTeams, getTopPlaytypes } from "@/lib/data";
-import { StatusBadge } from "@/components/StatusBadge";
+import { SourceBadge, StatusBadge } from "@/components/StatusBadge";
+
+type RecommendationSource = "all" | "transfer" | "hs";
 
 export function RecommendationsBoard({ defaultTeam = "UConn" }: { defaultTeam?: string }) {
   const teams = getTeams();
   const [teamName, setTeamName] = useState(defaultTeam);
-  const recommendations = useMemo(() => getRecommendations(teamName), [teamName]);
+  const [source, setSource] = useState<RecommendationSource>("all");
+  const recommendations = useMemo(() => getRecommendations(teamName, source === "all" ? "all" : source), [source, teamName]);
   const selectedTeam = teams.find((team) => team.team_name === teamName) ?? teams[0];
 
   return (
     <section className="space-y-4">
       <div className="rounded border border-line bg-white p-4 shadow-soft">
-        <div className="grid gap-4 md:grid-cols-[280px_1fr] md:items-center">
+        <div className="grid gap-4 lg:grid-cols-[280px_auto_1fr] lg:items-center">
           <label className="relative block">
             <select
               value={teamName}
@@ -29,6 +32,22 @@ export function RecommendationsBoard({ defaultTeam = "UConn" }: { defaultTeam?: 
             </select>
             <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
           </label>
+          <div className="grid grid-cols-3 rounded border border-line bg-panel p-1">
+            {[
+              ["all", "All"],
+              ["transfer", "Transfers"],
+              ["hs", "HS"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setSource(value as RecommendationSource)}
+                className={source === value ? "h-8 rounded bg-emerald-600 px-3 text-xs font-semibold text-white dark:bg-emerald-500 dark:text-slate-950" : "h-8 rounded px-3 text-xs font-semibold text-slate-600 hover:bg-surface dark:text-slate-300"}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
           <div className="text-sm text-slate-700">
             <span className="font-semibold text-ink">{selectedTeam.style}</span>
             <span className="ml-2 text-slate-500">Needs: {selectedTeam.needs.join(", ")}</span>
@@ -42,13 +61,14 @@ export function RecommendationsBoard({ defaultTeam = "UConn" }: { defaultTeam?: 
           return (
             <article key={player.player_id} className="rounded border border-line bg-white p-4 shadow-soft">
               <div className="grid gap-4 lg:grid-cols-[56px_1.2fr_1fr_1fr] lg:items-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded bg-ink text-lg font-semibold text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded bg-slate-900 text-lg font-semibold text-white dark:bg-slate-700">
                   {index + 1}
                 </div>
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <h3 className="text-base font-semibold text-ink">{player.player_name}</h3>
                     <StatusBadge status={player.portal_status} />
+                    <SourceBadge source={player.player_source} />
                   </div>
                   <div className="mt-1 text-sm text-slate-600">
                     {player.position} | {player.height} | {player.current_team} | BPR {player.projected_bpr.toFixed(1)}
