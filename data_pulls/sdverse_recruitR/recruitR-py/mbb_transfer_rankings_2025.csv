@@ -1,0 +1,501 @@
+key,targetInstitution,targetInstitutionKey,fullName,positionAbbr,currentInstitution,currentInstitutionKey,currentInstitutionStateAbbreviation,currentInstitutionCity,firstName,lastName,stateAbbreviation,playerImage,starRating,groupRank,positionRank,stateRank,formattedHeight,weight
+46137128,MICH,24042,Yaxel Lendeborg,PF,UAB,24059,AL,Birmingham,Yaxel,Lendeborg,NJ,https://s3media.247sports.com/Uploads/Assets/46/44/12044046.jpeg,5,1,1,1,6-9,230.0
+46102421,KSST,24023,PJ Haggerty,PG,MEM,24053,TN,Memphis,PJ,Haggerty,TX,https://s3media.247sports.com/Uploads/Assets/985/722/12722985.jpg,5,2,1,1,6-3,191.0
+46156598,IOWA,24041,Bennett Stirtz,PG,DRAKE,24218,IA,Des Moines,Bennett,Stirtz,MO,https://s3media.247sports.com/Uploads/Assets/832/950/12950832.jpeg,5,3,2,1,6-4,180.0
+46117555,UCLA,24093,Donovan Dent,PG,UNM,24081,NM,Albuquerque,Donovan,Dent,CA,https://s3media.247sports.com/Uploads/Assets/442/730/12730442.jpg,5,4,3,1,6-2,185.0
+46129312,NCST,24015,Darrion Williams,PF,TTECH,24030,TX,Lubbock,Darrion,Williams,NV,https://s3media.247sports.com/Uploads/Assets/418/33/13033418.jpeg,5,5,2,1,6-6,225.0
+46114866,UF,24099,Boogie Fland,CG,ARK,24097,AR,Fayetteville,Boogie,Fland,NY,https://s3media.247sports.com/Uploads/Assets/47/716/12716047.jpg,5,6,1,1,6-2,175.0
+46111723,St. John's,24309,Ian Jackson,SG,UNC,24014,NC,Chapel Hill,Ian,Jackson,NY,https://s3media.247sports.com/Uploads/Assets/628/644/12644628.png,5,7,1,1,6-4,190.0
+46129001,BYU,24079,Rob Wright III,PG,BAY,24019,TX,Waco,Rob,Wright III,FL,https://s3media.247sports.com/Uploads/Assets/234/720/12720234.jpg,5,8,4,2,6-1,183.0
+46142985,LOU,24033,Adrian Wooley,CG,Kennesaw State,24363,GA,Kennesaw,Adrian,Wooley,AL,https://s3media.247sports.com/Uploads/Assets/555/11/13011555.jpg,5,9,2,1,6-5,180.0
+46131379,KY,24101,Jayden Quaintance,C,AZST,24088,AZ,Tempe,Jayden,Quaintance,NC,https://s3media.247sports.com/Uploads/Assets/534/29/13029534.jpg,5,10,1,1,6-9,230.0
+46141075,CIN,24031,Moustapha Thiam,C,UCF,24060,FL,Orlando,Moustapha,Thiam,SENE,https://s3media.247sports.com/Uploads/Assets/767/720/12720767.jpg,4,11,2,1,7-2,235.0
+46127914,TENN,24106,Ja'Kobi Gillespie,PG,MARY,24012,MD,College Park,Ja'Kobi,Gillespie,TN,https://s3media.247sports.com/Uploads/Assets/498/718/12718498.jpg,4,12,5,1,6-1,186.0
+46127714,UCONN,24032,Silas Demary Jr.,CG,UGA,24100,GA,Athens,Silas,Demary Jr.,NC,https://s3media.247sports.com/Uploads/Assets/26/18/12018026.jpeg,4,13,3,2,6-5,190.0
+46118010,LOU,24033,Ryan Conwell,CG,Xavier,24316,OH,Cincinnati,Ryan,Conwell,IN,https://s3media.247sports.com/Uploads/Assets/83/709/12709083.jpg,4,14,4,1,6-4,215.0
+46116819,LSU,24102,Dedan Thomas Jr.,PG,UNLV,24084,NV,Las Vegas,Dedan,Thomas Jr.,NV,https://s3media.247sports.com/Uploads/Assets/687/48/12048687.jpeg,4,15,6,1,6-1,170.0
+46059170,St. John's,24309,Bryce Hopkins,PF,PROV,24308,RI,Providence,Bryce,Hopkins,IL,https://s3media.247sports.com/Uploads/Assets/852/707/12707852.jpg,4,16,3,1,6-7,220.0
+46125439,AUB,24098,Keyshawn Hall,SF,UCF,24060,FL,Orlando,Keyshawn,Hall,OH,https://s3media.247sports.com/Uploads/Assets/785/720/12720785.jpg,4,17,1,2,6-7,235.0
+46086079,IND,24040,Tucker DeVries,SF,WVU,24038,WV,Morgantown,Tucker,DeVries,IA,https://s3media.247sports.com/Uploads/Assets/942/989/12989942.jpeg,4,18,2,1,6-7,220.0
+46093946,Creighton,24343,Josh Dix,SG,IOWA,24041,IA,Iowa City,Josh,Dix,IA,https://s3media.247sports.com/Uploads/Assets/92/730/12730092.jpg,4,19,2,2,6-6,210.0
+46097950,LOU,24033,Isaac McKneely,SG,UVA,24016,VA,Charlottesville,Isaac,McKneely,WV,https://s3media.247sports.com/Uploads/Assets/464/345/12345464.png,4,20,3,1,6-4,170.0
+46150103,USC,24257,Chad Baker-Mazara,SF,AUB,24098,AL,Auburn,Chad,Baker-Mazara,DOMI,https://s3media.247sports.com/Uploads/Assets/283/443/12443283.jpg,4,21,3,2,6-7,180.0
+46134208,St. John's,24309,Joson Sanon,SG,AZST,24088,AZ,Tempe,Joson,Sanon,VT,https://s3media.247sports.com/Uploads/Assets/272/719/12719272.jpg,4,22,4,2,6-5,188.0
+46148869,TTECH,24030,LeJuan Watts,SG,WSU,24095,WA,Pullman,LeJuan,Watts,CA,https://s3media.247sports.com/Uploads/Assets/57/706/12706057.jpg,4,23,5,1,6-6,233.0
+46102823,WASH,24094,Wesley Yates III,CG,USC,24257,CA,Los Angeles,Wesley,Yates III,TX,https://s3media.247sports.com/Uploads/Assets/100/722/12722100.jpg,4,24,5,1,6-4,200.0
+46097210,USC,24257,Rodney Rice,SG,MARY,24012,MD,College Park,Rodney,Rice,MD,https://s3media.247sports.com/Uploads/Assets/505/718/12718505.jpg,4,25,6,2,6-4,198.0
+46115307,MICH,24042,Morez Johnson Jr.,PF,ILL,24039,IL,Champaign,Morez,Johnson Jr.,IL,https://s3media.247sports.com/Uploads/Assets/264/718/12718264.jpg,4,26,4,1,6-9,255.0
+46134016,UNC,24014,Henri Veesaar,C,ARIZ,24087,AZ,Tucson,Henri,Veesaar,ESTO,https://s3media.247sports.com/Uploads/Assets/803/772/12772803.jpeg,4,27,3,3,7-0,235.0
+46054952,AUB,24098,KeShawn Murphy,PF,MSST,24104,MS,Starkville,KeShawn,Murphy,AL,https://s3media.247sports.com/Uploads/Assets/663/31/13031663.jpeg,4,28,5,1,6-10,230.0
+46156002,UF,24099,Xaivian Lee,PG,PRTN,24169,NJ,Princeton,Xaivian,Lee,PA,https://s3media.247sports.com/Uploads/Assets/981/921/12921981.png,4,29,7,1,6-4,180.0
+46097677,OKLA,24026,Xzayvier Brown,PG,Saint Joseph's,24323,PA,Philadelphia,Xzayvier,Brown,PA,https://s3media.247sports.com/Uploads/Assets/528/41/12041528.jpeg,4,30,8,1,6-2,165.0
+46102817,WASH,24094,Desmond Claude,PG,USC,24257,CA,Los Angeles,Desmond,Claude,CT,https://s3media.247sports.com/Uploads/Assets/108/722/12722108.jpg,4,31,9,2,6-6,205.0
+46117544,ILL,24039,Andrej Stojakovic,SF,CAL,24089,CA,Berkeley,Andrej,Stojakovic,CA,https://s3media.247sports.com/Uploads/Assets/200/709/12709200.jpg,4,32,4,3,6-7,205.0
+46115861,MARY,24012,Pharrel Payne,C,TAMU,24029,TX,College Station,Pharrel,Payne,MN,https://s3media.247sports.com/Uploads/Assets/10/717/12717010.jpg,4,33,4,3,6-9,250.0
+46133023,OKLA,24026,Derrion Reid,SF,BAMA,24096,AL,Tuscaloosa,Derrion,Reid,CA,https://s3media.247sports.com/Uploads/Assets/871/612/12612871.jpeg,4,34,5,3,6-8,220.0
+46149166,BAY,24019,Michael Rataj,PF,ORST,24091,OR,Corvallis,Michael,Rataj,GERM,https://s3media.247sports.com/Uploads/Assets/232/406/12406232.png,4,35,6,1,6-7,220.0
+46112760,KY,24101,Jaland Lowe,PG,PITT,24034,PA,Pittsburgh,Jaland,Lowe,TX,https://s3media.247sports.com/Uploads/Assets/88/715/12715088.jpg,4,36,10,2,6-3,160.0
+46110067,Creighton,24343,Owen Freeman,C,IOWA,24041,IA,Iowa City,Owen,Freeman,IL,https://s3media.247sports.com/Uploads/Assets/83/985/12985083.jpeg,4,37,5,3,6-10,220.0
+46137491,PUR,24048,Oscar Cluff,C,SDST,24185,SD,Brookings,Oscar,Cluff,AUST,https://s3media.247sports.com/Uploads/Assets/867/952/12952867.jpeg,4,38,6,1,6-11,260.0
+46054929,OKLA,24026,Nijel Pack,PG,MIA,24013,FL,Coral Gables,Nijel,Pack,IN,https://s3media.247sports.com/Uploads/Assets/91/677/12677091.jpg,4,39,11,3,6-0,185.0
+46156630,BAY,24019,Obi Agbim,SG,WYO,24086,WY,Laramie,Obi,Agbim,CO,https://s3media.247sports.com/Uploads/Assets/477/952/12952477.jpeg,4,40,7,1,6-3,180.0
+46143288,ILL,24039,Zvonimir Ivisic,C,ARK,24097,AR,Fayetteville,Zvonimir,Ivisic,CROA,https://s3media.247sports.com/Uploads/Assets/231/716/12716231.jpg,4,41,7,2,7-2,235.0
+46130914,KY,24101,Kam Williams,SF,TLNE,24057,LA,New Orleans,Kam,Williams,LA,https://s3media.247sports.com/Uploads/Assets/882/723/12723882.jpg,4,42,6,1,6-8,190.0
+46116050,TEX,24028,Dailyn Swain,SF,Xavier,24316,OH,Cincinnati,Dailyn,Swain,OH,https://s3media.247sports.com/Uploads/Assets/52/709/12709052.jpg,4,43,7,2,6-8,220.0
+46058747,TAMU,24029,Pop Isaacs,PG,Creighton,24343,NE,Omaha,Pop,Isaacs,NV,https://s3media.247sports.com/Uploads/Assets/379/724/12724379.jpg,4,44,12,1,6-2,180.0
+46148106,IND,24040,Lamar Wilkerson,SG,SHSU,24237,TX,Huntsville,Lamar,Wilkerson,AR,https://s3media.247sports.com/Uploads/Assets/495/938/12938495.jpeg,4,45,8,4,6-5,195.0
+46140859,MICH,24042,Aday Mara,C,UCLA,24093,CA,Los Angeles,Aday,Mara,SPAI,https://s3media.247sports.com/Uploads/Assets/527/27/12027527.jpeg,4,46,8,4,7-3,240.0
+46058294,CLEM,24008,Nick Davidson,C,NEV,24122,NV,Reno,Nick,Davidson,CA,https://s3media.247sports.com/Uploads/Assets/14/986/12986014.jpeg,4,47,9,2,6-10,238.0
+46097664,MIA,24013,Malik Reneau,PF,IND,24040,IN,Bloomington,Malik,Reneau,FL,https://s3media.247sports.com/Uploads/Assets/263/124/12124263.png,4,48,7,1,6-8,210.0
+46157201,IOWA,24041,Alvaro Folgueiras,PF,ROMO,24194,PA,Coraopolis,Alvaro,Folgueiras,SPAI,https://s3media.247sports.com/Uploads/Assets/545/1/13001545.jpeg,4,49,8,3,6-9,215.0
+46143021,SYR,24037,Naithan George,PG,GTECH,24011,GA,Atlanta,Naithan,George,AZ,https://s3media.247sports.com/Uploads/Assets/569/709/12709569.jpg,4,50,13,3,6-3,185.0
+46104191,GU,24210,KJ Lewis,SF,ARIZ,24087,AZ,Tucson,KJ,Lewis,TX,https://s3media.247sports.com/Uploads/Assets/743/772/12772743.jpeg,4,51,8,4,6-4,210.0
+46133113,SMU,24055,Jaron Pierre Jr.,SG,JST,24201,AL,Jacksonville,Jaron,Pierre Jr.,LA,https://s3media.247sports.com/Uploads/Assets/180/762/12762180.jpeg,4,52,9,4,6-5,188.0
+46097224,KSST,24023,Nate Johnson,SG,AKRN,24065,OH,Akron,Nate,Johnson,OH,https://s3media.247sports.com/Uploads/Assets/312/45/13045312.jpeg,4,53,10,3,6-3,205.0
+46117562,KY,24101,Denzel Aberdeen,CG,UF,24099,FL,Gainesville,Denzel,Aberdeen,FL,https://s3media.247sports.com/Uploads/Assets/448/779/12779448.jpeg,4,54,6,4,6-5,190.0
+46110087,MISS,24103,AJ Storr,SF,KAN,24022,KS,Lawrence,AJ,Storr,FL,https://s3media.247sports.com/Uploads/Assets/560/720/12720560.jpg,4,55,9,1,6-7,205.0
+46117943,BYU,24079,Kennard Davis Jr.,SF,SILL,24186,IL,Eldred,Kennard,Davis Jr.,MO,https://s3media.247sports.com/Uploads/Assets/677/979/12979677.jpeg,4,56,10,2,6-6,215.0
+46135664,BAMA,24096,Jalil Bethea,SG,MIA,24013,FL,Coral Gables,Jalil,Bethea,PA,https://s3media.247sports.com/Uploads/Assets/952/676/12676952.jpg,4,57,11,5,6-5,190.0
+46097730,St. John's,24309,Dillon Mitchell,PF,CIN,24031,OH,Cincinnati,Dillon,Mitchell,FL,https://s3media.247sports.com/Uploads/Assets/282/720/12720282.jpg,4,58,9,4,6-8,210.0
+46057956,UVA,24016,Malik Thomas,SG,sanfran,24350,CA,San Francisco,Malik,Thomas,CA,https://s3media.247sports.com/Uploads/Assets/761/950/12950761.jpeg,4,59,12,5,6-5,205.0
+46115715,MICH,24042,Elliot Cadeau,PG,UNC,24014,NC,Chapel Hill,Elliot,Cadeau,MO,https://s3media.247sports.com/Uploads/Assets/588/644/12644588.png,4,60,14,2,6-1,180.0
+46101161,MIA,24013,Tre Donaldson,PG,MICH,24042,MI,Ann Arbor,Tre,Donaldson,FL,https://s3media.247sports.com/Uploads/Assets/589/718/12718589.jpg,4,61,15,1,6-3,195.0
+46110425,KY,24101,Mouhamed Dioubate,SF,BAMA,24096,AL,Tuscaloosa,Mouhamed,Dioubate,CT,https://s3media.247sports.com/Uploads/Assets/218/28/13028218.jpeg,4,62,11,5,6-7,215.0
+46116076,IND,24040,Reed Bailey,PF,DAV,24216,NC,Davidson,Reed,Bailey,MA,https://s3media.247sports.com/Uploads/Assets/980/933/12933980.jpeg,4,63,10,3,6-10,230.0
+46094806,OKLA,24026,Tae Davis,SF,ND,24064,IN,South Bend,Tae,Davis,IN,https://s3media.247sports.com/Uploads/Assets/477/1/13001477.jpg,4,64,12,2,6-9,215.0
+46109285,TAMU,24029,Mackenzie Mgbako,PF,IND,24040,IN,Bloomington,Mackenzie,Mgbako,NJ,https://s3media.247sports.com/Uploads/Assets/788/3/12003788.png,4,65,11,3,6-8,210.0
+46102511,UF,24099,AJ Brown,SG,OHIO,24074,OH,Athens,AJ,Brown,FL,https://s3media.247sports.com/Uploads/Assets/798/31/13031798.jpeg,4,66,13,5,6-4,170.0
+46086379,UCONN,24032,Malachi Smith,PG,DAY,24217,OH,Dayton,Malachi,Smith,NY,https://s3media.247sports.com/Uploads/Assets/547/999/12999547.jpeg,4,67,16,6,6-0,155.0
+46156203,COL,24020,Barrington Hargress,PG,UC Riverside,24375,CA,Riverside,Barrington,Hargress,CA,https://s3media.247sports.com/Uploads/Assets/999/933/12933999.jpeg,4,68,17,6,6-0,195.0
+46153674,KSST,24023,Abdi Bashir Jr.,SG,MONM,24193,NJ,West Long Branch,Abdi,Bashir Jr.,AZ,https://s3media.247sports.com/Uploads/Assets/882/765/12765882.jpeg,4,69,14,2,6-7,160.0
+46132740,UGA,24100,Kanon Catchings,SF,BYU,24079,UT,Provo,Kanon,Catchings,GA,https://s3media.247sports.com/Uploads/Assets/255/720/12720255.jpg,4,70,13,1,6-9,185.0
+46102044,BAMA,24096,Taylor Bol Bowen,PF,FSU,24010,FL,Tallahassee,Taylor,Bol Bowen,NH,https://s3media.247sports.com/Uploads/Assets/458/999/12999458.jpg,4,71,12,6,6-10,205.0
+46148711,WIS,24049,Nick Boyd,PG,SDSU,24082,CA,San Diego,Nick,Boyd,NJ,https://s3media.247sports.com/Uploads/Assets/626/722/12722626.jpg,4,72,18,7,6-3,175.0
+46085475,WASH,24094,Quimari Peterson,PG,ETST,24262,TN,Johnson City,Quimari,Peterson,IN,https://s3media.247sports.com/Uploads/Assets/425/940/12940425.jpeg,4,73,19,2,6-1,190.0
+46156314,WVU,24038,Treysen Eaglestaff,SG,NDAK,24155,ND,Grand Forks,Treysen,Eaglestaff,ND,https://s3media.247sports.com/Uploads/Assets/445/940/12940445.jpeg,4,74,15,1,6-6,190.0
+46117502,USC,24257,Jacob Cofie,PF,UVA,24016,VA,Charlottesville,Jacob,Cofie,WA,https://s3media.247sports.com/Uploads/Assets/355/715/12715355.jpg,4,75,13,2,6-10,232.0
+46148646,PROV,24308,Jason Edwards,SG,VAN,24107,TN,Nashville,Jason,Edwards,GA,https://s3media.247sports.com/Uploads/Assets/216/718/12718216.jpg,4,76,16,3,6-1,175.0
+46059476,TAMU,24029,Rylan Griffen,SF,KAN,24022,KS,Lawrence,Rylan,Griffen,TX,https://s3media.247sports.com/Uploads/Assets/547/720/12720547.jpg,4,77,14,2,6-6,190.0
+46059200,KAN,24022,Tre White,SG,ILL,24039,IL,Champaign,Tre,White,CA,https://s3media.247sports.com/Uploads/Assets/348/718/12718348.jpg,4,78,17,3,6-7,210.0
+46156600,LSU,24102,Marquel Sutton,PF,UNO,24519,NE,Omaha,Marquel,Sutton,OK,https://s3media.247sports.com/Uploads/Assets/863/950/12950863.jpeg,4,79,14,2,6-9,225.0
+46132713,UGA,24100,Jeremiah Wilkinson,CG,CAL,24089,CA,Berkeley,Jeremiah,Wilkinson,GA,https://s3media.247sports.com/Uploads/Assets/184/709/12709184.jpg,4,80,7,8,6-1,185.0
+46103586,MIST,24043,Kaleb Glenn,SF,FAU,24110,FL,Boca Raton,Kaleb,Glenn,IN,https://s3media.247sports.com/Uploads/Assets/206/999/12999206.jpeg,4,81,15,7,6-7,210.0
+46118133,KAN,24022,Jayden Dawson,CG,LUC,24338,IL,Chicago,Jayden,Dawson,NE,https://s3media.247sports.com/Uploads/Assets/603/18/13018603.jpeg,4,82,8,4,6-4,195.0
+46136605,MIST,24043,Trey Fort,SG,SAM,24230,AL,Birmingham,Trey,Fort,MS,https://s3media.247sports.com/Uploads/Assets/855/32/13032855.jpg,4,83,18,6,6-4,200.0
+46148293,Xavier,24316,Malik Moore,SG,MONT,24128,MT,Missoula,Malik,Moore,CA,https://s3media.247sports.com/Uploads/Assets/76/0/13000076.jpeg,4,84,19,1,6-5,185.0
+46156970,Xavier,24316,Gabriel Pozzato,SF,Evansville,24344,IN,Evansville,Gabriel,Pozzato,ITAL,https://s3media.247sports.com/Uploads/Assets/992/985/12985992.jpeg,4,85,16,4,6-7,0.0
+46116524,MISS,24103,Corey Chest,PF,LSU,24102,LA,Baton Rouge,Corey,Chest,MO,https://s3media.247sports.com/Uploads/Assets/270/18/12018270.png,4,86,15,2,6-8,210.0
+46145708,BUT,24214,Jalen Jackson,PG,IPFW,24393,IN,Fort Wayne,Jalen,Jackson,IN,https://s3media.247sports.com/Uploads/Assets/292/940/12940292.jpeg,4,87,20,5,6-2,200.0
+46128931,GCU,25241,Jaden Henley,SF,UNLV,24084,NV,Las Vegas,Jaden,Henley,CA,https://s3media.247sports.com/Uploads/Assets/765/722/12722765.jpg,4,88,17,3,6-7,215.0
+46118021,OKST,24027,Isaiah Coleman,SG,Seton Hall,24310,NJ,South Orange,Isaiah,Coleman,MD,https://s3media.247sports.com/Uploads/Assets/888/707/12707888.jpg,4,89,20,3,6-5,191.0
+46132337,MINN,24044,Bobby Durkin,SF,DAV,24216,NC,Davidson,Bobby,Durkin,FL,https://s3media.247sports.com/Uploads/Assets/179/999/12999179.jpg,4,90,18,4,6-7,220.0
+46102889,MARY,24012,Myles Rice,CG,IND,24040,IN,Bloomington,Myles,Rice,GA,https://s3media.247sports.com/Uploads/Assets/425/718/12718425.jpg,4,91,9,6,6-3,185.0
+46103592,PROV,24308,Jaylin Sellers,SG,UCF,24060,FL,Orlando,Jaylin,Sellers,AL,https://s3media.247sports.com/Uploads/Assets/117/3/12003117.png,4,92,21,8,6-4,192.0
+46103232,MIA,24013,Ernest Udeh Jr.,C,TCU,24083,TX,Fort Worth,Ernest,Udeh Jr.,FL,https://s3media.247sports.com/Uploads/Assets/693/1/12001693.jpeg,4,93,10,5,6-11,260.0
+46118206,WAKE,24018,Myles Colvin,SF,PUR,24048,IN,West Lafayette,Myles,Colvin,IN,https://s3media.247sports.com/Uploads/Assets/880/13/12013880.png,4,94,19,7,6-5,200.0
+46156995,UVA,24016,Jacari White,SG,NDST,24183,ND,Fargo,Jacari,White,FL,https://s3media.247sports.com/Uploads/Assets/244/987/12987244.jpeg,4,95,22,2,6-3,180.0
+46099452,MSST,24104,Jayden Epps,CG,GU,24210,DC,Washington,Jayden,Epps,NC,https://s3media.247sports.com/Uploads/Assets/391/706/12706391.jpg,4,96,10,1,6-2,190.0
+46118167,UNC,24014,Kyan Evans,CG,CSU,24080,CO,Fort Collins,Kyan,Evans,MO,https://s3media.247sports.com/Uploads/Assets/409/33/13033409.jpeg,4,97,11,1,6-2,175.0
+46156627,LSU,24102,Rashad King,SG,NE,24148,MA,Boston,Rashad,King,GA,https://s3media.247sports.com/Uploads/Assets/373/952/12952373.jpeg,4,98,23,1,6-6,0.0
+46157164,CSU,24080,Josh Pascarelli,CG,MAR,24220,NY,Poughkeepsie,Josh,Pascarelli,NY,https://s3media.247sports.com/Uploads/Assets/31/0/13000031.jpeg,4,99,12,1,6-3,195.0
+46097928,TEX,24028,Simeon Wilcher,PG,St. John's,24309,NY,Queens Village,Simeon,Wilcher,NJ,https://s3media.247sports.com/Uploads/Assets/989/46/13046989.jpeg,4,100,21,2,6-4,190.0
+46079207,MEM,24053,Dug McDaniel,PG,KSST,24023,KS,Manhattan,Dug,McDaniel,VA,https://s3media.247sports.com/Uploads/Assets/661/720/12720661.jpg,4,101,22,3,5-11,175.0
+46125547,IND,24040,Nick Dorn,CG,ELON,24227,NC,Elon,Nick,Dorn,NC,https://s3media.247sports.com/Uploads/Assets/654/1/13001654.jpeg,4,102,13,5,6-7,200.0
+46156899,WAKE,24018,Cooper Schwieger,PF,VALPO,24223,IN,Valparaiso,Cooper,Schwieger,KS,https://s3media.247sports.com/Uploads/Assets/950/977/12977950.jpeg,4,103,16,8,6-10,230.0
+46101946,VTECH,24017,Amani Hansberry,PF,WVU,24038,WV,Morgantown,Amani,Hansberry,MD,https://s3media.247sports.com/Uploads/Assets/921/720/12720921.jpg,4,104,17,2,6-8,240.0
+46157170,IND,24040,Tayton Conerway,PG,TROY,24115,AL,Troy,Tayton,Conerway,TX,https://s3media.247sports.com/Uploads/Assets/224/0/13000224.jpeg,4,105,23,7,6-3,186.0
+46083137,ARK,24097,Malique Ewin,C,FSU,24010,FL,Tallahassee,Malique,Ewin,GA,https://s3media.247sports.com/Uploads/Assets/539/709/12709539.jpg,4,106,11,9,6-11,230.0
+46133024,MISS,24103,James Scott,C,LOU,24033,KY,Louisville,James,Scott,NC,https://s3media.247sports.com/Uploads/Assets/631/709/12709631.jpg,4,107,12,1,6-11,220.0
+46098105,GCU,25241,Nana Owusu-Anane,PF,BRWN,24163,RI,North Providence,Nana,Owusu-Anane,VT,https://s3media.247sports.com/Uploads/Assets/775/348/12348775.png,4,108,18,2,6-8,215.0
+46115831,WVU,24038,Brenen Lorient,PF,NTEX,24114,TX,Denton,Brenen,Lorient,FL,https://s3media.247sports.com/Uploads/Assets/706/22/13022706.jpeg,4,109,19,6,6-9,215.0
+46093992,Gonzaga,24317,Tyon Grant-Foster,SF,GCU,25241,AZ,Phoenix,Tyon,Grant-Foster,KS,https://s3media.247sports.com/Uploads/Assets/580/730/12730580.jpg,4,110,20,5,6-7,220.0
+46056913,NCST,24015,Tre Holloman,PG,MIST,24043,MI,East Lansing,Tre,Holloman,MN,https://s3media.247sports.com/Uploads/Assets/448/774/12774448.jpeg,4,111,24,2,6-2,185.0
+46132904,IND,24040,Jasai Miles,SG,UNF,24366,FL,Jacksonville,Jasai,Miles,FL,https://s3media.247sports.com/Uploads/Assets/725/3/13003725.jpeg,4,112,24,10,6-6,210.0
+46157135,OHST,24046,Christoph Tilly,C,Santa Clara,24351,CA,Santa Clara,Christoph,Tilly,GERM,https://s3media.247sports.com/Uploads/Assets/517/999/12999517.jpeg,4,113,13,9,7-0,240.0
+46132699,VTECH,24017,Izaiah Pasha,SF,DEL,24142,DE,Newark,Izaiah,Pasha,PA,https://s3media.247sports.com/Uploads/Assets/975/3/13003975.jpeg,4,114,21,1,6-4,190.0
+46133263,Creighton,24343,Austin Swartz,SG,MIA,24013,FL,Coral Gables,Austin,Swartz,NC,https://s3media.247sports.com/Uploads/Assets/961/676/12676961.jpg,4,115,25,11,6-4,200.0
+46116289,MARY,24012,Elijah Saunders,PF,UVA,24016,VA,Charlottesville,Elijah,Saunders,AZ,https://s3media.247sports.com/Uploads/Assets/371/715/12715371.jpg,4,116,20,3,6-8,240.0
+46157432,TEX,24028,Matas Vokietaitis,C,FAU,24110,FL,Boca Raton,Matas,Vokietaitis,LITH,https://s3media.247sports.com/Uploads/Assets/618/18/13018618.jpeg,4,117,14,12,7-0,245.0
+46117958,MIA,24013,Tru Washington,SG,UNM,24081,NM,Albuquerque,Tru,Washington,AZ,https://s3media.247sports.com/Uploads/Assets/950/75/12075950.png,4,118,26,2,6-4,195.0
+46098190,St. John's,24309,Oziyah Sellers,SG,STAN,24092,CA,Stanford,Oziyah,Sellers,CA,https://s3media.247sports.com/Uploads/Assets/319/715/12715319.jpg,4,119,27,10,6-5,190.0
+46103602,OKST,24027,Vyctorius Miller,SG,LSU,24102,LA,Baton Rouge,Vyctorius,Miller,AZ,https://s3media.247sports.com/Uploads/Assets/800/10/13010800.jpg,4,120,28,3,6-5,185.0
+46157079,BAMA,24096,Noah Williamson,C,BUCK,24207,PA,Lewisburg,Noah,Williamson,CT,https://s3media.247sports.com/Uploads/Assets/864/993/12993864.jpeg,4,121,15,4,7-0,250.0
+46156983,AUB,24098,Elyjah Freeman,SF,LMU,24780,TN,Harrogate,Elyjah,Freeman,FL,https://s3media.247sports.com/Uploads/Assets/467/986/12986467.png,4,122,22,4,6-8,0.0
+46148434,KAN,24022,Melvin Council Jr.,SG,St. Bonaventure,24322,NY,Allegany,Melvin,Council Jr.,NY,https://s3media.247sports.com/Uploads/Assets/459/8/13008459.jpeg,4,123,29,3,6-4,180.0
+46148410,Creighton,24343,Blake Harper,SF,HOW,24175,DC,Washington,Blake,Harper,DC,https://s3media.247sports.com/Uploads/Assets/399/940/12940399.jpeg,4,124,23,2,6-8,210.0
+46146673,UCF,24060,Jamichael Stillwell,PF,Wis. Milwaukee,24339,WI,Milwaukee,Jamichael,Stillwell,GA,https://s3media.247sports.com/Uploads/Assets/415/971/12971415.jpeg,4,125,21,1,6-8,225.0
+46136435,MARY,24012,Isaiah Watts,CG,WSU,24095,WA,Pullman,Isaiah,Watts,WA,https://s3media.247sports.com/Uploads/Assets/466/877/11877466.png,4,126,14,2,6-3,180.0
+46096638,IOWA,24041,Brendan Hausen,SG,KSST,24023,KS,Manhattan,Brendan,Hausen,TX,https://s3media.247sports.com/Uploads/Assets/652/720/12720652.jpg,4,127,30,4,6-4,205.0
+46127613,ARK,24097,Nick Pringle,C,SCAR,24105,SC,Columbia,Nick,Pringle,SC,https://s3media.247sports.com/Uploads/Assets/939/716/12716939.jpg,4,128,16,1,6-10,220.0
+46117860,LSU,24102,Mike Nwoko,C,MSST,24104,MS,Starkville,Mike,Nwoko,CA,https://s3media.247sports.com/Uploads/Assets/725/716/12716725.jpg,4,129,17,2,6-10,245.0
+46109909,MARY,24012,Solomon Washington,SF,TAMU,24029,TX,College Station,Solomon,Washington,LA,https://s3media.247sports.com/Uploads/Assets/161/730/12730161.jpg,4,130,24,7,6-7,220.0
+46116206,AUB,24098,Kevin Overton,SG,TTECH,24030,TX,Lubbock,Kevin,Overton,OK,https://s3media.247sports.com/Uploads/Assets/807/41/13041807.jpeg,4,131,31,8,6-5,200.0
+46103234,NCST,24015,Terrance Arceneaux,SF,HOU,24051,TX,Houston,Terrance,Arceneaux,TX,https://s3media.247sports.com/Uploads/Assets/731/141/12141731.jpeg,4,132,25,9,6-6,205.0
+46148363,BUT,24214,Michael Ajayi,SF,Gonzaga,24317,WA,Spokane,Michael,Ajayi,WA,https://s3media.247sports.com/Uploads/Assets/270/702/12702270.jpg,4,133,26,3,6-7,228.0
+46131421,IAST,24021,Blake Buchanan,C,UVA,24016,VA,Charlottesville,Blake,Buchanan,ID,https://s3media.247sports.com/Uploads/Assets/490/3/12003490.png,4,134,18,4,6-11,215.0
+46127481,MARY,24012,Rakease Passmore,SG,KAN,24022,KS,Lawrence,Rakease,Passmore,NC,https://s3media.247sports.com/Uploads/Assets/523/720/12720523.jpg,4,135,32,5,6-5,185.0
+46097292,NEB,24025,Pryce Sandfort,CG,IOWA,24041,IA,Iowa City,Pryce,Sandfort,IA,https://s3media.247sports.com/Uploads/Assets/705/985/12985705.jpeg,4,136,15,4,6-7,210.0
+46114389,MIZZ,24024,Sebastian Mack,SG,UCLA,24093,CA,Los Angeles,Sebastian,Mack,NV,https://s3media.247sports.com/Uploads/Assets/544/27/12027544.jpeg,4,137,33,11,6-3,200.0
+46110259,TTECH,24030,Donovan Atwell,SG,UNC Greensboro,24352,NC,Greensboro,Donovan,Atwell,NC,https://s3media.247sports.com/Uploads/Assets/823/985/12985823.jpeg,4,138,34,6,6-5,190.0
+46116212,UNC,24014,Jarin Stevenson,PF,BAMA,24096,AL,Tuscaloosa,Jarin,Stevenson,NC,https://s3media.247sports.com/Uploads/Assets/867/612/12612867.jpeg,4,139,22,8,6-11,215.0
+46110670,UTAH,24085,Jahki Howard,SF,AUB,24098,AL,Auburn,Jahki,Howard,GA,https://s3media.247sports.com/Uploads/Assets/260/716/12716260.jpg,4,140,27,9,6-6,185.0
+46054948,PITT,24034,Dishon Jackson,C,IAST,24021,IA,Ames,Dishon,Jackson,CA,https://s3media.247sports.com/Uploads/Assets/421/720/12720421.jpg,4,141,19,5,6-11,274.0
+46102399,NCST,24015,Ven-Allen Lubin,PF,UNC,24014,NC,Chapel Hill,Ven-Allen,Lubin,FL,https://s3media.247sports.com/Uploads/Assets/631/644/12644631.png,4,142,23,7,6-8,230.0
+46102477,UCF,24060,Riley Kugel,SG,MSST,24104,MS,Starkville,Riley,Kugel,FL,https://s3media.247sports.com/Uploads/Assets/699/716/12716699.jpg,4,143,35,3,6-5,210.0
+46118168,WASH,24094,Lathan Sommerville,C,RUTG,24035,NJ,Piscataway,Lathan,Sommerville,IL,https://s3media.247sports.com/Uploads/Assets/76/719/12719076.jpg,4,144,20,4,6-10,275.0
+46149302,TEX,24028,Lassina Traore,C,Xavier,24316,OH,Cincinnati,Lassina,Traore,FL,https://s3media.247sports.com/Uploads/Assets/77/709/12709077.jpg,4,145,21,7,6-10,245.0
+46129656,WAKE,24018,Mekhi Mason,SG,WASH,24094,WA,SEATTLE,Mekhi,Mason,AZ,https://s3media.247sports.com/Uploads/Assets/260/345/12345260.png,4,146,36,4,6-5,195.0
+46135996,CIN,24031,Baba Miller,C,FAU,24110,FL,Boca Raton,Baba,Miller,SPAI,https://s3media.247sports.com/Uploads/Assets/905/723/12723905.jpg,4,147,22,13,6-11,215.0
+46136256,ORE,24090,Devon Pryor,SF,TEX,24028,TX,Austin,Devon,Pryor,TX,https://s3media.247sports.com/Uploads/Assets/47/3/12003047.jpeg,4,148,28,10,6-7,180.0
+46117936,WASH,24094,Bryson Tucker,SF,IND,24040,IN,Bloomington,Bryson,Tucker,VA,https://s3media.247sports.com/Uploads/Assets/371/718/12718371.jpg,4,149,29,9,6-7,207.0
+46112061,USC,24257,Ezra Ausar,PF,UTAH,24085,UT,Salt Lake City,Ezra,Ausar,NC,https://s3media.247sports.com/Uploads/Assets/840/720/12720840.jpg,4,150,24,2,6-8,238.0
+46076626,PROV,24308,Duncan Powell,PF,GTECH,24011,GA,Atlanta,Duncan,Powell,TX,https://s3media.247sports.com/Uploads/Assets/608/709/12709608.jpg,4,151,25,4,6-8,235.0
+46050181,BETH,24171,Doctor Bradley,PF,ARPB,24243,AR,Pine Bluff,Doctor,Bradley,CA,https://s3media.247sports.com/Uploads/Assets/397/1/13001397.png,4,152,26,3,6-8,210.0
+46058444,GU,24210,Langston Love,SG,BAY,24019,TX,Waco,Langston,Love,TX,https://s3media.247sports.com/Uploads/Assets/860/344/12344860.jpg,4,153,37,11,6-5,210.0
+46125403,UNC,24014,Jonathan Powell,SG,WVU,24038,WV,Morgantown,Jonathan,Powell,OH,https://s3media.247sports.com/Uploads/Assets/701/985/12985701.jpeg,4,154,38,3,6-6,191.0
+46097636,TCU,24083,Jayden Pierre,PG,PROV,24308,RI,Providence,Jayden,Pierre,NJ,https://s3media.247sports.com/Uploads/Assets/687/707/12707687.jpg,4,155,25,3,6-2,185.0
+46135536,Xavier,24316,Anthony Robinson,C,UVA,24016,VA,Charlottesville,Anthony,Robinson,NC,https://s3media.247sports.com/Uploads/Assets/449/0/13000449.jpg,4,156,23,5,6-10,250.0
+46058970,VAN,24107,Frankie Collins,PG,TCU,24083,TX,Fort Worth,Frankie,Collins,NV,https://s3media.247sports.com/Uploads/Assets/731/720/12720731.jpg,4,157,26,12,6-2,200.0
+46138396,UVA,24016,Sam Lewis,SG,TOL,24076,OH,Toledo,Sam,Lewis,IL,https://s3media.247sports.com/Uploads/Assets/765/989/12989765.jpeg,4,158,39,8,6-6,210.0
+46138780,UNCW,24333,Gavin Walsh,PF,Binghamton,24324,NY,Binghamton,Gavin,Walsh,FL,https://s3media.247sports.com/Uploads/Assets/404/971/12971404.jpeg,4,159,27,4,6-8,205.0
+46156841,IND,24040,Josh Harris,PF,UNF,24366,FL,Jacksonville,Josh,Harris,FL,https://s3media.247sports.com/Uploads/Assets/953/973/12973953.jpeg,4,160,28,14,6-8,220.0
+46157120,ORE,24090,TK Simpkins,CG,ELON,24227,NC,Elon,TK,Simpkins,NY,https://s3media.247sports.com/Uploads/Assets/104/999/12999104.jpeg,4,161,16,8,6-4,185.0
+46132967,CofC,24353,Mister Dean,SG,USC Upstate,24367,SC,Spartanburg,Mister,Dean,FL,https://s3media.247sports.com/Uploads/Assets/333/1/13001333.jpeg,4,162,40,2,6-6,210.0
+46125613,BOISE,24117,Drew Fielder,C,GU,24210,DC,Washington,Drew,Fielder,ID,https://s3media.247sports.com/Uploads/Assets/984/989/12989984.jpeg,4,163,24,3,6-11,235.0
+46144706,CAL,24089,Justin Pippen,CG,MICH,24042,MI,Ann Arbor,Justin,Pippen,CA,https://s3media.247sports.com/Uploads/Assets/563/718/12718563.jpg,4,164,17,3,6-3,180.0
+46083366,VAN,24107,Jalen Washington,PF,UNC,24014,NC,Chapel Hill,Jalen,Washington,IN,https://s3media.247sports.com/Uploads/Assets/659/644/12644659.png,4,165,29,9,6-10,235.0
+46117533,GCU,25241,Dusty Stromer,SG,Gonzaga,24317,WA,Spokane,Dusty,Stromer,CA,https://s3media.247sports.com/Uploads/Assets/166/44/12044166.jpeg,4,166,41,5,6-6,192.0
+46129570,UTAH,24085,Elijah Moore,SG,SYR,24037,NY,Syracuse,Elijah,Moore,NY,https://s3media.247sports.com/Uploads/Assets/326/715/12715326.jpg,4,167,42,5,6-4,176.0
+46156923,CLEM,24008,Jestin Porter,PG,MTSU,24113,TN,Murfreesboro,Jestin,Porter,TX,https://s3media.247sports.com/Uploads/Assets/901/991/12991901.jpeg,4,168,27,5,6-1,180.0
+46148872,CLEM,24008,Carter Welling,PF,Utah Valley,24441,UT,Orem,Carter,Welling,UT,https://s3media.247sports.com/Uploads/Assets/24/22/13022024.jpg,4,169,30,3,6-10,225.0
+46127875,Creighton,24343,Nik Graves,PG,CHAR,24318,NC,Charlotte,Nik,Graves,NC,https://s3media.247sports.com/Uploads/Assets/215/999/12999215.jpg,4,170,28,10,6-3,195.0
+46156607,NMST,24123,Jemel Jones,SG,0,24711,CA,Bakersfield,Jemel,Jones,IL,https://s3media.247sports.com/Uploads/Assets/81/951/12951081.jpeg,4,171,43,12,6-4,0.0
+46156626,VAN,24107,George Kimble III,SG,EKY,24200,KY,Richmond,George,Kimble III,FL,https://s3media.247sports.com/Uploads/Assets/362/952/12952362.jpeg,4,172,44,2,6-2,184.0
+46156856,FSU,24010,Kobe MaGee,SG,Drexel,24330,PA,Philadelphia,Kobe,MaGee,PA,https://s3media.247sports.com/Uploads/Assets/214/975/12975214.jpeg,4,173,45,5,6-6,205.0
+46156969,Xavier,24316,All Wright,SG,VALPO,24223,IN,Valparaiso,All,Wright,MO,https://s3media.247sports.com/Uploads/Assets/978/985/12985978.jpeg,4,174,46,10,6-3,180.0
+46056541,CAL,24089,John Camden,SF,DEL,24142,DE,Newark,John,Camden,NH,https://s3media.247sports.com/Uploads/Assets/975/13/13013975.jpeg,4,175,30,2,6-7,195.0
+46058934,CIN,24031,Jalen Celestine,SG,BAY,24019,TX,Waco,Jalen,Celestine,NY,https://s3media.247sports.com/Uploads/Assets/240/720/12720240.jpg,4,176,47,13,6-7,215.0
+46114407,VAN,24107,Tyler Harris,SF,WASH,24094,WA,SEATTLE,Tyler,Harris,CA,https://s3media.247sports.com/Uploads/Assets/209/719/12719209.jpg,4,177,31,6,6-8,190.0
+46151628,SYR,24037,Nate Kingz,SG,ORST,24091,OR,Corvallis,Nate,Kingz,OR,https://s3media.247sports.com/Uploads/Assets/571/11/13011571.jpg,4,178,48,2,6-5,190.0
+46153672,OHST,24046,Brandon Noel,PF,Wright State,24341,OH,Dayton,Brandon,Noel,OH,https://s3media.247sports.com/Uploads/Assets/865/765/12765865.jpeg,4,179,31,9,6-8,240.0
+46115303,UCLA,24093,Xavier Booker,C,MIST,24043,MI,East Lansing,Xavier,Booker,IN,https://s3media.247sports.com/Uploads/Assets/491/774/12774491.jpeg,4,180,25,4,6-11,240.0
+46141257,OKST,24027,Anthony Roy,SG,UW Green Bay,24337,WI,Green Bay,Anthony,Roy,CA,https://s3media.247sports.com/Uploads/Assets/152/762/12762152.jpeg,4,181,49,2,6-5,200.0
+46157332,0,0,Ali Dibba,SG,SILL,24186,IL,Eldred,Ali,Dibba,FL,https://s3media.247sports.com/Uploads/Assets/24/14/13014024.jpeg,4,182,50,5,6-5,205.0
+46103281,NOVA,24152,Duke Brennan,C,GCU,25241,AZ,Phoenix,Duke,Brennan,AZ,https://s3media.247sports.com/Uploads/Assets/461/15/13015461.png,4,183,26,6,6-10,235.0
+46079141,Xavier,24316,Tre Carroll,PF,FAU,24110,FL,Boca Raton,Tre,Carroll,FL,https://s3media.247sports.com/Uploads/Assets/312/27/13027312.jpeg,4,184,32,15,6-7,233.0
+46115472,Saint Joseph's,24323,Jaiden Glover,SG,St. John's,24309,NY,Queens Village,Jaiden,Glover,NJ,https://s3media.247sports.com/Uploads/Assets/454/42/13042454.jpeg,4,185,51,6,6-4,205.0
+46114378,UGA,24100,Jordan Ross,PG,SMC,24349,CA,Moraga,Jordan,Ross,AZ,https://s3media.247sports.com/Uploads/Assets/224/730/12730224.jpg,4,186,29,13,6-3,190.0
+46036282,Gonzaga,24317,Adam Miller,SG,AZST,24088,AZ,Tempe,Adam,Miller,IL,https://s3media.247sports.com/Uploads/Assets/24/40/13040024.jpeg,4,187,52,7,6-3,190.0
+46127514,MEM,24053,Curtis Givens III,PG,LSU,24102,LA,Baton Rouge,Curtis,Givens III,FL,https://s3media.247sports.com/Uploads/Assets/609/716/12716609.jpg,4,188,30,4,6-3,185.0
+46100936,MSST,24104,Quincy Ballard,C,Wichita State,24345,KS,Wichita,Quincy,Ballard,NY,https://s3media.247sports.com/Uploads/Assets/317/2/13002317.jpeg,4,189,27,6,6-11,251.0
+46149405,MSST,24104,Achor Achor,PF,KSST,24023,KS,Manhattan,Achor,Achor,VC,https://s3media.247sports.com/Uploads/Assets/623/720/12720623.jpg,4,190,33,7,6-9,227.0
+46125415,PITT,24034,Nojus Indrusaitis,SG,IAST,24021,IA,Ames,Nojus,Indrusaitis,IL,https://s3media.247sports.com/Uploads/Assets/375/720/12720375.jpg,4,191,53,6,6-5,200.0
+46046798,KSST,24023,Tyreek Smith,PF,MEM,24053,TN,Memphis,Tyreek,Smith,TX,https://s3media.247sports.com/Uploads/Assets/948/722/12722948.jpg,4,192,34,6,6-8,225.0
+46128843,TCU,24083,Brock Harding,PG,IOWA,24041,IA,Iowa City,Brock,Harding,IL,https://s3media.247sports.com/Uploads/Assets/112/985/12985112.jpeg,4,193,31,7,6-0,155.0
+46133124,UNLV,24084,Ladji Dembele,PF,IOWA,24041,IA,Iowa City,Ladji,Dembele,NJ,https://s3media.247sports.com/Uploads/Assets/438/991/12991438.jpeg,4,194,35,8,6-8,255.0
+46156997,USC,24257,Gabe Dynes,C,YST,24188,OH,Youngstown,Gabe,Dynes,KY,https://s3media.247sports.com/Uploads/Assets/378/987/12987378.jpg,4,195,28,10,7-3,225.0
+46137576,AZST,24088,Marcus Adams Jr.,SF,Cal State Northridge,24374,CA,Northridge,Marcus,Adams Jr.,CA,https://s3media.247sports.com/Uploads/Assets/373/1/13001373.jpeg,4,196,32,14,6-8,200.0
+46102115,WAKE,24018,Nate Calmese,PG,WSU,24095,WA,Pullman,Nate,Calmese,AZ,https://s3media.247sports.com/Uploads/Assets/943/701/12701943.png,4,197,32,7,6-2,170.0
+46085638,IND,24040,Conor Enright,PG,DePaul,24329,IL,Chicago,Conor,Enright,IL,https://s3media.247sports.com/Uploads/Assets/545/989/12989545.jpeg,4,198,33,6,6-2,180.0
+46103152,MIZZ,24024,Jevon Porter,C,LMU,24346,CA,Los Angeles,Jevon,Porter,MO,https://s3media.247sports.com/Uploads/Assets/375/724/12724375.jpg,4,199,29,15,6-11,235.0
+46097796,CAL,24089,Chris Bell,SF,SYR,24037,NY,Syracuse,Chris,Bell,UT,https://s3media.247sports.com/Uploads/Assets/218/999/12999218.jpeg,4,200,33,7,6-7,185.0
+46102500,DePaul,24329,Kaleb Banks,PF,TLNE,24057,LA,New Orleans,Kaleb,Banks,GA,https://s3media.247sports.com/Uploads/Assets/897/723/12723897.jpg,4,201,36,5,6-8,210.0
+46086169,BOISE,24117,Dylan Andrews,PG,UCLA,24093,CA,Los Angeles,Dylan,Andrews,AZ,https://s3media.247sports.com/Uploads/Assets/733/556/12556733.jpg,4,202,34,16,6-2,180.0
+46148694,TAMU,24029,Marcus Hill,SG,NCST,24015,NC,Raleigh,Marcus,Hill,AL,https://s3media.247sports.com/Uploads/Assets/535/714/12714535.jpg,4,203,54,11,6-4,185.0
+46102078,MISS,24103,Koren Johnson,CG,LOU,24033,KY,Louisville,Koren,Johnson,WA,https://s3media.247sports.com/Uploads/Assets/397/8/13008397.jpeg,4,204,18,3,6-2,175.0
+46053271,SCAR,24105,Meechie Johnson,SG,OHST,24046,OH,Columbus,Meechie,Johnson,OH,https://s3media.247sports.com/Uploads/Assets/888/718/12718888.jpg,4,205,55,11,6-2,185.0
+46113027,VCU,24334,Ahmad Nowell,CG,UCONN,24032,CT,Storrs Mansfield,Ahmad,Nowell,PA,https://s3media.247sports.com/Uploads/Assets/97/708/12708097.jpg,4,206,19,1,6-0,195.0
+46049989,DUQ,24192,John Hugley IV,PF,Xavier,24316,OH,Cincinnati,John,Hugley IV,OH,https://s3media.247sports.com/Uploads/Assets/65/709/12709065.jpg,4,207,37,12,6-11,270.0
+46097405,FSU,24010,Robert McCray V,PG,JVILLE,24219,FL,Jacksonville,Robert,McCray V,SC,https://s3media.247sports.com/Uploads/Assets/227/9/13009227.jpeg,4,208,35,16,6-3,170.0
+46111896,Saint Louis,24321,Brady Dunlap,SF,St. John's,24309,NY,Queens Village,Brady,Dunlap,CA,https://s3media.247sports.com/Uploads/Assets/621/15/13015621.jpeg,4,209,34,8,6-7,190.0
+46109988,UNLV,24084,Naas Cunningham,SF,BAMA,24096,AL,Tuscaloosa,Naas,Cunningham,CA,https://s3media.247sports.com/Uploads/Assets/870/612/12612870.jpeg,4,210,35,10,6-7,175.0
+46125711,GCU,25241,Brian Moore Jr.,SG,NFST,24177,VA,Norfolk,Brian,Moore Jr.,NY,https://s3media.247sports.com/Uploads/Assets/417/762/12762417.jpeg,4,211,56,6,6-2,185.0
+46128752,PROV,24308,Daquan Davis,PG,FSU,24010,FL,Tallahassee,Daquan,Davis,GA,https://s3media.247sports.com/Uploads/Assets/512/709/12709512.jpg,4,212,36,17,6-1,176.0
+46114383,CAL,24089,Dai Dai Ames,PG,UVA,24016,VA,Charlottesville,Dai Dai,Ames,IL,https://s3media.247sports.com/Uploads/Assets/364/715/12715364.jpg,4,213,37,7,6-1,190.0
+46102425,CLEM,24008,RJ Godfrey,PF,UGA,24100,GA,Athens,RJ,Godfrey,GA,https://s3media.247sports.com/Uploads/Assets/420/716/12716420.jpg,4,214,38,5,6-8,230.0
+46149037,DAY,24217,De'Shayne Montgomery,SG,UGA,24100,GA,Athens,De'Shayne,Montgomery,FL,https://s3media.247sports.com/Uploads/Assets/449/716/12716449.jpg,4,215,57,6,6-5,195.0
+46102520,SMU,24055,Sam Walters,PF,MICH,24042,MI,Ann Arbor,Sam,Walters,FL,https://s3media.247sports.com/Uploads/Assets/578/718/12718578.jpg,4,216,39,5,6-10,200.0
+46104197,TENN,24106,Amaree Abram,PG,LTECH,24121,LA,Ruston,Amaree,Abram,CA,https://s3media.247sports.com/Uploads/Assets/124/724/12724124.jpg,4,217,38,6,6-4,195.0
+46156632,UTAH,24085,Don McHenry,SG,WKU,24116,KY,Bowling Green,Don,McHenry,WI,https://s3media.247sports.com/Uploads/Assets/773/952/12952773.jpeg,4,218,58,4,6-2,168.0
+46157236,TTECH,24030,Tyeree Bryan,SG,Santa Clara,24351,CA,Santa Clara,Tyeree,Bryan,FL,https://s3media.247sports.com/Uploads/Assets/842/3/13003842.jpeg,4,219,59,17,6-5,210.0
+46082350,TEX,24028,Camden Heide,PF,PUR,24048,IN,West Lafayette,Camden,Heide,MN,https://s3media.247sports.com/Uploads/Assets/131/377/12377131.png,4,220,40,11,6-7,205.0
+46103528,MEM,24053,Aaron Bradshaw,PF,OHST,24046,OH,Columbus,Aaron,Bradshaw,NJ,https://s3media.247sports.com/Uploads/Assets/882/718/12718882.jpg,4,221,41,13,7-1,215.0
+46117902,TENN,24106,Jaylen Carey,C,VAN,24107,TN,Nashville,Jaylen,Carey,FL,https://s3media.247sports.com/Uploads/Assets/223/718/12718223.jpg,4,222,30,7,6-8,265.0
+46127980,TTECH,24030,Luke Bamgboye,C,VCU,24334,VA,Richmond,Luke,Bamgboye,EN,https://s3media.247sports.com/Uploads/Assets/220/716/12716220.jpg,4,223,31,8,6-10,200.0
+46101947,GU,24210,DeShawn Harris-Smith,SF,MARY,24012,MD,College Park,DeShawn,Harris-Smith,VA,https://s3media.247sports.com/Uploads/Assets/463/13/12013463.png,4,224,36,3,6-5,215.0
+46094982,SCAR,24105,Mike Sharavjamts,SF,UTAH,24085,UT,Salt Lake City,Mike,Sharavjamts,MONG,https://s3media.247sports.com/Uploads/Assets/832/720/12720832.jpg,4,225,37,4,6-8,180.0
+46118138,BAY,24019,Dan Skillings Jr.,SF,CIN,24031,OH,Cincinnati,Dan,Skillings Jr.,PA,https://s3media.247sports.com/Uploads/Assets/773/787/12787773.jpeg,4,226,38,14,6-6,210.0
+46083516,USF,24036,Daimion Collins,C,LSU,24102,LA,Baton Rouge,Daimion,Collins,TX,https://s3media.247sports.com/Uploads/Assets/282/18/12018282.png,4,227,32,7,6-9,191.0
+46085581,UVA,24016,Dallin Hall,CG,BYU,24079,UT,Provo,Dallin,Hall,UT,https://s3media.247sports.com/Uploads/Assets/736/787/12787736.jpeg,4,228,20,5,6-4,180.0
+46101235,CIN,24031,Kerr Kriisa,PG,KY,24101,KY,Lexington,Kerr,Kriisa,ESTO,https://s3media.247sports.com/Uploads/Assets/563/687/12687563.png,4,229,39,5,6-3,185.0
+46094331,0,0,Jamarii Thomas,PG,SCAR,24105,SC,Columbia,Jamarii,Thomas,NC,https://s3media.247sports.com/Uploads/Assets/942/716/12716942.jpg,4,230,40,3,5-11,190.0
+46101163,VAN,24107,Duke Miles,SG,OKLA,24026,OK,Norman,Duke,Miles,AL,https://s3media.247sports.com/Uploads/Assets/868/716/12716868.jpg,4,231,60,1,6-2,188.0
+46128602,SMU,24055,Corey Washington,SF,Wichita State,24345,KS,Wichita,Corey,Washington,AR,https://s3media.247sports.com/Uploads/Assets/221/702/12702221.jpg,4,232,39,8,6-5,188.0
+46055362,WVU,24038,Chance Moore,SG,St. Bonaventure,24322,NY,Allegany,Chance,Moore,GA,https://s3media.247sports.com/Uploads/Assets/186/716/12716186.jpg,4,233,61,9,6-6,210.0
+46096732,MEM,24053,Sincere Parker,SG,MST,24234,LA,Lake Charles,Sincere,Parker,AZ,https://s3media.247sports.com/Uploads/Assets/400/724/12724400.jpg,4,234,62,8,6-3,195.0
+46153676,TAMU,24029,Jacari Lane,PG,North Alabama,24314,AL,Florence,Jacari,Lane,AL,https://s3media.247sports.com/Uploads/Assets/945/765/12765945.jpeg,4,235,41,11,6-0,182.0
+46157137,IAST,24021,Dominick Nelson,SG,Utah Valley,24441,UT,Orem,Dominick,Nelson,NC,https://s3media.247sports.com/Uploads/Assets/614/999/12999614.jpeg,4,236,63,6,6-5,0.0
+46135692,IAST,24021,Mason Williams,CG,EWU,24126,WA,Cheney,Mason,Williams,WA,https://s3media.247sports.com/Uploads/Assets/886/999/12999886.png,4,237,21,8,6-5,180.0
+46157238,BAY,24019,JJ White,PG,UNO,24519,NE,Omaha,JJ,White,OK,https://s3media.247sports.com/Uploads/Assets/225/4/13004225.jpeg,4,238,42,3,6-2,180.0
+46157314,DAY,24217,Keonte Jones,SF,Cal State Northridge,24374,CA,Northridge,Keonte,Jones,WI,https://s3media.247sports.com/Uploads/Assets/475/12/13012475.jpg,4,239,40,18,6-6,192.0
+46055487,NCST,24015,Alyn Breed,SG,MST,24234,LA,Lake Charles,Alyn,Breed,GA,https://s3media.247sports.com/Uploads/Assets/586/18/13018586.jpeg,4,240,64,9,6-3,190.0
+46142780,FSU,24010,Martin Somerville,PG,UML,25227,MA,Lowell,Martin,Somerville,MD,https://s3media.247sports.com/Uploads/Assets/498/973/12973498.jpeg,4,241,43,2,6-1,174.0
+46125657,OHST,24046,Josh Ojianwuna,C,BAY,24019,TX,Waco,Josh,Ojianwuna,NIGE,https://s3media.247sports.com/Uploads/Assets/348/787/12787348.jpeg,4,242,33,14,6-10,230.0
+46135047,TTECH,24030,Josiah Moseley,PF,NOVA,24152,PA,Villanova,Josiah,Moseley,TX,https://s3media.247sports.com/Uploads/Assets/163/708/12708163.jpg,4,243,42,6,6-6,228.0
+46157621,MINN,24044,Chansey Willis Jr.,CG,WMU,24077,MI,Kalamazoo,Chansey,Willis Jr.,MI,https://s3media.247sports.com/Uploads/Assets/488/31/13031488.jpeg,4,244,22,6,6-2,190.0
+46114270,MISS,24103,Travis Perry,CG,KY,24101,KY,Lexington,Travis,Perry,KY,https://s3media.247sports.com/Uploads/Assets/575/687/12687575.png,4,245,23,6,6-2,170.0
+46103826,ORE,24090,Sean Stewart,PF,OHST,24046,OH,Columbus,Sean,Stewart,FL,https://s3media.247sports.com/Uploads/Assets/871/718/12718871.jpg,4,246,43,15,6-9,220.0
+46145469,MINN,24044,Cade Tyson,SF,UNC,24014,NC,Chapel Hill,Cade,Tyson,NC,https://s3media.247sports.com/Uploads/Assets/650/644/12644650.png,4,247,41,12,6-7,200.0
+46113365,MIA,24013,Marcus Allen,PF,MIZZ,24024,MO,Columbia,Marcus,Allen,FL,https://s3media.247sports.com/Uploads/Assets/789/716/12716789.jpg,4,248,44,1,6-7,220.0
+46148484,PITT,24034,Damarco Minor,SG,ORST,24091,OR,Corvallis,Damarco,Minor,IL,https://s3media.247sports.com/Uploads/Assets/454/702/12702454.jpg,4,249,65,3,6-0,190.0
+46097941,UVA,24016,Devin Tillis,PF,UC Irvine,24377,CA,Irvine,Devin,Tillis,CA,https://s3media.247sports.com/Uploads/Assets/59/28/13028059.jpeg,4,250,45,19,6-7,225.0
+46058445,UCF,24060,BJ Freeman,SF,AZST,24088,AZ,Tempe,BJ,Freeman,NC,https://s3media.247sports.com/Uploads/Assets/127/720/12720127.jpg,4,251,42,8,6-6,180.0
+46148541,TAMU,24029,Rashaun Agee,PF,USC,24257,CA,Los Angeles,Rashaun,Agee,IL,https://s3media.247sports.com/Uploads/Assets/158/719/12719158.jpg,4,252,46,20,6-8,225.0
+46141580,IOWA,24041,Isaiah Johnson-Arigu,SF,MIA,24013,FL,Coral Gables,Isaiah,Johnson-Arigu,MN,https://s3media.247sports.com/Uploads/Assets/968/676/12676968.jpg,4,253,43,18,6-7,220.0
+46117703,MEM,24053,Zachary Davis,PG,SCAR,24105,SC,Columbia,Zachary,Davis,SC,https://s3media.247sports.com/Uploads/Assets/821/993/12993821.jpeg,4,254,44,4,6-8,175.0
+46134494,CSU,24080,Brandon Rechsteiner,PG,VTECH,24017,VA,Blacksburg,Brandon,Rechsteiner,GA,https://s3media.247sports.com/Uploads/Assets/329/989/12989329.jpeg,4,255,45,9,6-1,185.0
+46085748,SACS,24133,Mikey Williams,CG,UCF,24060,FL,Orlando,Mikey,Williams,CA,https://s3media.247sports.com/Uploads/Assets/800/720/12720800.jpg,4,256,24,19,6-3,193.0
+46050387,0,0,Jalen Blackmon,SG,MIA,24013,FL,Coral Gables,Jalen,Blackmon,IN,https://s3media.247sports.com/Uploads/Assets/953/676/12676953.jpg,4,257,66,20,6-2,180.0
+46103123,MINN,24044,BJ Omot,SF,CAL,24089,CA,Berkeley,BJ,Omot,MN,https://s3media.247sports.com/Uploads/Assets/251/709/12709251.jpg,4,258,44,21,6-8,195.0
+46103235,UNLV,24084,Kimani Hamilton,SF,High Point,24369,NC,High Point,Kimani,Hamilton,MS,https://s3media.247sports.com/Uploads/Assets/107/999/12999107.jpeg,4,259,45,13,6-7,215.0
+46093891,VAN,24107,Mike James,SF,NCST,24015,NC,Raleigh,Mike,James,FL,https://s3media.247sports.com/Uploads/Assets/875/41/13041875.jpeg,4,260,46,14,6-5,200.0
+46118234,AZST,24088,Maurice Odum,PG,Pepperdine,24347,CA,Malibu,Maurice,Odum,NJ,https://s3media.247sports.com/Uploads/Assets/231/975/12975231.jpeg,4,261,46,22,6-1,160.0
+46156202,WASH,24094,Jacob Ognacevic,PF,Lipscomb,24364,TN,Nashville,Jacob,Ognacevic,WI,https://s3media.247sports.com/Uploads/Assets/970/933/12933970.jpeg,4,262,47,8,6-8,220.0
+46157326,UMASS,24146,Marcus Banks Jr,SG,UMBC,24327,MD,Baltimore,Marcus,Banks Jr,VA,https://s3media.247sports.com/Uploads/Assets/820/13/13013820.jpeg,4,263,67,4,6-3,195.0
+46148724,MARY,24012,David Coit Jr.,PG,KAN,24022,KS,Lawrence,David,Coit Jr.,NJ,https://s3media.247sports.com/Uploads/Assets/525/720/12720525.jpg,4,264,47,9,5-11,175.0
+46109444,WIS,24049,Andrew Rohde,SG,UVA,24016,VA,Charlottesville,Andrew,Rohde,WI,https://s3media.247sports.com/Uploads/Assets/414/1/12001414.png,4,265,68,10,6-6,185.0
+46134585,BAY,24019,Juslin Bodo Bodo,C,High Point,24369,NC,High Point,Juslin,Bodo Bodo,CAME,https://s3media.247sports.com/Uploads/Assets/787/13/13013787.png,4,266,34,15,6-11,225.0
+46115564,UTST,24125,MJ Collins Jr.,SG,VAN,24107,TN,Nashville,MJ,Collins Jr.,SC,https://s3media.247sports.com/Uploads/Assets/205/718/12718205.jpg,4,267,69,9,6-4,190.0
+46135931,IOWA,24041,Cam Manyawu,PF,DRAKE,24218,IA,Des Moines,Cam,Manyawu,MO,https://s3media.247sports.com/Uploads/Assets/6/733/12733006.jpg,4,268,48,9,6-8,230.0
+46157240,WIS,24049,Austin Rapp,PF,Portland,24348,OR,Portland,Austin,Rapp,AUST,https://s3media.247sports.com/Uploads/Assets/488/4/13004488.jpg,4,269,49,4,6-10,230.0
+46157370,MISS,24103,Kezza Giffa,SG,High Point,24369,NC,High Point,Kezza,Giffa,FRAN,https://s3media.247sports.com/Uploads/Assets/694/15/13015694.jpeg,4,270,70,16,6-2,175.0
+46157371,UCF,24060,Themus Fulks,PG,Wis. Milwaukee,24339,WI,Milwaukee,Themus,Fulks,NC,https://s3media.247sports.com/Uploads/Assets/721/15/13015721.jpeg,4,271,48,3,6-2,185.0
+46125411,UCF,24060,John Bol,C,MISS,24103,MS,Oxford,John,Bol,SS,https://s3media.247sports.com/Uploads/Assets/253/19/13019253.jpg,4,272,35,4,7-2,210.0
+46133210,UCF,24060,Jordan Burks,SF,GU,24210,DC,Washington,Jordan,Burks,AZ,https://s3media.247sports.com/Uploads/Assets/475/706/12706475.jpg,4,273,47,4,6-9,205.0
+46115471,SYR,24037,Tyler Betsey,PF,CIN,24031,OH,Cincinnati,Tyler,Betsey,CT,https://s3media.247sports.com/Uploads/Assets/278/720/12720278.jpg,4,274,50,16,6-8,225.0
+46128508,TULSA,24058,Myles Rigsby,CG,TROY,24115,AL,Troy,Myles,Rigsby,TX,https://s3media.247sports.com/Uploads/Assets/380/31/13031380.jpeg,4,275,25,12,6-6,190.0
+46086323,MIZZ,24024,Shawn Phillips Jr.,C,AZST,24088,AZ,Tempe,Shawn,Phillips Jr.,AZ,https://s3media.247sports.com/Uploads/Assets/217/730/12730217.jpg,4,276,36,9,7-0,245.0
+46099534,GU,24210,Jeremiah Williams,PG,RUTG,24035,NJ,Piscataway,Jeremiah,Williams,IL,https://s3media.247sports.com/Uploads/Assets/986/73/12073986.jpeg,4,277,49,5,6-4,177.0
+46117365,George Mason,24331,Riley Allenspach,C,SAM,24230,AL,Birmingham,Riley,Allenspach,NC,https://s3media.247sports.com/Uploads/Assets/281/27/13027281.jpg,4,278,37,13,6-11,247.0
+46111516,NCST,24015,Jerry Deng,PF,FSU,24010,FL,Tallahassee,Jerry,Deng,GA,https://s3media.247sports.com/Uploads/Assets/516/709/12709516.jpg,4,279,51,21,6-9,220.0
+46141838,UNLV,24084,Emmanuel Stephen,C,ARIZ,24087,AZ,Tucson,Emmanuel,Stephen,NIGE,https://s3media.247sports.com/Uploads/Assets/236/719/12719236.jpg,4,280,38,10,7-0,230.0
+46085998,CIN,24031,Sencire Harris,CG,WVU,24038,WV,Morgantown,Sencire,Harris,OH,https://s3media.247sports.com/Uploads/Assets/925/720/12720925.jpg,4,281,26,4,6-4,174.0
+46132900,Xavier,24316,Filip Borovicanin,PF,UNM,24081,NM,Albuquerque,Filip,Borovicanin,SERB,https://s3media.247sports.com/Uploads/Assets/602/722/12722602.jpg,4,282,52,3,6-9,220.0
+46103938,NOVA,24152,Bryce Lindsay,PG,JM,24144,VA,Basye,Bryce,Lindsay,MD,https://s3media.247sports.com/Uploads/Assets/189/999/12999189.jpeg,4,283,50,11,6-3,190.0
+46156285,Seton Hall,24310,Adam Clark,PG,MRMK,25293,MA,North Andover,Adam,Clark,PA,https://s3media.247sports.com/Uploads/Assets/482/938/12938482.jpeg,4,284,51,3,5-10,155.0
+46157183,FSU,24010,Lajae Jones,PF,St. Bonaventure,24322,NY,Allegany,Lajae,Jones,FL,https://s3media.247sports.com/Uploads/Assets/195/1/13001195.jpeg,4,285,53,10,6-7,220.0
+46102961,RUTG,24035,Darren Buchanan Jr.,SF,GW,24319,DC,Washington,Darren,Buchanan Jr.,DC,https://s3media.247sports.com/Uploads/Assets/285/2/13002285.jpeg,4,286,48,5,6-7,225.0
+46157392,CLEM,24008,Butta Johnson,SG,UAB,24059,AL,Birmingham,Butta,Johnson,AL,https://s3media.247sports.com/Uploads/Assets/116/16/13016116.jpg,4,287,71,14,6-4,180.0
+46157497,WVU,24038,Honor Huff,PG,CHATT,24225,TN,Chattanooga,Honor,Huff,NY,https://s3media.247sports.com/Uploads/Assets/315/27/13027315.jpg,4,288,52,10,5-10,168.0
+46157648,OKST,24027,Christian Coleman,PF,UAB,24059,AL,Birmingham,Christian,Coleman,LA,https://s3media.247sports.com/Uploads/Assets/853/31/13031853.jpeg,4,289,54,15,6-8,205.0
+46157649,SDSU,24082,Latrell Davis,SG,SJSU,24124,CA,San Jose,Latrell,Davis,ENGL,https://s3media.247sports.com/Uploads/Assets/878/31/13031878.jpeg,4,290,72,23,6-3,210.0
+46102742,NCST,24015,Quadir Copeland,PG,MST,24234,LA,Lake Charles,Quadir,Copeland,FL,https://s3media.247sports.com/Uploads/Assets/423/724/12724423.jpg,4,291,53,10,6-6,200.0
+46131040,sanfran,24350,Guillermo Diaz,PF,PITT,24034,PA,Pittsburgh,Guillermo,Diaz,FL,https://s3media.247sports.com/Uploads/Assets/109/715/12715109.jpg,4,292,55,7,7-0,220.0
+46110033,USD,24222,Ty-Laur Johnson,PG,WAKE,24018,NC,Winston Salem,Ty-Laur,Johnson,NY,https://s3media.247sports.com/Uploads/Assets/954/715/12715954.jpg,4,293,54,17,6-0,170.0
+46081293,SILL,24186,Prince Aligbe,PF,Seton Hall,24310,NJ,South Orange,Prince,Aligbe,MN,https://s3media.247sports.com/Uploads/Assets/883/707/12707883.jpg,4,294,56,6,6-7,228.0
+46135248,NOVA,24152,Zion Stanford,SF,TEM,24075,PA,Philadelphia,Zion,Stanford,PA,https://s3media.247sports.com/Uploads/Assets/136/42/12042136.jpeg,4,295,49,8,6-5,195.0
+46099597,0,0,Jordan Ivy-Curry,PG,UCF,24060,FL,Orlando,Jordan,Ivy-Curry,TX,https://s3media.247sports.com/Uploads/Assets/772/720/12720772.jpg,4,296,55,22,6-3,177.0
+46129000,Saint Joseph's,24323,Deuce Jones,PG,La Salle,24320,PA,Philadelphia,Deuce,Jones,NJ,https://s3media.247sports.com/Uploads/Assets/281/706/12706281.jpg,4,297,56,9,6-2,0.0
+46093954,CAL,24089,Nolan Dorsey,PG,CAMP,24215,NC,Bullock,Nolan,Dorsey,NC,https://s3media.247sports.com/Uploads/Assets/121/987/12987121.jpeg,4,298,57,18,6-6,205.0
+46112707,MSST,24104,Amier Ali,SF,AZST,24088,AZ,Tempe,Amier,Ali,AZ,https://s3media.247sports.com/Uploads/Assets/277/719/12719277.jpg,4,299,50,11,6-8,175.0
+46131086,TAMU,24029,Fede Federiko,PF,TTECH,24030,TX,Lubbock,Fede,Federiko,FINL,https://s3media.247sports.com/Uploads/Assets/762/720/12720762.jpg,4,300,57,15,6-11,215.0
+46097662,Gonzaga,24317,Jalen Warley,CG,UVA,24016,VA,Charlottesville,Jalen,Warley,PA,https://s3media.247sports.com/Uploads/Assets/384/715/12715384.jpg,3,301,27,12,6-7,199.0
+46125440,UTSA,24391,Vasean Allette,CG,TCU,24083,TX,Fort Worth,Vasean,Allette,ON,https://s3media.247sports.com/Uploads/Assets/698/720/12720698.jpg,3,302,28,16,6-3,190.0
+46098111,FORD,24209,Zarique Nutter,SF,GSU,24332,GA,Atlanta,Zarique,Nutter,NJ,https://s3media.247sports.com/Uploads/Assets/621/730/12730621.jpg,3,303,51,7,6-7,210.0
+46156934,CAL,24089,Milos Ilic,PF,LUM,24382,MD,Baltimore,Milos,Ilic,NY,https://s3media.247sports.com/Uploads/Assets/93/985/12985093.jpeg,3,304,58,5,6-10,235.0
+46156889,RICH,24150,Will Johnston,SG,LMU,24346,CA,Los Angeles,Will,Johnston,PA,https://s3media.247sports.com/Uploads/Assets/488/977/12977488.jpeg,3,305,73,24,6-3,190.0
+46099540,OHST,24046,Gabe Cupps,PG,IND,24040,IN,Bloomington,Gabe,Cupps,OH,https://s3media.247sports.com/Uploads/Assets/359/776/12776359.jpeg,3,306,58,12,6-1,165.0
+46093921,FSU,24010,Chauncey Wiggins,PF,CLEM,24008,SC,Clemson,Chauncey,Wiggins,GA,https://s3media.247sports.com/Uploads/Assets/359/709/12709359.jpg,3,307,59,5,6-10,216.0
+46099448,VCU,24334,Tyrell Ward,SF,LSU,24102,LA,Baton Rouge,Tyrell,Ward,MD,https://s3media.247sports.com/Uploads/Assets/151/994/12994151.jpeg,3,308,52,11,6-7,185.0
+46102728,AKRN,24065,Evan Mahaffey,SF,OHST,24046,OH,Columbus,Evan,Mahaffey,OH,https://s3media.247sports.com/Uploads/Assets/805/13/12013805.png,3,309,53,17,6-6,200.0
+46109438,FAU,24110,Isaiah Elohim,CG,USC,24257,CA,Los Angeles,Isaiah,Elohim,CA,https://s3media.247sports.com/Uploads/Assets/84/722/12722084.jpg,3,310,29,25,6-5,200.0
+46116166,LUC,24338,Josh Ola-Joseph,PF,CAL,24089,CA,Berkeley,Josh,Ola-Joseph,AZ,https://s3media.247sports.com/Uploads/Assets/196/709/12709196.jpg,3,311,60,26,6-7,215.0
+46116526,OKST,24027,Kanye Clary,PG,MSST,24104,MS,Starkville,Kanye,Clary,VA,https://s3media.247sports.com/Uploads/Assets/730/716/12716730.jpg,3,312,59,5,5-11,190.0
+46138177,MST,24234,Larry Johnson,SG,Creighton,24343,NE,Omaha,Larry,Johnson,CA,https://s3media.247sports.com/Uploads/Assets/10/706/12706010.jpg,3,313,74,4,6-4,200.0
+46141094,CSU,24080,Jase Butler,CG,WASH,24094,WA,SEATTLE,Jase,Butler,CA,https://s3media.247sports.com/Uploads/Assets/201/719/12719201.jpg,3,314,30,9,6-4,180.0
+46115583,GTECH,24011,Kam Craft,SG,MIAO,24072,OH,Oxford,Kam,Craft,GA,https://s3media.247sports.com/Uploads/Assets/16/735/12735016.jpg,3,315,75,18,6-6,205.0
+46083933,Seton Hall,24310,Elijah Fisher,SF,UOP,24404,CA,Stockton,Elijah,Fisher,ON,https://s3media.247sports.com/Uploads/Assets/920/705/12705920.jpg,3,317,54,28,6-6,220.0
+46085906,PITT,24034,Barry Dunning Jr.,SF,USA,24264,AL,Mobile,Barry,Dunning Jr.,AL,https://s3media.247sports.com/Uploads/Assets/529/732/12732529.jpg,3,318,55,16,6-6,195.0
+46115486,NWEST,24045,Jayden Reid,PG,USF,24036,FL,Tampa,Jayden,Reid,NY,https://s3media.247sports.com/Uploads/Assets/341/1/13001341.jpg,3,319,61,23,5-10,160.0
+46109347,SCAR,24105,Christ Essandoko,PF,PROV,24308,RI,Providence,Christ,Essandoko,FR,https://s3media.247sports.com/Uploads/Assets/690/707/12707690.jpg,3,320,61,4,7-0,290.0
+46157228,NWEST,24045,Max Green,SF,HC,24211,MA,Worcester,Max,Green,KY,https://s3media.247sports.com/Uploads/Assets/591/3/13003591.jpeg,3,321,56,4,6-6,182.0
+46085917,FAU,24110,Kanaan Carlyle,SG,IND,24040,IN,Bloomington,Kanaan,Carlyle,GA,https://s3media.247sports.com/Uploads/Assets/403/718/12718403.jpg,3,322,76,13,6-3,182.0
+46153594,UTAH,24085,Terrence Brown,CG,FD,24292,NJ,Madison,Terrence,Brown,MN,https://s3media.247sports.com/Uploads/Assets/425/762/12762425.jpeg,3,323,31,7,6-3,175.0
+46102216,High Point,24369,Youssouf Singare,C,UCONN,24032,CT,Storrs Mansfield,Youssouf,Singare,NY,https://s3media.247sports.com/Uploads/Assets/146/708/12708146.jpg,3,324,39,2,6-10,230.0
+46117865,BUF,24068,Daniel Freitag,PG,WIS,24049,WI,Madison,Daniel,Freitag,MN,https://s3media.247sports.com/Uploads/Assets/416/697/12697416.jpg,3,325,62,4,6-2,181.0
+46099439,UNLV,24084,Dra Gibbs-Lawhorn,CG,ILL,24039,IL,Champaign,Dra,Gibbs-Lawhorn,NC,https://s3media.247sports.com/Uploads/Assets/756/3/12003756.png,3,326,32,7,6-1,165.0
+46157535,AZST,24088,Allen Mukeba,SF,Oakland,24395,MI,Rochester,Allen,Mukeba,BELG,https://s3media.247sports.com/Uploads/Assets/623/27/13027623.jpeg,3,327,57,7,6-6,247.0
+46099443,MEM,24053,Quante Berry,SG,TEM,24075,PA,Philadelphia,Quante,Berry,TN,https://s3media.247sports.com/Uploads/Assets/154/42/12042154.jpeg,3,328,77,10,6-4,175.0
+46132338,NWEST,24045,Arrinten Page,C,CIN,24031,OH,Cincinnati,Arrinten,Page,GA,https://s3media.247sports.com/Uploads/Assets/287/720/12720287.jpg,3,329,40,19,6-11,240.0
+46127979,GU,24210,Isaiah Abraham,SF,UCONN,24032,CT,Storrs Mansfield,Isaiah,Abraham,VA,https://s3media.247sports.com/Uploads/Assets/126/708/12708126.jpg,3,330,58,3,6-7,205.0
+46102432,ARST,24108,TJ Caldwell,SG,MISS,24103,MS,Oxford,TJ,Caldwell,TX,https://s3media.247sports.com/Uploads/Assets/340/2/13002340.jpeg,3,331,78,6,6-4,190.0
+46136144,UAB,24059,Paul Djobet,SF,MIA,24013,FL,Coral Gables,Paul,Djobet,FL,https://s3media.247sports.com/Uploads/Assets/99/677/12677099.jpg,3,332,59,24,6-7,209.0
+46135297,UTSA,24391,Macaleab Rich,SF,KSST,24023,KS,Manhattan,Macaleab,Rich,IL,https://s3media.247sports.com/Uploads/Assets/448/73/12073448.jpeg,3,333,60,10,6-7,240.0
+46146938,IOWA,24041,Tavion Banks,PF,DRAKE,24218,IA,Des Moines,Tavion,Banks,MO,https://s3media.247sports.com/Uploads/Assets/978/732/12732978.jpg,3,334,62,10,6-7,200.0
+46117603,CSU,24080,Carey Booth,PF,ILL,24039,IL,Champaign,Carey,Booth,NH,https://s3media.247sports.com/Uploads/Assets/331/718/12718331.jpg,3,335,63,8,6-10,215.0
+46149053,UTAH,24085,Seydou Traore,PF,IOWA,24041,IA,Iowa City,Seydou,Traore,NY,https://s3media.247sports.com/Uploads/Assets/446/718/12718446.jpg,3,336,64,11,6-7,220.0
+46109956,NOVA,24152,Malachi Palmer,CG,MARY,24012,MD,College Park,Malachi,Palmer,MD,https://s3media.247sports.com/Uploads/Assets/483/718/12718483.jpg,3,337,33,6,6-6,212.0
+46096727,WYO,24086,Leland Walker,CG,FAU,24110,FL,Boca Raton,Leland,Walker,VA,https://s3media.247sports.com/Uploads/Assets/935/723/12723935.jpg,3,338,34,25,6-1,185.0
+46058182,USD,24222,Bradley Ezewiro,C,UAB,24059,AL,Birmingham,Bradley,Ezewiro,CA,https://s3media.247sports.com/Uploads/Assets/816/701/12701816.jpg,3,339,41,17,6-9,265.0
+46115870,MINN,24044,Jaylen Crocker-Johnson,PF,CSU,24080,CO,Fort Collins,Jaylen,Crocker-Johnson,TX,https://s3media.247sports.com/Uploads/Assets/832/15/13015832.jpeg,3,340,65,2,6-8,230.0
+46116024,USC,24257,Amarion Dickerson,CG,ROMO,24194,PA,Coraopolis,Amarion,Dickerson,OH,https://s3media.247sports.com/Uploads/Assets/440/1/13001440.jpg,3,341,35,11,6-7,185.0
+46117523,KY,24101,Reece Potter,C,MIAO,24072,OH,Oxford,Reece,Potter,KY,https://s3media.247sports.com/Uploads/Assets/271/999/12999271.jpg,3,342,42,20,7-1,215.0
+46104194,UCF,24060,Chris Johnson,CG,SFA,24239,TX,Nacogdoches,Chris,Johnson,TX,https://s3media.247sports.com/Uploads/Assets/49/3/12003049.jpeg,3,343,36,17,6-5,180.0
+46135886,HOU,24051,Kalifa Sakho,PF,SHSU,24237,TX,Huntsville,Kalifa,Sakho,FRAN,https://s3media.247sports.com/Uploads/Assets/879/3/13003879.jpeg,3,344,66,18,6-11,220.0
+46157329,UCLA,24093,Jamar Brown,SF,Missouri-Kansas City,24397,MO,Kansas City,Jamar,Brown,AZ,https://s3media.247sports.com/Uploads/Assets/7/14/13014007.jpeg,3,345,61,2,6-5,205.0
+46157343,SCAR,24105,Nordin Kapic,PF,UCSD,28659,CA,Rancho Santa Fe,Nordin,Kapic,AUST,https://s3media.247sports.com/Uploads/Assets/364/14/13014364.jpeg,3,346,67,29,6-8,245.0
+46157490,NEB,24025,Ugnius Jarusevicius,PF,CMU,24069,MI,Mt. Pleasant,Ugnius,Jarusevicius,LITH,https://s3media.247sports.com/Uploads/Assets/984/23/13023984.jpg,3,347,68,8,6-10,220.0
+46157514,MSST,24104,Ja'Borri McGhee,PG,UAB,24059,AL,Birmingham,Ja'Borri,McGhee,AL,https://s3media.247sports.com/Uploads/Assets/791/26/13026791.jpg,3,348,63,18,6-1,205.0
+46102883,TLNE,24057,Curtis Williams Jr.,SF,GU,24210,DC,Washington,Curtis,Williams Jr.,MI,https://s3media.247sports.com/Uploads/Assets/394/706/12706394.jpg,3,349,62,6,6-6,205.0
+46086865,CLEM,24008,Jake Wahlin,PF,UTAH,24085,UT,Salt Lake City,Jake,Wahlin,UT,https://s3media.247sports.com/Uploads/Assets/114/980/12980114.jpeg,3,350,69,7,6-9,203.0
+46109955,0,0,Mustapha Amzil,PF,UNM,24081,NM,Albuquerque,Mustapha,Amzil,PA,https://s3media.247sports.com/Uploads/Assets/959/75/12075959.png,3,351,70,4,6-9,220.0
+46036614,0,0,Damari Monsanto,SG,UTSA,24391,TX,San Antonio,Damari,Monsanto,FL,https://s3media.247sports.com/Uploads/Assets/961/723/12723961.jpg,3,352,79,19,6-6,225.0
+46142613,MEM,24053,Julius Thedford,SG,WKU,24116,KY,Bowling Green,Julius,Thedford,TN,https://s3media.247sports.com/Uploads/Assets/346/724/12724346.jpg,3,353,80,7,6-4,190.0
+46103630,0,0,Jarvis Moss,SG,Radford,24371,VA,Radford,Jarvis,Moss,NC,https://s3media.247sports.com/Uploads/Assets/771/697/11697771.jpeg,3,354,81,13,6-4,200.0
+46156802,ND,24064,Carson Towt,PF,NOAZ,24130,AZ,Flagstaff,Carson,Towt,AZ,https://s3media.247sports.com/Uploads/Assets/376/971/12971376.jpeg,3,355,71,12,6-8,235.0
+46157637,Seton Hall,24310,TJ Simpkins,SG,ELON,24227,NC,Elon,TJ,Simpkins,NC,https://s3media.247sports.com/Uploads/Assets/745/31/13031745.jpeg,3,356,82,19,6-5,185.0
+46094997,GTECH,24011,Lamar Washington,SG,UOP,24404,CA,Stockton,Lamar,Washington,OR,https://s3media.247sports.com/Uploads/Assets/955/705/12705955.jpg,3,357,83,30,6-4,200.0
+46157973,CHAR,24318,Dezayne Mingo,SG,MRSHL,24052,WV,Huntington,Dezayne,Mingo,CANA,https://s3media.247sports.com/Uploads/Assets/174/53/13053174.jpeg,3,358,84,5,6-4,185.0
+46154265,BYU,24079,Dominique Diomande,SF,WASH,24094,WA,SEATTLE,Dominique,Diomande,FRAN,https://s3media.247sports.com/Uploads/Assets/830/4/13004830.jpeg,3,359,63,10,6-8,190.0
+46130870,UVA,24016,Ugonna Onyenso,C,KSST,24023,KS,Manhattan,Ugonna,Onyenso,CT,https://s3media.247sports.com/Uploads/Assets/617/720/12720617.jpg,3,360,43,11,7-0,247.0
+46148414,VTECH,24017,Jailen Bedford,SG,UNLV,24084,NV,Las Vegas,Jailen,Bedford,CO,https://s3media.247sports.com/Uploads/Assets/756/722/12722756.jpg,3,361,85,4,6-4,180.0
+46157319,FSU,24010,Alex Steen,PF,0,29099,FL,Lakeland,Alex,Steen,FL,https://s3media.247sports.com/Uploads/Assets/875/15/13015875.jpg,3,362,72,26,6-8,225.0
+46055509,UCF,24060,Devan Cambridge,SF,TTECH,24030,TX,Lubbock,Devan,Cambridge,AZ,https://s3media.247sports.com/Uploads/Assets/63/3/12003063.png,3,363,64,20,6-6,215.0
+46141349,UTAH,24085,Babacar Faye,PF,WKU,24116,KY,Bowling Green,Babacar,Faye,SENE,https://s3media.247sports.com/Uploads/Assets/344/45/12045344.png,3,364,73,8,6-8,205.0
+46151627,TCU,24083,Liutauras Lelevicius,SF,ORST,24091,OR,Corvallis,Liutauras,Lelevicius,LITH,https://s3media.247sports.com/Uploads/Assets/234/19/13019234.jpg,3,365,65,5,6-7,217.0
+46116839,DAY,24217,Adam Njie,CG,Iona,24381,NY,New Rochelle,Adam,Njie,NY,https://s3media.247sports.com/Uploads/Assets/890/985/12985890.jpeg,3,366,37,11,6-3,175.0
+46135611,SCAR,24105,Elijah Strong,PF,BC,24007,MA,Chestnut Hill,Elijah,Strong,NC,https://s3media.247sports.com/Uploads/Assets/174/709/12709174.jpg,3,367,74,5,6-8,235.0
+46112071,UNC,24014,Jaydon Young,SG,VTECH,24017,VA,Blacksburg,Jaydon,Young,NC,https://s3media.247sports.com/Uploads/Assets/397/59/13059397.jpeg,3,368,86,14,6-4,205.0
+46117057,DEL,24142,Justyn Fernandez,SF,PROV,24308,RI,Providence,Justyn,Fernandez,FL,https://s3media.247sports.com/Uploads/Assets/700/707/12707700.jpg,3,369,66,5,6-5,205.0
+46110610,Saint Louis,24321,Trey Green,PG,Xavier,24316,OH,Cincinnati,Trey,Green,CA,https://s3media.247sports.com/Uploads/Assets/25/709/12709025.jpg,3,370,64,21,6-0,168.0
+46128634,SYR,24037,William Kyle III,PF,UCLA,24093,CA,Los Angeles,William,Kyle III,NE,https://s3media.247sports.com/Uploads/Assets/111/697/12697111.jpg,3,371,75,31,6-9,230.0
+46111522,Wis. Milwaukee,24339,Seth Hubbard,CG,TOL,24076,OH,Toledo,Seth,Hubbard,WV,https://s3media.247sports.com/Uploads/Assets/76/735/12735076.jpg,3,372,38,22,6-4,195.0
+46056717,NOVA,24152,Devin Askew,PG,Long Beach State,24376,CA,Long Beach,Devin,Askew,CA,https://s3media.247sports.com/Uploads/Assets/86/951/12951086.jpeg,3,373,65,32,6-5,195.0
+46094647,BC,24007,Aidan Shaw,PF,MIZZ,24024,MO,Columbia,Aidan,Shaw,KS,https://s3media.247sports.com/Uploads/Assets/747/340/12340747.jpg,3,374,76,3,6-9,210.0
+46116187,BC,24007,Jason Asemota,SF,BAY,24019,TX,Waco,Jason,Asemota,AZ,https://s3media.247sports.com/Uploads/Assets/237/720/12720237.jpg,3,375,67,21,6-8,200.0
+46100897,USF,24036,Joseph Pinion,SG,ARST,24108,AR,Jonesboro,Joseph,Pinion,AR,https://s3media.247sports.com/Uploads/Assets/2/730/12730002.jpg,3,376,87,4,6-5,195.0
+46101081,0,0,James White,SG,NO,24978,LA,New Orleans,James,White,GA,https://s3media.247sports.com/Uploads/Assets/364/940/12940364.jpeg,3,377,88,12,6-5,202.0
+46118595,UIC,24340,Elijah Crawford,PG,BYU,24079,UT,Provo,Elijah,Crawford,NH,https://s3media.247sports.com/Uploads/Assets/260/720/12720260.jpg,3,378,66,8,6-2,175.0
+46157288,IAST,24021,Eric Mulder,PF,0,28561,IN,Fort Wayne,Eric,Mulder,IA,https://s3media.247sports.com/Uploads/Assets/706/8/13008706.jpg,3,379,77,14,6-8,225.0
+46157369,EKY,24200,Juan Cranford Jr,SG,SFPA,24196,PA,Loretto,Juan,Cranford Jr,OH,https://s3media.247sports.com/Uploads/Assets/653/15/13015653.jpeg,3,380,89,12,6-3,205.0
+46098160,TLNE,24057,Scotty Middleton,SF,Seton Hall,24310,NJ,South Orange,Scotty,Middleton,KS,https://s3media.247sports.com/Uploads/Assets/933/707/12707933.jpg,3,381,68,8,6-7,181.0
+46133266,MINN,24044,Robert Vaihola,PF,SJSU,24124,CA,San Jose,Robert,Vaihola,CA,https://s3media.247sports.com/Uploads/Assets/545/4/13004545.jpeg,3,382,78,33,6-8,245.0
+46118030,Saint Joseph's,24323,Al Amadou,PF,Marquette,24315,WI,Milwaukee,Al,Amadou,PA,https://s3media.247sports.com/Uploads/Assets/539/707/12707539.jpg,3,383,79,5,6-9,210.0
+46135334,IOWA,24041,Isaia Howard,SG,DRAKE,24218,IA,Des Moines,Isaia,Howard,MO,https://s3media.247sports.com/Uploads/Assets/962/732/12732962.jpg,3,384,90,12,6-5,200.0
+46142225,BAMA,24096,Keitenn Bristow,PF,0,24421,TX,Stephenville,Keitenn,Bristow,TX,https://s3media.247sports.com/Uploads/Assets/230/2/13002230.png,3,385,80,22,6-7,185.0
+46118048,NEB,24025,Jamarques Lawrence,SG,RI,24149,RI,Kingston,Jamarques,Lawrence,NJ,https://s3media.247sports.com/Uploads/Assets/785/706/12706785.jpg,3,386,91,6,6-3,183.0
+46103627,VAN,24107,Mason Nicholson,C,JST,24201,AL,Jacksonville,Mason,Nicholson,IN,https://s3media.247sports.com/Uploads/Assets/160/14/13014160.jpeg,3,387,44,19,6-10,280.0
+46157027,BUT,24214,Yame Butler,SF,Drexel,24330,PA,Philadelphia,Yame,Butler,MD,https://s3media.247sports.com/Uploads/Assets/166/989/12989166.jpeg,3,388,69,13,6-5,210.0
+46148380,LSU,24102,Max Mackinnon,SG,Portland,24348,OR,Portland,Max,Mackinnon,AUST,https://s3media.247sports.com/Uploads/Assets/426/1/13001426.jpg,3,389,92,6,6-6,200.0
+46117631,MINN,24044,Langston Reynolds,SG,NCOL,24131,CO,Henderson,Langston,Reynolds,CO,https://s3media.247sports.com/Uploads/Assets/658/1/13001658.jpg,3,390,93,3,6-4,205.0
+46157234,PROV,24308,Cole Hargrove,PF,Drexel,24330,PA,Philadelphia,Cole,Hargrove,PA,https://s3media.247sports.com/Uploads/Assets/806/3/13003806.jpeg,3,391,81,14,6-8,250.0
+46157482,UCLA,24093,Steven Jamerson II,C,USD,24222,CA,San Diego,Steven,Jamerson II,CA,https://s3media.247sports.com/Uploads/Assets/912/22/13022912.jpg,3,392,45,34,6-10,210.0
+46101265,WVU,24038,Harlan Obioha,C,UNCW,24333,NC,Wilmington,Harlan,Obioha,KS,https://s3media.247sports.com/Uploads/Assets/909/31/13031909.jpeg,3,393,46,20,7-0,280.0
+46136843,MIAO,24072,Almar Atlason,PF,Bradley,24342,IL,Peoria,Almar,Atlason,ICEL,https://s3media.247sports.com/Uploads/Assets/596/10/13010596.jpg,3,394,82,9,6-8,230.0
+46093802,0,0,Lucas Taylor,SG,SYR,24037,NY,Syracuse,Lucas,Taylor,NC,https://s3media.247sports.com/Uploads/Assets/337/715/12715337.jpg,3,395,94,12,6-5,200.0
+46110574,Radford,24371,Mari Jordan,SF,TLNE,24057,LA,New Orleans,Mari,Jordan,GA,https://s3media.247sports.com/Uploads/Assets/889/723/12723889.jpg,3,396,70,13,6-5,190.0
+46157687,Bradley,24342,AJ Smith,PF,JM,24144,VA,Basye,AJ,Smith,IL,https://s3media.247sports.com/Uploads/Assets/975/32/13032975.jpeg,3,397,83,15,6-6,225.0
+46131042,ORST,24091,Jorge Diaz Graham,PF,PITT,24034,PA,Pittsburgh,Jorge,Diaz Graham,CANA,https://s3media.247sports.com/Uploads/Assets/121/715/12715121.jpg,3,398,84,15,6-11,195.0
+46127650,0,25469,Nick Janowski,CG,NEB,24025,NE,Lincoln,Nick,Janowski,WI,https://s3media.247sports.com/Uploads/Assets/770/718/12718770.jpg,3,399,39,5,6-4,208.0
+46109002,PSU,24047,Josh Reed,SF,CIN,24031,OH,Cincinnati,Josh,Reed,GA,https://s3media.247sports.com/Uploads/Assets/800/787/12787800.jpeg,3,400,71,23,6-7,220.0
+46118351,MARY,24012,Andre Mills,SG,TAMU,24029,TX,College Station,Andre,Mills,MA,https://s3media.247sports.com/Uploads/Assets/985/716/12716985.jpg,3,401,95,23,6-4,205.0
+46114374,MARY,24012,George Turkson Jr.,PF,TAMU,24029,TX,College Station,George,Turkson Jr.,MA,https://s3media.247sports.com/Uploads/Assets/992/716/12716992.jpg,3,402,85,24,6-7,220.0
+46109983,BAY,24019,Caden Powell,C,RICE,24054,TX,Houston,Caden,Powell,TX,https://s3media.247sports.com/Uploads/Assets/787/723/12723787.jpg,3,403,47,25,6-10,220.0
+46129284,NCST,24015,Colt Langdon,PF,BUT,24214,IN,Indianapolis,Colt,Langdon,NC,https://s3media.247sports.com/Uploads/Assets/759/45/13045759.jpeg,3,404,86,15,6-7,205.0
+46115477,ARLR,24735,Kachi Nzeh,PF,PSU,24047,PA,University Park,Kachi,Nzeh,PA,https://s3media.247sports.com/Uploads/Assets/24/719/12719024.jpg,3,405,87,16,6-8,225.0
+46084695,CIN,24031,Jalen Haynes,PF,George Mason,24331,VA,Fairfax,Jalen,Haynes,FL,https://s3media.247sports.com/Uploads/Assets/106/41/12041106.jpeg,3,406,88,16,6-8,260.0
+46149172,OKST,24027,Parsa Fallah,C,ORST,24091,OR,Corvallis,Parsa,Fallah,0,https://s3media.247sports.com/Uploads/Assets/925/8/13008925.jpeg,3,407,48,7,6-9,260.0
+46102956,NEB,24025,Kendall Blue,SG,0,25469,MN,Saint Paul,Kendall,Blue,MN,https://s3media.247sports.com/Uploads/Assets/382/22/13022382.png,3,408,96,1,6-4,175.0
+46132678,GTECH,24011,Peyton Marshall,C,MIZZ,24024,MO,Columbia,Peyton,Marshall,GA,https://s3media.247sports.com/Uploads/Assets/785/716/12716785.jpg,3,409,49,4,7-0,300.0
+46134754,CAL,24089,Sammie Yeanay,PF,GCU,25241,AZ,Phoenix,Sammie,Yeanay,AZ,https://s3media.247sports.com/Uploads/Assets/781/13/13013781.png,3,410,89,13,6-8,230.0
+46140908,USC,24257,Jordan Marsh,PG,UNC Asheville,24370,NC,Asheville,Jordan,Marsh,NC,https://s3media.247sports.com/Uploads/Assets/412/940/12940412.jpeg,3,411,67,21,5-10,165.0
+46133294,IND,24040,Sam Alexis,PF,UF,24099,FL,Gainesville,Sam,Alexis,FL,https://s3media.247sports.com/Uploads/Assets/489/28/13028489.jpg,3,412,90,27,6-8,240.0
+46157806,KSST,24023,Khamari McGriff,PF,UNCW,24333,NC,Wilmington,Khamari,McGriff,FL,https://s3media.247sports.com/Uploads/Assets/711/41/13041711.jpeg,3,413,91,22,6-9,210.0
+46077031,0,0,Brandon Stroud,SG,USF,24036,FL,Tampa,Brandon,Stroud,GA,https://s3media.247sports.com/Uploads/Assets/121/42/12042121.jpeg,3,414,97,28,6-6,215.0
+46118033,UGA,24100,Marcus Millender,PG,UTSA,24391,TX,San Antonio,Marcus,Millender,TX,https://s3media.247sports.com/Uploads/Assets/980/723/12723980.jpg,3,415,68,26,5-11,180.0
+46103995,BUT,24214,Yohan Traore,C,SMU,24055,TX,Dallas,Yohan,Traore,FRAN,https://s3media.247sports.com/Uploads/Assets/246/715/12715246.jpg,3,416,50,27,6-11,235.0
+46093901,GU,24210,Vincent Iwuchukwu,C,St. John's,24309,NY,Queens Village,Vincent,Iwuchukwu,CA,https://s3media.247sports.com/Uploads/Assets/926/54/13054926.jpeg,3,417,51,13,7-1,250.0
+46154176,DePaul,24329,Brandon Maclin,SG,Radford,24371,VA,Radford,Brandon,Maclin,TN,https://s3media.247sports.com/Uploads/Assets/236/999/12999236.png,3,418,98,17,6-3,215.0
+46131520,St. John's,24309,Dylan Darling,PG,IDST,24127,ID,Aberdeen,Dylan,Darling,WA,https://s3media.247sports.com/Uploads/Assets/319/940/12940319.jpeg,3,419,69,1,6-2,175.0
+46156859,CofC,24353,Colby Duggan,PF,CAMP,24215,NC,Bullock,Colby,Duggan,MA,https://s3media.247sports.com/Uploads/Assets/708/975/12975708.jpeg,3,420,92,23,6-7,220.0
+46079588,BC,24007,Chase Forte,PG,SDAK,24156,SD,Vermillion,Chase,Forte,NC,https://s3media.247sports.com/Uploads/Assets/450/973/12973450.jpeg,3,421,70,2,6-4,190.0
+46127716,BALL,24066,Kayden Fish,PF,IAST,24021,IA,Ames,Kayden,Fish,MO,https://s3media.247sports.com/Uploads/Assets/391/774/12774391.jpeg,3,422,93,13,6-6,245.0
+46133066,Seton Hall,24310,Mike Williams,SG,LSU,24102,LA,Baton Rouge,Mike,Williams,MD,https://s3media.247sports.com/Uploads/Assets/277/18/12018277.png,3,423,99,14,6-3,181.0
+46139593,UAB,24059,Jacob Meyer,PG,DePaul,24329,IL,Chicago,Jacob,Meyer,KY,https://s3media.247sports.com/Uploads/Assets/400/980/12980400.jpeg,3,424,71,10,6-2,192.0
+46135106,Xavier,24316,Mier Panoam,PG,NDAK,24155,ND,Grand Forks,Mier,Panoam,GA,https://s3media.247sports.com/Uploads/Assets/939/991/12991939.jpeg,3,425,72,3,6-2,185.0
+46103532,0,26462,Marvel Allen,SG,DAY,24217,OH,Dayton,Marvel,Allen,FL,https://s3media.247sports.com/Uploads/Assets/321/2/13002321.jpeg,3,426,100,24,6-4,190.0
+46085574,SCAR,24105,Kobe Knox,SG,USF,24036,FL,Tampa,Kobe,Knox,FL,https://s3media.247sports.com/Uploads/Assets/113/42/12042113.jpeg,3,427,101,29,6-5,195.0
+46094903,Radford,24371,Dennis Parker Jr.,SF,NCST,24015,NC,Raleigh,Dennis,Parker Jr.,VA,https://s3media.247sports.com/Uploads/Assets/543/714/12714543.jpg,3,428,72,24,6-6,205.0
+46082135,MRST,24202,Mason Miller,PF,Creighton,24343,NE,Omaha,Mason,Miller,TN,https://s3media.247sports.com/Uploads/Assets/538/4/13004538.jpeg,3,429,94,6,6-9,195.0
+46094824,OKST,24027,Jaylen Curry,PG,UMASS,24146,MA,Amherst,Jaylen,Curry,NC,https://s3media.247sports.com/Uploads/Assets/657/41/12041657.jpeg,3,430,73,6,6-0,155.0
+46148500,0,0,Derrin Boyd,SG,CofC,24353,SC,Charleston,Derrin,Boyd,KY,https://s3media.247sports.com/Uploads/Assets/774/3/13003774.jpeg,3,431,102,6,6-3,215.0
+46057858,GCU,25241,Wilhelm Breidenbach,C,WASH,24094,WA,SEATTLE,Wilhelm,Breidenbach,CA,https://s3media.247sports.com/Uploads/Assets/852/27/12027852.png,3,432,52,11,6-10,230.0
+46148486,DAY,24217,Jordan Derkack,CG,RUTG,24035,NJ,Piscataway,Jordan,Derkack,OH,https://s3media.247sports.com/Uploads/Assets/91/719/12719091.jpg,3,433,40,9,6-6,215.0
+46146768,0,26018,Savo Drezgic,PG,UGA,24100,GA,Athens,Savo,Drezgic,FL,https://s3media.247sports.com/Uploads/Assets/387/716/12716387.jpg,3,434,74,8,6-4,200.0
+46110211,UCF,24060,Kris Parker,SF,NOVA,24152,PA,Villanova,Kris,Parker,FL,https://s3media.247sports.com/Uploads/Assets/756/29/13029756.jpeg,3,435,73,17,6-9,201.0
+46101496,BG,24067,Javon Ruffin,CG,COL,24020,CO,Boulder,Javon,Ruffin,LA,https://s3media.247sports.com/Uploads/Assets/927/787/12787927.jpeg,3,436,41,4,6-5,185.0
+46132565,MIZZ,24024,Luke Northweather,C,OKLA,24026,OK,Norman,Luke,Northweather,MO,https://s3media.247sports.com/Uploads/Assets/684/779/12779684.jpeg,3,437,53,2,6-11,240.0
+46144285,MRST,24202,KJ Tenner,PG,WVU,24038,WV,Morgantown,KJ,Tenner,TN,https://s3media.247sports.com/Uploads/Assets/891/720/12720891.jpg,3,438,75,6,6-0,166.0
+46135285,Xavier,24316,Jovan Milicevic,PF,UNM,24081,NM,Albuquerque,Jovan,Milicevic,ON,https://s3media.247sports.com/Uploads/Assets/587/722/12722587.jpg,3,439,95,5,6-10,240.0
+46129292,IOWA,24041,Kael Combs,PG,DRAKE,24218,IA,Des Moines,Kael,Combs,MO,https://s3media.247sports.com/Uploads/Assets/994/732/12732994.jpg,3,440,76,14,6-4,190.0
+46102625,RI,24149,Keeyan Itejere,PF,NKY,24982,KY,Highland Heights,Keeyan,Itejere,NC,https://s3media.247sports.com/Uploads/Assets/620/991/12991620.jpeg,3,441,96,9,6-9,220.0
+46157655,0,28836,Carson Schwieger,PF,VALPO,24223,IN,Valparaiso,Carson,Schwieger,KS,https://s3media.247sports.com/Uploads/Assets/979/32/13032979.jpeg,3,442,97,16,6-8,230.0
+46116836,UNM,24081,Kevin Patton Jr.,SG,USC,24257,CA,Los Angeles,Kevin,Patton Jr.,CA,https://s3media.247sports.com/Uploads/Assets/104/722/12722104.jpg,3,443,103,35,6-8,200.0
+46141085,Xavier,24316,Pape N'Diaye,C,UNLV,24084,NV,Las Vegas,Pape,N'Diaye,IVOR,https://s3media.247sports.com/Uploads/Assets/704/722/12722704.jpg,3,444,54,5,7-0,220.0
+46102042,Iona,24381,Denver Anglin,CG,RICE,24054,TX,Houston,Denver,Anglin,NJ,https://s3media.247sports.com/Uploads/Assets/212/45/13045212.jpeg,3,445,42,28,6-1,185.0
+46148297,PUR,24048,Liam Murphy,PF,UNF,24366,FL,Jacksonville,Liam,Murphy,NY,https://s3media.247sports.com/Uploads/Assets/486/333/12333486.jpg,3,446,98,30,6-7,215.0
+46101431,TCU,24083,Tanner Toolson,SG,Utah Valley,24441,UT,Orem,Tanner,Toolson,WA,https://s3media.247sports.com/Uploads/Assets/446/810/12810446.jpg,3,447,104,9,6-5,200.0
+46099972,AZST,24088,Adante' Holiman,PG,GAS,24229,GA,Statesboro,Adante',Holiman,OK,https://s3media.247sports.com/Uploads/Assets/623/1/13001623.jpg,3,448,77,9,6-0,175.0
+46157006,BYU,24079,Tyler Mrus,SF,IDAHO,24120,ID,Moscow,Tyler,Mrus,WA,https://s3media.247sports.com/Uploads/Assets/649/987/12987649.jpeg,3,449,74,2,6-7,205.0
+46143091,SYR,24037,Ibrahim Souare,PF,GTECH,24011,GA,Atlanta,Ibrahim,Souare,AZ,https://s3media.247sports.com/Uploads/Assets/605/709/12709605.jpg,3,450,99,10,6-9,225.0
+46156855,WAKE,24018,Sebastian Akins,SG,DEN,24734,CO,Denver,Sebastian,Akins,NC,https://s3media.247sports.com/Uploads/Assets/212/975/12975212.jpeg,3,451,105,5,6-2,175.0
+46157604,UVA,24016,Martin Carrere,SF,VCU,24334,VA,Richmond,Martin,Carrere,FRAN,https://s3media.247sports.com/Uploads/Assets/286/31/13031286.jpeg,3,452,75,18,6-8,180.0
+46130929,MIST,24043,Divine Ugochukwu,PG,MIA,24013,FL,Coral Gables,Divine,Ugochukwu,TX,https://s3media.247sports.com/Uploads/Assets/964/676/12676964.jpg,3,453,78,31,6-3,190.0
+46157738,MINN,24044,Nehemiah Turner,PF,CARK,24233,AR,Cotton Plant,Nehemiah,Turner,FL,https://s3media.247sports.com/Uploads/Assets/322/36/13036322.jpg,3,454,100,5,6-10,265.0
+46148873,WVU,24038,Jasper Floyd,SG,NTEX,24114,TX,Denton,Jasper,Floyd,FL,https://s3media.247sports.com/Uploads/Assets/114/29/13029114.png,3,455,106,29,6-3,195.0
+46102306,BYU,24079,Nate Pickens,PG,UC Riverside,24375,CA,Riverside,Nate,Pickens,AZ,https://s3media.247sports.com/Uploads/Assets/510/1/13001510.jpg,3,456,79,36,6-3,175.0
+46158030,UCF,24060,Carmelo Pacheco,SG,Mount St. Mary's,24356,MD,Emmitsburg,Carmelo,Pacheco,VA,https://s3media.247sports.com/Uploads/Assets/107/59/13059107.jpeg,3,457,107,7,6-5,190.0
+46118216,TAMU,24029,Jamie Vinson,C,TEX,24028,TX,Austin,Jamie,Vinson,TX,https://s3media.247sports.com/Uploads/Assets/27/717/12717027.jpg,3,458,55,30,6-11,225.0
+46142806,LSU,24102,PJ Carter,SG,MEM,24053,TN,Memphis,PJ,Carter,GA,https://s3media.247sports.com/Uploads/Assets/544/774/12774544.jpeg,3,459,108,11,6-4,175.0
+46158173,LSU,24102,Pablo Tamba,SF,UCD,24158,CA,Davis,Pablo,Tamba,SPAI,https://s3media.247sports.com/Uploads/Assets/654/75/13075654.jpeg,3,460,76,37,6-7,210.0
+46153187,DePaul,24329,Amsal Delalić,SG,PITT,24034,PA,Pittsburgh,Amsal,Delalić,BOSN,https://s3media.247sports.com/Uploads/Assets/167/715/12715167.jpg,3,461,109,18,6-8,210.0
+46076794,RI,24149,Tyler Cochran,SG,MINN,24044,MN,Minneapolis,Tyler,Cochran,IL,https://s3media.247sports.com/Uploads/Assets/696/979/12979696.jpeg,3,462,110,2,6-3,225.0
+46156936,UTSA,24391,Jamir Simpson,SF,SUT,24157,UT,Cedar City,Jamir,Simpson,OH,https://s3media.247sports.com/Uploads/Assets/228/985/12985228.jpeg,3,463,77,10,6-6,205.0
+46141144,USD,24222,Dominique Ford,SG,SUT,24157,UT,Cedar City,Dominique,Ford,NV,https://s3media.247sports.com/Uploads/Assets/12/987/12987012.jpeg,3,464,111,11,6-4,196.0
+46084351,ARST,24108,Chandler Jackson,CG,FSU,24010,FL,Tallahassee,Chandler,Jackson,TN,https://s3media.247sports.com/Uploads/Assets/465/709/12709465.jpg,3,465,43,32,6-5,205.0
+46114672,DAV,24216,Parker Friedrichsen,SG,WAKE,24018,NC,Winston Salem,Parker,Friedrichsen,OK,https://s3media.247sports.com/Uploads/Assets/519/3/12003519.png,3,466,112,25,6-3,195.0
+46116225,TOL,24076,Austin Parks,C,OHST,24046,OH,Columbus,Austin,Parks,OH,https://s3media.247sports.com/Uploads/Assets/798/13/12013798.png,3,467,56,25,6-10,250.0
+46103238,PENN,24168,TJ Power,PF,UVA,24016,VA,Charlottesville,TJ,Power,MA,https://s3media.247sports.com/Uploads/Assets/376/715/12715376.jpg,3,468,101,19,6-9,221.0
+46116835,ORST,24091,Noah Amenhauser,C,COCA,24136,SC,Conway,Noah,Amenhauser,AZ,https://s3media.247sports.com/Uploads/Assets/43/730/12730043.jpg,3,469,57,7,7-2,255.0
+46135649,GW,24319,Bubu Benjamin,SF,0,24421,TX,Stephenville,Bubu,Benjamin,AB,https://s3media.247sports.com/Uploads/Assets/467/987/12987467.jpeg,3,470,78,31,6-7,205.0
+46103801,UNCW,24333,Jahnathan Lamothe,SG,NCAT,24178,NC,Greensboro,Jahnathan,Lamothe,MD,https://s3media.247sports.com/Uploads/Assets/393/1/13001393.jpeg,3,471,113,26,6-4,192.0
+46118109,Kennesaw State,24363,Davin Cosby,SG,WAKE,24018,NC,Winston Salem,Davin,Cosby,NC,https://s3media.247sports.com/Uploads/Assets/292/993/12993292.jpeg,3,472,114,27,6-5,210.0
+46048026,LUC,24338,Dominick Harris,SG,UCLA,24093,CA,Los Angeles,Dominick,Harris,CA,https://s3media.247sports.com/Uploads/Assets/122/697/12697122.jpg,3,474,115,38,6-3,190.0
+46128285,MRST,24202,Fredrick King,C,Creighton,24343,NE,Omaha,Fredrick,King,MEXI,https://s3media.247sports.com/Uploads/Assets/245/9/13009245.jpeg,3,475,58,7,6-9,250.0
+46135560,BUT,24214,Drayton Jones,C,SCST,24179,SC,Orangeburg,Drayton,Jones,TX,https://s3media.247sports.com/Uploads/Assets/754/850/11850754.jpeg,3,476,59,8,6-9,225.0
+46125709,BC,24007,Boden Kapke,C,BUT,24214,IN,Indianapolis,Boden,Kapke,MN,https://s3media.247sports.com/Uploads/Assets/907/705/12705907.jpg,3,477,60,17,6-11,230.0
+46157870,SYR,24037,Bryce Zephir,SG,MTST,24129,MT,Billings,Bryce,Zephir,CA,https://s3media.247sports.com/Uploads/Assets/177/45/13045177.jpeg,3,478,116,2,6-4,200.0
+46102283,RUTG,24035,Baye Fall,PF,KSST,24023,KS,Manhattan,Baye,Fall,SENE,https://s3media.247sports.com/Uploads/Assets/646/720/12720646.jpg,3,479,102,12,6-11,215.0
+46135526,WASH,24094,Christian Nitu,PF,FSU,24010,FL,Tallahassee,Christian,Nitu,ON,https://s3media.247sports.com/Uploads/Assets/537/709/12709537.jpg,3,480,103,33,6-11,220.0
+46086992,WIS,24049,Braeden Carrington,SG,TULSA,24058,OK,Tulsa,Braeden,Carrington,MN,https://s3media.247sports.com/Uploads/Assets/863/701/12701863.jpg,3,481,117,3,6-5,200.0
+45572964,NEB,24025,Jared Garcia,PF,TULSA,24058,OK,Tulsa,Jared,Garcia,TX,https://s3media.247sports.com/Uploads/Assets/61/2/13002061.jpg,3,482,104,4,6-9,245.0
+46157681,USC,24257,Jaden Brownell,PF,SAM,24230,AL,Birmingham,Jaden,Brownell,UT,https://s3media.247sports.com/Uploads/Assets/847/32/13032847.jpg,3,483,105,20,6-9,230.0
+46113654,WVU,24038,Jackson Fields,PF,TROY,24115,AL,Troy,Jackson,Fields,TX,https://s3media.247sports.com/Uploads/Assets/4/999/12999004.jpg,3,484,106,21,6-8,210.0
+46114708,UTAH,24085,James Okonkwo,PF,AKRN,24065,OH,Akron,James,Okonkwo,WV,https://s3media.247sports.com/Uploads/Assets/792/734/12734792.jpg,3,485,107,26,6-8,240.0
+46136392,BAY,24019,Isaac Williams IV,CG,Texas A&M Corpus Christi,24389,TX,Corpus Christi,Isaac,Williams IV,TX,https://s3media.247sports.com/Uploads/Assets/323/999/12999323.jpeg,3,486,44,32,6-2,165.0
+46159337,AZST,24088,Anthony Johnson,SG,0,28235,KY,Williamsburg,Anthony,Johnson,AL,https://s3media.247sports.com/Uploads/Assets/185/126/13126185.png,3,487,118,10,6-2,175.0
+46054935,MIZZ,24024,Jayden Stone,SG,WVU,24038,WV,Morgantown,Jayden,Stone,KS,https://s3media.247sports.com/Uploads/Assets/898/720/12720898.jpg,3,488,119,7,6-4,185.0
+46141943,DePaul,24329,Khaman Maker,C,St. John's,24309,NY,Queens Village,Khaman,Maker,SS,https://s3media.247sports.com/Uploads/Assets/667/45/13045667.jpeg,3,489,61,15,7-2,220.0
+46086980,Mercer,24365,Kyle Cuffe Jr.,CG,SYR,24037,NY,Syracuse,Kyle,Cuffe Jr.,NJ,https://s3media.247sports.com/Uploads/Assets/314/993/12993314.jpeg,3,490,45,16,6-2,190.0
+46115306,FURM,24228,Asa Thomas,SF,CLEM,24008,SC,Clemson,Asa,Thomas,IL,https://s3media.247sports.com/Uploads/Assets/346/709/12709346.jpg,3,491,79,9,6-7,200.0
+46110046,LIB,24138,Ryan Jones Jr.,C,VTECH,24017,VA,Blacksburg,Ryan,Jones Jr.,FL,https://s3media.247sports.com/Uploads/Assets/168/999/12999168.jpeg,3,492,62,20,6-8,240.0
+46056546,0,0,Justice Williams,SG,ROMO,24194,PA,Coraopolis,Justice,Williams,PA,https://s3media.247sports.com/Uploads/Assets/287/0/13000287.jpeg,3,493,120,19,6-4,175.0
+46128778,La Salle,24320,Rob Dockery,SF,TAMU,24029,TX,College Station,Rob,Dockery,DC,https://s3media.247sports.com/Uploads/Assets/728/19/12019728.jpeg,3,494,80,33,6-6,205.0
+46104187,JM,24144,Justin McBride,PF,NEV,24122,NV,Reno,Justin,McBride,TX,https://s3media.247sports.com/Uploads/Assets/596/993/12993596.jpeg,3,495,108,6,6-8,230.0
+46058630,COCA,24136,Josh Beadle,CG,BC,24007,MA,Chestnut Hill,Josh,Beadle,SC,https://s3media.247sports.com/Uploads/Assets/154/709/12709154.jpg,3,496,46,7,6-3,180.0
+46097758,CHAR,24318,Kuluel Mading,PF,NFST,24177,VA,Norfolk,Kuluel,Mading,NC,https://s3media.247sports.com/Uploads/Assets/795/8/13008795.jpg,3,497,109,21,6-11,210.0
+46157298,0,0,Mason Johnson,SF,SUT,24157,UT,Cedar City,Mason,Johnson,0,0,3,498,81,12,6-6,200.0
+46156599,RUTG,24035,Tariq Francis,PG,NJIT,25148,0,0,Tariq,Francis,PA,0,3,499,81,10,6-0,180.0
+46102075,0,0,Tafara Gapare,PF,MARY,24012,MD,College Park,Tafara,Gapare,NEW ,https://s3media.247sports.com/Uploads/Assets/493/718/12718493.jpg,3,500,110,8,6-9,215.0
+46115776,GTECH,24011,Chas Kelley,SG,BC,24007,MA,Chestnut Hill,Chas,Kelley,TX,https://s3media.247sports.com/Uploads/Assets/134/709/12709134.jpg,3,501,121,8,6-3,185.0
+46151638,FSU,24010,Shah Muhammad,C,UMASS,24146,MA,Amherst,Shah,Muhammad,0,0,3,502,63,9,6-10,205.0
