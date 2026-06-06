@@ -15,3 +15,21 @@ scrapers_web/cache/
 
 # Database files
 *.db
+
+# Frontend site generated files
+frontend_site/node_modules/
+frontend_site/.next/
+frontend_site/out/
+
+# Frontend site local env files
+frontend_site/.env
+frontend_site/.env.local
+frontend_site/.env.development.local
+frontend_site/.env.test.local
+frontend_site/.env.production.local
+
+# Frontend site package manager logs
+frontend_site/npm-debug.log*
+frontend_site/yarn-debug.log*
+frontend_site/yarn-error.log*
+frontend_site/pnpm-debug.log*
