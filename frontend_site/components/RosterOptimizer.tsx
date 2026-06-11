@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import basketballCourtPackage from "basketball-court";
 import GLPK, { type GLPK as GLPKInstance, type LP } from "glpk.js";
 import { Activity, AlertTriangle, ArrowRight, ChevronDown, Loader2, RotateCcw, SlidersHorizontal, Trophy } from "lucide-react";
 import clsx from "clsx";
@@ -44,7 +45,7 @@ import { PlayerAvatar } from "@/components/PlayerAvatar";
 import { SourceBadge } from "@/components/StatusBadge";
 
 type OptimizerView = "sets" | "single" | "manual";
-type ResultTab = "sets" | "individual" | "hidden";
+type ResultTab = "sets" | "individual";
 
 const POSITION_GROUPS: PositionGroup[] = ["G", "F", "C"];
 const MANUAL_CANDIDATES_PER_PAGE = 20;
@@ -63,17 +64,29 @@ const CATEGORY_OPTIONS: Array<{ value: "all" | SkillKey; label: string }> = [
   { value: "all", label: "All Categories" },
   ...SKILL_KEYS.map((key) => ({ value: key, label: SKILL_LABELS[key] })),
 ];
-const OBJECTIVE_VARIANTS: Array<{ id: string; label: string; skill?: SkillKey; weakness?: boolean; balanced?: boolean }> = [
-  { id: "total", label: "Total contribution" },
-  { id: "spacing", label: "Spacing specialist", skill: "spacing_percentile" },
-  { id: "facilitating", label: "Facilitating specialist", skill: "facilitating_percentile" },
-  { id: "rim", label: "Rim protection specialist", skill: "rim_protection_percentile" },
-  { id: "defense", label: "Defense specialist", skill: "defense_percentile" },
-  { id: "finishing", label: "Finishing specialist", skill: "finishing_percentile" },
-  { id: "weakness", label: "Current weakness", weakness: true },
-  { id: "balanced", label: "Weakness balanced", balanced: true },
-];
 const ROSTER_MANAGEMENT_STORAGE_KEY = "roster-lab-roster-management-state";
+const makeBasketballCourt = basketballCourtPackage as unknown as (options: Record<string, unknown>) => { toString: () => string };
+const COURT_THEME = {
+  global: {
+    fill: "none",
+    stroke: "rgba(226,232,240,.72)",
+    "stroke-width": 2.4,
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+  },
+  court: { stroke: "rgba(148,163,184,.62)", "stroke-width": 2.2 },
+  centerCircle: { stroke: "rgba(226,232,240,.46)" },
+  restrainCircle: { stroke: "rgba(16,185,129,.56)" },
+  hcline: { stroke: "rgba(148,163,184,.38)" },
+  tpline: { stroke: "rgba(226,232,240,.74)", "stroke-width": 2.7 },
+  lane: { stroke: "rgba(226,232,240,.68)" },
+  innerLane: { stroke: "rgba(16,185,129,.48)" },
+  ftCircleHigh: { stroke: "rgba(226,232,240,.58)" },
+  ftCircleLow: { stroke: "rgba(226,232,240,.42)" },
+  restricted: { stroke: "rgba(16,185,129,.66)" },
+  backboard: { stroke: "rgba(248,250,252,.82)", "stroke-width": 3.2 },
+  rim: { stroke: "rgba(52,211,153,.86)", "stroke-width": 3 },
+};
 
 let glpkPromise: Promise<GLPKInstance> | null = null;
 
@@ -179,7 +192,6 @@ export function RosterOptimizer() {
       : sortMode;
   const fullSetSortMode: SortMode = view === "sets" ? "overall" : effectiveSortMode;
   const sortedSets = useMemo(() => (result ? rankRecommendationSets(result.recommended_sets, fullSetSortMode) : []), [fullSetSortMode, result]);
-  const sortedHiddenFits = useMemo(() => (result ? rankIndividualFits(result.hidden_fits, effectiveSortMode) : []), [effectiveSortMode, result]);
 
   async function runOptimizer() {
     setError(null);
@@ -339,7 +351,6 @@ export function RosterOptimizer() {
                 <ResultTabs active={resultTab} onChange={setResultTab} />
                 {resultTab === "sets" ? <RecommendedSets sets={sortedSets.slice(0, 5)} sortMode={fullSetSortMode} /> : null}
                 {resultTab === "individual" && result ? <IndividualFits fits={result.individual_fits} sortMode={effectiveSortMode} /> : null}
-                {resultTab === "hidden" ? <HiddenFits fits={sortedHiddenFits} sortMode={effectiveSortMode} /> : null}
               </div>
             </div>
           ) : view === "single" ? (
@@ -386,6 +397,9 @@ export function RosterOptimizer() {
   );
 }
 
+const GLPK_SOLUTIONS_PER_OBJECTIVE = 12;
+const DINKELBACH_ITERATIONS = 12;
+
 async function solveOptimizer({
   currentRoster,
   candidates,
@@ -398,12 +412,25 @@ async function solveOptimizer({
   currentRatings: TeamRatings;
 }): Promise<OptimizerResult> {
   const neededPositions = POSITION_GROUPS.filter((position) => openSlots[position] > 0);
-  const cappedCandidates = POSITION_GROUPS.flatMap((position) =>
-    candidates
-      .filter((candidate) => neededPositions.includes(candidate.position_group) && candidate.position_group === position)
-      .sort((left, right) => candidateContribution(right) - candidateContribution(left) || right.projected_bpr - left.projected_bpr)
-      .slice(0, TOP_N_CANDIDATES_PER_POSITION),
+
+  // Only keep candidates who can actually fill one of the currently open position slots.
+  const eligibleCandidates = candidates.filter((candidate) => neededPositions.includes(candidate.position_group));
+
+  // Build single-player fits from the full eligible pool. Do not use the GLPK-capped pool here.
+  // Single Player Optimization should answer the clean marginal question for every eligible player.
+  const individualFits = buildIndividualFits(currentRoster, eligibleCandidates, currentRatings);
+  const individualFitById = new Map(
+    POSITION_GROUPS.flatMap((group) => individualFits[group]).map((fit) => [fit.player.optimizer_player_id, fit]),
   );
+
+  // Build a broader GLPK pool using multiple signals. The old version only capped by
+  // candidateContribution(), which can miss players who are better by exact one-player gain.
+  const cappedCandidates = buildExpandedGlpkCandidatePool({
+    candidates: eligibleCandidates,
+    individualFits,
+    currentRatings,
+  });
+
   const availableCounts = getPositionCounts(cappedCandidates);
   for (const position of neededPositions) {
     if (availableCounts[position] < openSlots[position]) {
@@ -416,43 +443,131 @@ async function solveOptimizer({
   const currentWeakest = weakestRating(currentRatings);
   const seen = new Set<string>();
   const sets: RecommendationSet[] = [];
-  const weakestCurrentSkill = SKILL_KEYS.map((key) => ({ key, value: currentRatings[key] })).sort((left, right) => left.value - right.value)[0]?.key;
-  const bestCurrentSkill = Math.max(...SKILL_KEYS.map((key) => currentRatings[key]));
 
-  for (const variant of OBJECTIVE_VARIANTS) {
+  function addSelectedSet(selected: OptimizerPlayer[], surfacedBy: string) {
+    if (!selected.length) return;
+
+    const signature = selected.map((candidate) => candidate.optimizer_player_id).sort().join("|");
+    if (seen.has(signature)) return;
+
+    seen.add(signature);
+    sets.push(
+      solutionToRecommendationSet({
+        selectedPlayers: selected,
+        currentRoster,
+        currentRatings,
+        currentTotal,
+        currentWeakest,
+        rank: sets.length + 1,
+        surfacedBy,
+      }),
+    );
+  }
+
+  async function runObjectiveFamily({
+    id,
+    label,
+    objective,
+  }: {
+    id: string;
+    label: string;
+    objective: number[];
+  }) {
     const exclusions: string[][] = [];
-    for (let iteration = 0; iteration < 10; iteration += 1) {
-      const objectiveSkill = variant.weakness ? weakestCurrentSkill : variant.skill;
-      const objective = cappedCandidates.map((candidate) => {
-        if (variant.balanced) {
-          return SKILL_KEYS.reduce((sum, key) => sum + candidate.projected_bpr * candidate[key] * Math.max(bestCurrentSkill - currentRatings[key], 0), 0);
-        }
-        return candidateContribution(candidate, objectiveSkill);
-      });
-      const selected = await solveSingleGlpkModel(glpk, cappedCandidates, openSlots, objective, exclusions, `${variant.id}-${iteration}`);
-      if (!selected.length) break;
-      const signature = selected.map((candidate) => candidate.optimizer_player_id).sort().join("|");
-      exclusions.push(selected.map((candidate) => candidate.optimizer_player_id));
-      if (seen.has(signature)) continue;
-      seen.add(signature);
-      sets.push(
-        solutionToRecommendationSet({
-          selectedPlayers: selected,
-          currentRoster,
-          currentRatings,
-          currentTotal,
-          currentWeakest,
-          rank: sets.length + 1,
-          surfacedBy: variant.label,
-        }),
+
+    for (let iteration = 0; iteration < GLPK_SOLUTIONS_PER_OBJECTIVE; iteration += 1) {
+      const selected = await solveSingleGlpkModel(
+        glpk,
+        cappedCandidates,
+        openSlots,
+        objective,
+        exclusions,
+        `${id}-${iteration}`,
       );
+
+      if (!selected.length) break;
+
+      exclusions.push(selected.map((candidate) => candidate.optimizer_player_id));
+      addSelectedSet(selected, label);
     }
   }
 
+  // 1. Original rough objective family.
+  await runObjectiveFamily({
+    id: "rough-total",
+    label: "Total contribution",
+    objective: cappedCandidates.map((candidate) => candidateContribution(candidate)),
+  });
+
+  for (const skill of SKILL_KEYS) {
+    await runObjectiveFamily({
+      id: `skill-${skill}`,
+      label: `${SKILL_LABELS[skill]} specialist`,
+      objective: cappedCandidates.map((candidate) => candidateContribution(candidate, skill)),
+    });
+  }
+
+  // 2. Exact one-player gain objective family.
+  // These make the full-set generator consider players who improve the current roster directly,
+  // even if their rough BPR * skill_sum score is lower.
+  await runObjectiveFamily({
+    id: "one-player-total-gain",
+    label: "One-player total gain",
+    objective: cappedCandidates.map((candidate) => individualFitById.get(candidate.optimizer_player_id)?.individual_total_gain ?? -9999),
+  });
+
+  await runObjectiveFamily({
+    id: "one-player-weakest-gain",
+    label: "One-player weakest-category gain",
+    objective: cappedCandidates.map((candidate) => individualFitById.get(candidate.optimizer_player_id)?.individual_weakest_gain ?? -9999),
+  });
+
+  for (const skill of SKILL_KEYS) {
+    await runObjectiveFamily({
+      id: `one-player-${skill}-gain`,
+      label: `One-player ${SKILL_LABELS[skill]} gain`,
+      objective: cappedCandidates.map((candidate) => individualFitById.get(candidate.optimizer_player_id)?.rating_changes_if_added[skill] ?? -9999),
+    });
+  }
+
+  // 3. Weakness objectives using the current roster profile.
+  const weakestCurrentSkill = SKILL_KEYS.map((key) => ({ key, value: currentRatings[key] })).sort((left, right) => left.value - right.value)[0]?.key;
+  const bestCurrentSkill = Math.max(...SKILL_KEYS.map((key) => currentRatings[key]));
+
+  if (weakestCurrentSkill) {
+    await runObjectiveFamily({
+      id: "current-weakness",
+      label: "Current weakness",
+      objective: cappedCandidates.map((candidate) => candidateContribution(candidate, weakestCurrentSkill)),
+    });
+  }
+
+  await runObjectiveFamily({
+    id: "weakness-balanced",
+    label: "Weakness balanced",
+    objective: cappedCandidates.map((candidate) =>
+      SKILL_KEYS.reduce((sum, key) => {
+        const gapWeight = Math.max(bestCurrentSkill - currentRatings[key], 0);
+        return sum + candidate.projected_bpr * candidate[key] * gapWeight;
+      }, 0),
+    ),
+  });
+
+  // 4. Fractional objective approximation for the exact total-rating formula.
+  // GLPK cannot directly maximize a ratio, so this uses a Dinkelbach-style linearization.
+  await runDinkelbachObjectiveFamily({
+    glpk,
+    candidates: cappedCandidates,
+    currentRoster,
+    openSlots,
+    addSelectedSet,
+  });
+
   if (!sets.length) throw new Error("No valid recommendation found for the current roster constraints.");
+
+  // Critical final step: exact-rank every generated set by the true recommendation order.
   const rankedSets = rankRecommendationSets(sets, "overall").map((set, index) => ({ ...set, rank: index + 1 }));
-  const individualFits = buildIndividualFits(currentRoster, cappedCandidates, currentRatings);
-  const hiddenFits = buildHiddenFits(individualFits, cappedCandidates, "overall");
+  const hiddenFits = buildHiddenFits(individualFits, eligibleCandidates, "overall");
 
   return {
     recommended_sets: rankedSets,
@@ -464,6 +579,128 @@ async function solveOptimizer({
     open_slots: openSlots,
     current_counts: getPositionCounts(currentRoster),
   };
+}
+
+function buildExpandedGlpkCandidatePool({
+  candidates,
+  individualFits,
+  currentRatings,
+}: {
+  candidates: OptimizerPlayer[];
+  individualFits: OptimizerResult["individual_fits"];
+  currentRatings: TeamRatings;
+}) {
+  const fitById = new Map(
+    POSITION_GROUPS.flatMap((group) => individualFits[group]).map((fit) => [fit.player.optimizer_player_id, fit]),
+  );
+  const selected = new Map<string, OptimizerPlayer>();
+
+  function addTopByScore(positionCandidates: OptimizerPlayer[], score: (candidate: OptimizerPlayer) => number) {
+    positionCandidates
+      .slice()
+      .sort((left, right) => {
+        const scoreDiff = score(right) - score(left);
+        if (scoreDiff !== 0) return scoreDiff;
+        return right.projected_bpr - left.projected_bpr;
+      })
+      .slice(0, TOP_N_CANDIDATES_PER_POSITION)
+      .forEach((candidate) => selected.set(candidate.optimizer_player_id, candidate));
+  }
+
+  const bestCurrentSkill = Math.max(...SKILL_KEYS.map((key) => currentRatings[key]));
+
+  for (const position of POSITION_GROUPS) {
+    const positionCandidates = candidates.filter((candidate) => candidate.position_group === position);
+
+    // Original contribution signal.
+    addTopByScore(positionCandidates, (candidate) => candidateContribution(candidate));
+
+    // Exact one-player marginal signals.
+    addTopByScore(positionCandidates, (candidate) => fitById.get(candidate.optimizer_player_id)?.individual_total_gain ?? -9999);
+    addTopByScore(positionCandidates, (candidate) => fitById.get(candidate.optimizer_player_id)?.individual_weakest_gain ?? -9999);
+
+    for (const skill of SKILL_KEYS) {
+      addTopByScore(positionCandidates, (candidate) => fitById.get(candidate.optimizer_player_id)?.rating_changes_if_added[skill] ?? -9999);
+    }
+
+    // Raw category contribution signals.
+    for (const skill of SKILL_KEYS) {
+      addTopByScore(positionCandidates, (candidate) => candidateContribution(candidate, skill));
+    }
+
+    // Current-roster weakness signal.
+    addTopByScore(positionCandidates, (candidate) =>
+      SKILL_KEYS.reduce((sum, key) => {
+        const gapWeight = Math.max(bestCurrentSkill - currentRatings[key], 0);
+        return sum + candidate.projected_bpr * candidate[key] * gapWeight;
+      }, 0),
+    );
+  }
+
+  return Array.from(selected.values());
+}
+
+async function runDinkelbachObjectiveFamily({
+  glpk,
+  candidates,
+  currentRoster,
+  openSlots,
+  addSelectedSet,
+}: {
+  glpk: GLPKInstance;
+  candidates: OptimizerPlayer[];
+  currentRoster: OptimizerPlayer[];
+  openSlots: TargetCounts;
+  addSelectedSet: (selected: OptimizerPlayer[], surfacedBy: string) => void;
+}) {
+  const exclusions: string[][] = [];
+
+  for (let solutionIndex = 0; solutionIndex < GLPK_SOLUTIONS_PER_OBJECTIVE; solutionIndex += 1) {
+    let lambda = exactTotalFraction(currentRoster);
+    let selected: OptimizerPlayer[] = [];
+
+    for (let iteration = 0; iteration < DINKELBACH_ITERATIONS; iteration += 1) {
+      const objective = candidates.map((candidate) => totalNumerator([candidate]) - lambda * totalDenominator([candidate]));
+      const nextSelected = await solveSingleGlpkModel(
+        glpk,
+        candidates,
+        openSlots,
+        objective,
+        exclusions,
+        `dinkelbach-${solutionIndex}-${iteration}`,
+      );
+
+      if (!nextSelected.length) break;
+
+      selected = nextSelected;
+      const nextLambda = exactTotalFraction([...currentRoster, ...selected]);
+      if (Math.abs(nextLambda - lambda) < 1e-6) break;
+      lambda = nextLambda;
+    }
+
+    if (!selected.length) break;
+
+    exclusions.push(selected.map((candidate) => candidate.optimizer_player_id));
+    addSelectedSet(selected, "Exact total-rating approximation");
+  }
+}
+
+function totalSkillSum(player: OptimizerPlayer) {
+  return SKILL_KEYS.reduce((sum, key) => sum + player[key], 0);
+}
+
+function totalNumerator(playersToScore: OptimizerPlayer[]) {
+  return playersToScore.reduce((sum, player) => sum + player.projected_bpr * totalSkillSum(player), 0);
+}
+
+function totalDenominator(playersToScore: OptimizerPlayer[]) {
+  return playersToScore.reduce((sum, player) => sum + Math.abs(player.projected_bpr), 0);
+}
+
+function exactTotalFraction(playersToScore: OptimizerPlayer[]) {
+  const denominator = totalDenominator(playersToScore);
+  if (denominator <= 0) return 0;
+  return totalNumerator(playersToScore) / denominator;
 }
 
 async function solveSingleGlpkModel(
@@ -656,11 +893,11 @@ function ComparisonRadar({ baseline, finalRatings }: { baseline: TeamRatings; fi
             <div key={key} className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-3 rounded border border-line bg-panel px-3 py-2 text-sm">
               <span className="font-semibold text-slate-600">{SKILL_LABELS[key]}</span>
               <span className="inline-flex items-center gap-1 font-semibold tabular-nums text-slate-700">
-                {baseline[key].toFixed(1)}
+                {baseline[key].toFixed(2)}
                 {final != null ? (
                   <>
                     <ArrowRight className="h-3.5 w-3.5 text-slate-500" />
-                    {final.toFixed(1)}
+                    {final.toFixed(2)}
                   </>
                 ) : null}
               </span>
@@ -694,18 +931,36 @@ function CourtLineup({
   const starterIds = new Set(starters.map((player) => player.optimizer_player_id));
   const bench = players.filter((player) => !starterIds.has(player.optimizer_player_id)).sort((a, b) => b.projected_bpr - a.projected_bpr);
   const additionIds = new Set(additions.map((player) => player.optimizer_player_id));
+  const courtSvg = useMemo(
+    () =>
+      makeBasketballCourt({
+        width: 1000,
+        type: "nba",
+        halfCourt: true,
+        horizontal: false,
+        trapezoid: false,
+        ftCircleDashCount: 14,
+        data: COURT_THEME,
+      }).toString(),
+    [],
+  );
   const spots = [
-    { label: "1", role: "Guard", className: "left-1/2 top-[7%] -translate-x-1/2" },
-    { label: "2", role: "Guard", className: "left-[10%] top-[31%]" },
-    { label: "3", role: "Forward", className: "right-[8%] top-[64%]" },
-    { label: "4", role: "Forward", className: "left-[18%] top-[65%]" },
-    { label: "5", role: "Center", className: "right-[34%] top-[44%]" },
+    { label: "1", role: "Guard", className: "left-1/2 top-[72%] -translate-x-1/2" },
+    { label: "2", role: "Guard", className: "left-[9%] top-[47%]" },
+    { label: "3", role: "Forward", className: "right-[9%] top-[47%]" },
+    { label: "4", role: "Forward", className: "left-[28%] top-[31%]" },
+    { label: "5", role: "Center", className: "right-[34%] top-[23%]" },
   ];
   return (
     <div className="rounded border border-line bg-white p-4 shadow-soft">
       <div className="mb-3 text-sm font-semibold text-ink">Optimized Roster Court</div>
       <div
-        className="relative mx-auto h-[400px] max-w-2xl overflow-hidden rounded border border-line bg-[#e5c17d]"
+        className="relative mx-auto h-[400px] max-w-2xl overflow-hidden rounded border border-line bg-slate-950 shadow-inner"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, rgba(148,163,184,.08) 1px, transparent 1px), linear-gradient(180deg, rgba(14,165,233,.16), rgba(16,185,129,.10) 54%, rgba(15,23,42,.18)), radial-gradient(circle at 50% 20%, rgba(255,255,255,.08), transparent 36%)",
+          backgroundSize: "44px 44px, 100% 100%, 100% 100%",
+        }}
         onDragOver={onDropCandidate ? (event) => event.preventDefault() : undefined}
         onDrop={
           onDropCandidate
@@ -717,12 +972,12 @@ function CourtLineup({
             : undefined
         }
       >
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] bg-[length:42px_42px]" />
-        <div className="absolute left-1/2 top-12 h-[390px] w-[560px] -translate-x-1/2 rounded-t-full border-[5px] border-white/90" />
-        <div className="absolute left-1/2 top-28 h-48 w-48 -translate-x-1/2 rounded-t-full border-[5px] border-white/90" />
-        <div className="absolute left-1/2 top-28 h-40 w-40 -translate-x-1/2 rounded-full border-[5px] border-white/90" />
-        <div className="absolute left-1/2 bottom-0 h-40 w-52 -translate-x-1/2 border-x-[5px] border-t-[5px] border-white/90" />
-        <div className="absolute bottom-24 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-[5px] border-white/90" />
+        <div
+          className="pointer-events-none absolute inset-x-14 inset-y-5 flex items-center justify-center opacity-95 drop-shadow-[0_0_8px_rgba(226,232,240,.16)] [&_svg]:h-full [&_svg]:w-auto"
+          aria-hidden="true"
+          dangerouslySetInnerHTML={{ __html: courtSvg }}
+        />
+        <div className="absolute inset-0 bg-emerald-500/[.02]" />
         {spots.map((spot, index) => {
           const player = starters[index];
           return player ? (
@@ -738,7 +993,7 @@ function CourtLineup({
             <PlayerAvatar player={player.player} size="sm" />
             <div className="min-w-0">
               <div className="truncate text-xs font-semibold text-ink">{player.player_name}</div>
-              <div className="text-[11px] font-semibold text-slate-500">{player.position_group} | {player.projected_bpr.toFixed(1)}</div>
+              <div className="text-[11px] font-semibold text-slate-500">{player.position_group} | {player.projected_bpr.toFixed(2)}</div>
             </div>
           </div>
         ))}
@@ -768,7 +1023,7 @@ function CourtPlayer({ player, label, role, added }: { player: OptimizerPlayer; 
       </div>
       <div className="mt-0.5 text-[9px] font-bold text-sky-700">#{label} {role}</div>
       <div className="truncate text-[11px] font-bold text-slate-950">{player.player_name}</div>
-      <div className="text-[10px] font-bold text-slate-600">{player.position_group} | {player.projected_bpr.toFixed(1)}</div>
+      <div className="text-[10px] font-bold text-slate-600">{player.position_group} | {player.projected_bpr.toFixed(2)}</div>
     </div>
   );
 }
@@ -1058,6 +1313,29 @@ function ManualOptimizerPane({
             </div>
           ) : null}
         </div>
+        <div className="rounded border border-line bg-white p-4 shadow-soft">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="text-sm font-semibold text-ink">Manual Additions ({selected.length})</div>
+            {selected.length ? (
+              <button type="button" onClick={() => onManualIdsChange([])} className="text-xs font-semibold text-rose-600">
+                Clear
+              </button>
+            ) : null}
+          </div>
+          <div className="max-h-[340px] overflow-y-auto">
+            <div className="grid gap-2">
+              {selected.map((player) => (
+                <div key={player.optimizer_player_id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 rounded border border-line bg-panel px-3 py-2">
+                  <OptimizerPlayerRow player={player} />
+                  <button type="button" onClick={() => removePlayer(player.optimizer_player_id)} className="rounded border border-line bg-white px-2 py-1 text-xs font-bold text-rose-600">
+                    Remove
+                  </button>
+                </div>
+              ))}
+              {!selected.length ? <div className="text-sm text-slate-500">No manual additions selected.</div> : null}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="space-y-4">
@@ -1073,27 +1351,6 @@ function ManualOptimizerPane({
           <SetMetrics set={manualSet} />
           <RatingDeltaGrid changes={changes} />
         </article>
-        <div className="rounded border border-line bg-white p-4 shadow-soft">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <div className="text-sm font-semibold text-ink">Manual Additions ({selected.length})</div>
-            {selected.length ? (
-              <button type="button" onClick={() => onManualIdsChange([])} className="text-xs font-semibold text-rose-600">
-                Clear
-              </button>
-            ) : null}
-          </div>
-          <div className="grid gap-2 md:grid-cols-2">
-            {selected.map((player) => (
-              <div key={player.optimizer_player_id} className="grid grid-cols-[1fr_auto] items-center gap-2 rounded border border-line bg-panel px-3 py-2">
-                <OptimizerPlayerRow player={player} />
-                <button type="button" onClick={() => removePlayer(player.optimizer_player_id)} className="rounded border border-line bg-white px-2 py-1 text-xs font-bold text-rose-600">
-                  Remove
-                </button>
-              </div>
-            ))}
-            {!selected.length ? <div className="text-sm text-slate-500">No manual additions selected.</div> : null}
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -1121,7 +1378,7 @@ function OptimizerPlayerRow({ player }: { player: OptimizerPlayer }) {
       <div className="min-w-0">
         <div className="truncate text-sm font-semibold text-ink">{player.player_name}</div>
         <div className="mt-1 truncate text-xs text-slate-500">
-          {player.position_group} | {displayOptimizerTeam(player.player)} | BPR {player.projected_bpr.toFixed(1)}
+          {player.position_group} | {displayOptimizerTeam(player.player)} | BPR {player.projected_bpr.toFixed(2)}
         </div>
         <div className="mt-1">
           <SourceBadge source={player.player.player_source} />
@@ -1136,7 +1393,7 @@ function SetMetrics({ set }: { set: RecommendationSet }) {
     <div className="mt-3 grid grid-cols-3 gap-2">
       <MiniMetric label="Total Gain" value={formatDelta(set.total_gain)} />
       <MiniMetric label="Weakest Gain" value={formatDelta(set.weakest_gain)} />
-      <MiniMetric label="Added BPR" value={set.added_projected_bpr.toFixed(1)} />
+      <MiniMetric label="Added BPR" value={set.added_projected_bpr.toFixed(2)} />
     </div>
   );
 }
@@ -1162,7 +1419,7 @@ function RatingSummary({ title, ratings }: { title: string; ratings: TeamRatings
         {SKILL_KEYS.map((key) => (
           <div key={key} className="flex items-center justify-between rounded border border-line bg-panel px-2.5 py-1.5 text-xs">
             <span className="font-semibold text-slate-600">{SKILL_LABELS[key]}</span>
-            <span className="font-bold tabular-nums text-ink">{ratings[key].toFixed(1)}</span>
+            <span className="font-bold tabular-nums text-ink">{ratings[key].toFixed(2)}</span>
           </div>
         ))}
       </div>
@@ -1172,11 +1429,10 @@ function RatingSummary({ title, ratings }: { title: string; ratings: TeamRatings
 
 function ResultTabs({ active, onChange }: { active: ResultTab; onChange: (tab: ResultTab) => void }) {
   return (
-    <div className="grid grid-cols-3 rounded border border-line bg-panel p-1">
+    <div className="grid grid-cols-2 rounded border border-line bg-panel p-1">
       {[
         ["sets", "Recommended Sets"],
         ["individual", "Individual Fits"],
-        ["hidden", "Hidden Fits"],
       ].map(([value, label]) => (
         <button
           key={value}
@@ -1301,7 +1557,7 @@ function radarShortLabel(key: SkillKey) {
 }
 
 function formatDelta(value: number) {
-  return `${value >= 0 ? "+" : ""}${value.toFixed(1)}`;
+  return `${value >= 0 ? "+" : ""}${value.toFixed(2)}`;
 }
 
 function normalizeName(value: string) {

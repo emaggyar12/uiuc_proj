@@ -127,7 +127,7 @@ export function PortalSimulator() {
         detail={`${scholarshipCount}/${ROSTER_LIMIT} spots`}
         alert={isOverRosterLimit}
       />
-      <SummaryMetric label="Proj Avg BPR" value={projectedBpr.toFixed(1)} />
+      <SummaryMetric label="Proj Avg BPR" value={projectedBpr.toFixed(2)} />
       <SummaryMetric label="Departures" value={`${removedPlayers.length}`} />
       <SummaryMetric label="Arrivals" value={`${addedPlayers.length}`} />
     </div>
@@ -300,7 +300,7 @@ function targetSortBpr(player: Player) {
 
 function formatTargetBpr(player: Player) {
   const value = targetDisplayBpr(player);
-  return value == null ? "N/A" : value.toFixed(1);
+  return value == null ? "N/A" : value.toFixed(2);
 }
 
 function RosterDecisionList({
@@ -347,7 +347,7 @@ function RosterDecisionList({
                 <DecisionButton active={leaving} label="Leave" onClick={() => !leaving && onToggle(player.player_id)} tone="leave" />
               </div>
               <PlayerLine player={player} added={false} crossedOut={leaving} />
-              <div className="text-right text-xs font-semibold tabular-nums text-ink">BPR {player.projected_bpr.toFixed(1)}</div>
+              <div className="text-right text-xs font-semibold tabular-nums text-ink">BPR {player.projected_bpr.toFixed(2)}</div>
             </div>
           );
         })}
@@ -586,7 +586,7 @@ function IncomingPlayers({ players, onRemove }: { players: Player[]; onRemove: (
     <div className="rounded border border-emerald-200 bg-emerald-50 p-3 shadow-soft dark:border-emerald-900 dark:bg-emerald-950">
       <div className="flex items-center justify-between gap-3">
         <div className="text-sm font-semibold text-emerald-800 dark:text-emerald-200">Incoming Players ({players.length})</div>
-        <div className="text-xs font-semibold text-emerald-700 dark:text-emerald-300">+{incomingBpr.toFixed(1)} BPR</div>
+        <div className="text-xs font-semibold text-emerald-700 dark:text-emerald-300">+{incomingBpr.toFixed(2)} BPR</div>
       </div>
       <div className="mt-2 flex flex-wrap gap-2">
         {players.length ? (
@@ -595,7 +595,7 @@ function IncomingPlayers({ players, onRemove }: { players: Player[]; onRemove: (
               <div className="flex items-start gap-2">
                 <div>
                   <div className="text-sm font-semibold text-ink">{player.player_name}</div>
-                  <div className="mt-1 text-xs text-slate-500">{player.current_team} · +{player.projected_bpr.toFixed(1)} BPR</div>
+                  <div className="mt-1 text-xs text-slate-500">{player.current_team} · +{player.projected_bpr.toFixed(2)} BPR</div>
                 </div>
                 <button type="button" onClick={() => onRemove(player.player_id)} className="text-rose-500 hover:text-rose-700">
                   <X className="h-4 w-4" />
@@ -639,7 +639,7 @@ function DepthChart({ players, addedIds }: { players: Player[]; addedIds: string
                     <span className={clsx("truncate", addedIds.includes(player.player_id) ? "font-semibold text-emerald-700" : "text-slate-700")}>
                       {addedIds.includes(player.player_id) ? "+ " : ""}{player.player_name}
                     </span>
-                    <span className={clsx("text-right tabular-nums", addedIds.includes(player.player_id) ? "font-semibold text-emerald-700" : "text-slate-600")}>{player.projected_bpr.toFixed(1)}</span>
+                    <span className={clsx("text-right tabular-nums", addedIds.includes(player.player_id) ? "font-semibold text-emerald-700" : "text-slate-600")}>{player.projected_bpr.toFixed(2)}</span>
                   </div>
                 ))}
               {!group.length ? <div className="text-sm italic text-slate-400">No players</div> : null}
@@ -700,7 +700,7 @@ function MiniRadar({ values }: { values: Array<{ label: string; value: number }>
         {values.map((skill) => (
           <div key={skill.label} className="flex items-center justify-between rounded border border-line bg-panel px-2.5 py-1.5 text-xs">
             <span className="font-semibold text-slate-600">{skill.label}</span>
-            <span className="font-semibold tabular-nums text-ink">{skill.value.toFixed(1)}</span>
+            <span className="font-semibold tabular-nums text-ink">{skill.value.toFixed(2)}</span>
           </div>
         ))}
       </div>

@@ -262,7 +262,7 @@ export function PlayerTable({
                 <div className="w-full text-center">
                   <SourceBadge source={player.player_source} />
                 </div>
-                <TableNumber value={player.projected_bpr.toFixed(1)} label="BPR" />
+                <TableNumber value={player.projected_bpr.toFixed(2)} label="BPR" />
                 <TableNumber value={`${player.fit_score}`} label="Fit" />
                   </>
                 )}

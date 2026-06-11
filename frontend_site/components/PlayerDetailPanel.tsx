@@ -100,11 +100,11 @@ export function PlayerDetailPanel({ player }: { player: Player }) {
             </>
           ) : (
             <>
-              <Metric icon={<Activity className="h-4 w-4" />} label="BPR" value={player.projected_bpr.toFixed(1)} />
+              <Metric icon={<Activity className="h-4 w-4" />} label="BPR" value={player.projected_bpr.toFixed(2)} />
               <Metric label="MIN" value={player.projected_minutes.toFixed(0)} />
-              <Metric label="PTS" value={player.projected_points.toFixed(1)} />
-              <Metric label="REB" value={player.projected_rebounds.toFixed(1)} />
-              <Metric label="AST" value={player.projected_assists.toFixed(1)} />
+              <Metric label="PTS" value={player.projected_points.toFixed(2)} />
+              <Metric label="REB" value={player.projected_rebounds.toFixed(2)} />
+              <Metric label="AST" value={player.projected_assists.toFixed(2)} />
             </>
           )}
         </section>
@@ -146,7 +146,7 @@ function HsProfileCard({
     { label: "Nat. Rank", value: formatRank(player.hs_national_rank) },
     { label: "Pos. Rank", value: formatRank(player.hs_position_rank) },
     { label: "Stars", value: formatOptionalNumber(player.hs_stars) },
-    { label: "BPR", value: formatStat(player.hs_bpr, 1), emphasized: true },
+    { label: "BPR", value: formatStat(player.hs_bpr, 2), emphasized: true },
   ];
 
   return (
@@ -229,7 +229,7 @@ function TransferProfileCard({
   const transferMetrics = [
     { label: "247 Rank", value: formatRank(player.transfer_247_rank) },
     { label: "Transfer Rating", value: formatTransferRating(player.transfer_247_rating) },
-    { label: "BPR", value: formatStat(player.transfer_bpr, 1), emphasized: true },
+    { label: "BPR", value: formatStat(player.transfer_bpr, 2), emphasized: true },
   ];
 
   return (
@@ -322,33 +322,33 @@ function SeasonStats({ player }: { player: Player }) {
         <Activity className="h-4 w-4" />
         2025-2026 Stats
       </div>
-      <Metric label="BPR" value={formatStat(player.season_basic_bpr, 1)} />
+      <Metric label="BPR" value={formatStat(player.season_basic_bpr, 2)} />
       <Metric label="GP" value={formatStat(player.season_gp, 0)} />
-      <Metric label="MP" value={formatStat(player.season_mp, 1)} />
-      <Metric label="OREB" value={formatStat(player.season_oreb, 1)} />
-      <Metric label="DREB" value={formatStat(player.season_dreb, 1)} />
-      <Metric label="TREB" value={formatStat(player.season_treb, 1)} />
-      <Metric label="AST" value={formatStat(player.season_ast, 1)} />
-      <Metric label="STL" value={formatStat(player.season_stl, 1)} />
-      <Metric label="BLK" value={formatStat(player.season_blk, 1)} />
-      <Metric label="PTS" value={formatStat(player.season_pts, 1)} />
+      <Metric label="MP" value={formatStat(player.season_mp, 2)} />
+      <Metric label="OREB" value={formatStat(player.season_oreb, 2)} />
+      <Metric label="DREB" value={formatStat(player.season_dreb, 2)} />
+      <Metric label="TREB" value={formatStat(player.season_treb, 2)} />
+      <Metric label="AST" value={formatStat(player.season_ast, 2)} />
+      <Metric label="STL" value={formatStat(player.season_stl, 2)} />
+      <Metric label="BLK" value={formatStat(player.season_blk, 2)} />
+      <Metric label="PTS" value={formatStat(player.season_pts, 2)} />
     </>
   );
 }
 
 function ReturningSeasonStats({ player }: { player: Player }) {
   const primaryStats = [
-    { label: "PPG", value: formatStat(player.season_pts, 1) },
-    { label: "RPG", value: formatStat(player.season_treb, 1) },
-    { label: "APG", value: formatStat(player.season_ast, 1) },
-    { label: "SPG", value: formatStat(player.season_stl, 1) },
-    { label: "BPG", value: formatStat(player.season_blk, 1) },
+    { label: "PPG", value: formatStat(player.season_pts, 2) },
+    { label: "RPG", value: formatStat(player.season_treb, 2) },
+    { label: "APG", value: formatStat(player.season_ast, 2) },
+    { label: "SPG", value: formatStat(player.season_stl, 2) },
+    { label: "BPG", value: formatStat(player.season_blk, 2) },
   ];
   const secondaryStats = [
     { label: "GP", value: formatStat(player.season_gp, 0) },
-    { label: "MP", value: formatStat(player.season_mp, 1) },
+    { label: "MP", value: formatStat(player.season_mp, 2) },
     { label: "FT", value: formatPercent(player.season_ft_pct) },
-    { label: "BPR", value: formatStat(player.season_basic_bpr, 1), emphasized: true },
+    { label: "BPR", value: formatStat(player.season_basic_bpr, 2), emphasized: true },
   ];
 
   return (
@@ -559,7 +559,7 @@ function normalizePercentile(value: number | null | undefined) {
 
 function formatPercentile(value: number | null | undefined) {
   if (value === null || value === undefined || Number.isNaN(value)) return "N/A";
-  return value.toFixed(1);
+  return value.toFixed(2);
 }
 
 function percentileBadgeClass(value: number | null | undefined) {
@@ -580,7 +580,7 @@ function formatStat(value: number | null | undefined, decimals: number) {
 
 function formatPercent(value: number | null | undefined) {
   if (value === null || value === undefined || Number.isNaN(value)) return "N/A";
-  return `${(value * 100).toFixed(1)}%`;
+  return `${(value * 100).toFixed(2)}%`;
 }
 
 function Metric({ label, value, icon }: { label: string; value: string; icon?: React.ReactNode }) {

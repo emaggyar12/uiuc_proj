@@ -372,7 +372,7 @@ export function PlayerTable({
                     <div className="w-full text-center text-sm text-slate-700">{displayOptimizerTeam(player)}</div>
                     <TableNumber value={formatOptional(player.hs_stars, 0)} label="Stars" />
                     <TableNumber value={formatOptional(player.hs_rating, 2)} label="Rating" />
-                    <TableNumber value={formatOptional(player.hs_bpr, 1)} label="BPR" />
+                    <TableNumber value={formatOptional(player.hs_bpr, 2)} label="BPR" />
                     <div className="w-full text-center">
                       <SourceBadge source={player.player_source} />
                     </div>
@@ -387,7 +387,7 @@ export function PlayerTable({
                       />
                     </div>
                     <TableNumber value={formatOptional(player.transfer_247_rating, 2)} label="Rating" />
-                    <TableNumber value={formatOptional(player.transfer_bpr, 1)} label="BPR" />
+                    <TableNumber value={formatOptional(player.transfer_bpr, 2)} label="BPR" />
                     <div className="w-full text-center">
                       <SourceBadge source={player.player_source} />
                     </div>
@@ -406,7 +406,7 @@ export function PlayerTable({
                     <div className="w-full text-center">
                       <ReturningBadge />
                     </div>
-                    <TableNumber value={player.projected_bpr.toFixed(1)} label="BPR" />
+                    <TableNumber value={player.projected_bpr.toFixed(2)} label="BPR" />
                   </>
                 )}
                 <ChevronDown className={clsx("h-5 w-5 justify-self-end text-slate-500 transition", expanded && "rotate-180")} />
@@ -468,7 +468,7 @@ function draftBprValue(player: Player) {
 }
 
 function formatDraftBpr(player: Player) {
-  return formatOptional(draftBprValue(player), 1);
+  return formatOptional(draftBprValue(player), 2);
 }
 
 function ReturningBadge() {

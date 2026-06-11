@@ -32,7 +32,7 @@ export function ReadOnlyTeamsView({ initialTeamId }: { initialTeamId: string }) 
 
       <div className="grid grid-cols-2 gap-2 rounded border border-line bg-panel p-2 sm:grid-cols-4">
         <SummaryMetric label="Roster" value={`${roster.length}`} detail={`${roster.length}/15 tracked`} alert={roster.length > 15} />
-        <SummaryMetric label="Proj Avg BPR" value={averageBpr(roster).toFixed(1)} />
+        <SummaryMetric label="Proj Avg BPR" value={averageBpr(roster).toFixed(2)} />
         <SummaryMetric label="Transfers" value={`${roster.filter((player) => player.player_source === "transfer").length}`} />
         <SummaryMetric label="HS Recruits" value={`${roster.filter((player) => player.player_source === "hs").length}`} />
       </div>
@@ -156,7 +156,7 @@ function ReadOnlyRosterList({ players }: { players: Player[] }) {
         {filteredPlayers.map((player) => (
           <div key={player.player_id} className="grid gap-3 px-3 py-2.5 md:grid-cols-[1fr_auto] md:items-center">
             <PlayerLine player={player} />
-            <div className="text-right text-xs font-semibold tabular-nums text-ink">BPR {player.projected_bpr.toFixed(1)}</div>
+            <div className="text-right text-xs font-semibold tabular-nums text-ink">BPR {player.projected_bpr.toFixed(2)}</div>
           </div>
         ))}
         {!filteredPlayers.length ? <div className="px-3 py-8 text-center text-sm text-slate-500">No roster players match that search.</div> : null}
@@ -228,7 +228,7 @@ function MiniRadar({ values }: { values: Array<{ label: string; value: number }>
         {values.map((skill) => (
           <div key={skill.label} className="flex items-center justify-between rounded border border-line bg-panel px-2.5 py-1.5 text-xs">
             <span className="font-semibold text-slate-600">{skill.label}</span>
-            <span className="font-semibold tabular-nums text-ink">{skill.value.toFixed(1)}</span>
+            <span className="font-semibold tabular-nums text-ink">{skill.value.toFixed(2)}</span>
           </div>
         ))}
       </div>
@@ -262,7 +262,7 @@ function DepthChart({ players }: { players: Player[] }) {
                   .map((player) => (
                     <div key={player.player_id} className="grid grid-cols-[minmax(0,1fr)_2.25rem] items-center gap-2 text-xs">
                       <span className="truncate text-slate-700">{player.player_name}</span>
-                      <span className="text-right tabular-nums text-slate-600">{player.projected_bpr.toFixed(1)}</span>
+                      <span className="text-right tabular-nums text-slate-600">{player.projected_bpr.toFixed(2)}</span>
                     </div>
                   ))}
                 {!group.length ? <div className="text-sm italic text-slate-400">No players</div> : null}

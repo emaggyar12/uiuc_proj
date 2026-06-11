@@ -71,7 +71,7 @@ export function RecommendationsBoard({ defaultTeam = "UConn" }: { defaultTeam?: 
                     <SourceBadge source={player.player_source} />
                   </div>
                   <div className="mt-1 text-sm text-slate-600">
-                    {player.position} | {player.height} | {player.current_team} | BPR {player.projected_bpr.toFixed(1)}
+                    {player.position} | {player.height} | {player.current_team} | BPR {player.projected_bpr.toFixed(2)}
                   </div>
                   </div>
                 </div>
