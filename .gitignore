@@ -42,3 +42,6 @@ models_dir/kmeans_players/kmeans_cluster_outputs/kmeans_player_assignment_explan
 
 # Large generated model training outputs
 models_dir/same_school_bpr/catboost_transfer_bpr_refactored_outputs/
+
+# Other files
+frontend_site/components/RosterOptimizer_backup.tsx
