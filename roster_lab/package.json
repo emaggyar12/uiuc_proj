@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "basketball-court": "^1.1.2",
     "clsx": "^2.1.1",
     "glpk.js": "^5.0.0",
