@@ -1,4 +1,4 @@
-# Transfer Portal Frontend
+# Roster Lab Website
 
 Next.js prototype for a college basketball front office portal tool.
 
